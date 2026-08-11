@@ -1,16 +1,35 @@
-# Ąžuolyno gimnazija
+# SF „Genys“
 
-Static, responsive Lithuanian school website.
+Static, responsive website for San Francisco Lithuanian School „Genys“.
 
-## Local content database
+## Run locally
 
-Editable content is stored in [data/site-data.json](data/site-data.json):
+Open [index.html](index.html) in a browser, or serve this folder with any static web server. Using a server is recommended so the JSON content files load consistently.
 
-- `news` holds the date, category, title and text for news cards.
-- `gallery` holds gallery captions and image crop positions.
+## Project structure
 
-The gallery images are local project assets under `assets/`. To add a new local photo, place it in that folder and update the image path in `app.js` (or extend the gallery record with an `image` field).
+- `index.html` — home page
+- `pages/` — news, contact, registration, parent, and school-information pages
+- `articles/` — individual news and teacher pages
+- `styles.css` — home-page styling
+- `pages/article.css` — styling for the secondary pages
+- `app.js` — home-page content rendering and interactions
+- `assets/` — images and logo files
 
-Open `index.html` directly in a browser, or serve the folder with any static web server. The site falls back to its built-in copy of the local data when browsers restrict JSON loading from a direct `file://` page.
+## Editable content
 
-# Genys
+- [data/site-data.json](data/site-data.json) — home-page news cards and gallery captions
+- [data/teachers.json](data/teachers.json) — teaching-team profiles and article links
+
+## Included features
+
+- Sticky navigation, including the same menu on secondary pages
+- Responsive mobile menu and navigation dropdowns
+- Lithuanian and English home-page language switch
+- Registration and calendar embeds
+- Contact page with address, map links, Google Street View, and a chat-style contact interface
+- Naujienos page with the embedded SF „Genys“ Facebook timeline, which updates as new Facebook posts are published
+
+## Notes
+
+The chat interface currently provides the on-page conversation layout only. To deliver submitted messages to staff, connect it to a form endpoint, email service, or chat backend.
