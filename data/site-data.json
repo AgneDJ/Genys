@@ -1,0 +1,13 @@
+{
+  "news": [
+    {"date":"2025–2026", "category":"BENDRUOMENĖ", "title":"Sveikiname visus su 2025–2026 mokslo metais!", "text":"Daugiau informacijos apie mokyklos mokslo metus ir tvarkaraštį.", "link":"pages/tvarkarastis.html", "image":"assets/su naujais.png"},
+    {"date":"08.18", "category":"ŠVENTĖS", "title":"Kartu minėsime Lietuvos valstybines šventes", "text":"Mokykloje tradicijas pažįstame gyvai – per istorijas, dainas ir bendras veiklas.", "link":"articles/naujienos/sventes-2026.html"},
+    {"date":"08.11", "category":"KLASĖS", "title":"Šeštadieniai, pilni lietuviškų atradimų", "text":"Kalba, kūryba, žaidimas ir draugystė – kiekvienam amžiui pritaikyta programa.", "link":"articles/naujienos/sestadieniai-2026.html"}
+  ],
+  "gallery": [
+    {"title":"Drauge į naujus metus", "position":"50% 50%"},
+    {"title":"Idėjos laboratorijoje", "position":"22% 48%"},
+    {"title":"Tarp pamokų", "position":"76% 55%"},
+    {"title":"Mokyklos kiemas", "position":"50% 24%"}
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "teamPhoto": "pages/Mokytojai/mokytojos.png",
+  "teamPhotoAlt": "SF Genys mokytojų komanda",
+  "teachers": [
+    {"name":"Agnė","role":"Montessori ir ankstyvojo ugdymo mokytoja","article":"articles/mokytojai/agne.html"},
+    {"name":"Erika","role":"Lietuvių kalbos mokytoja","article":"articles/mokytojai/erika.html"},
+    {"name":"Aurelija","role":"Lietuvių kalbos mokytoja","article":"articles/mokytojai/aurelija.html"},
+    {"name":"Justė","role":"Lietuvių kalbos mokytoja","article":"articles/mokytojai/juste.html"},
+    {"name":"Rita Rosicker","role":"Lietuvių kalbos mokytoja","article":"articles/mokytojai/rita.html"},
+    {"name":"Aistė","role":"Lituanistinio ugdymo mokytoja","article":"articles/mokytojai/aiste.html"},
+    {"name":"Indrė","role":"Nuotolinio mokymo mokytoja","article":"articles/mokytojai/indre.html"},
+    {"name":"Vanesa","role":"Lietuviškų šokių ir dainavimo mokytoja","article":"articles/mokytojai/vanesa.html"}
+  ]
+}

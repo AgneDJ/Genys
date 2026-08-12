@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="lt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="San Francisko lituanistinė mokykla „Genys“ – kalba, kultūra ir bendrystė."
+    />
+    <title>SF „Genys“ | Lituanistinė mokykla</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="topline">
+      <div class="shell">
+        <span>San Franciskas · Kalifornija</span
+        ><span class="top-links"
+          >Tėvams &nbsp; | &nbsp; Mokytojams &nbsp; | &nbsp; Bendruomenei</span
+        >
+      </div>
+    </div>
+    <header class="header shell">
+      <a href="#home" class="brand" aria-label="SF Genys pradžia"
+        ><img class="brand-logo" src="assets/logo.png" alt="SF Genys"
+      /></a>
+      <button
+        class="menu-btn"
+        aria-label="Atidaryti meniu"
+        aria-expanded="false"
+      >
+        ☰
+      </button>
+      <nav id="main-nav">
+        <a class="active" href="#home">Pradžia</a>
+        <details>
+          <summary>Apie mus</summary>
+          <div class="nav-menu">
+            <a href="pages/apie-mus/index.html">Apie mus – apžvalga</a
+            ><a href="pages/apie-mus/vadoves-zodis.html">Vadovės žodis</a
+            ><a href="pages/apie-mus/misija-ir-tikslai.html"
+              >Misija ir tikslai</a
+            ><a href="pages/apie-mus/veikla.html">Veikla</a
+            ><a href="pages/apie-mus/klases.html">Klasės</a
+            ><a href="pages/apie-mus/mokytojai.html">Mūsų mokytojai</a>
+          </div>
+        </details>
+        <a href="pages/naujienos.html">Naujienos</a>
+        <a href="pages/tvarkarastis.html">Tvarkaraštis</a>
+        <details>
+          <summary>Tėvams</summary>
+          <div class="nav-menu">
+            <a href="pages/tevams/index.html">Tėvams – apžvalga</a
+            ><a href="pages/registracija.html">Registracija</a
+            ><a href="pages/kalendorius.html">Kalendorius</a
+            ><a href="pages/tevams/tevu-komitetas.html">Tėvų komitetas</a
+            ><a href="pages/tevams/atributika.html">Atributika</a
+            ><a href="pages/tevams/budejimai.html">Budėjimai</a
+            ><a href="pages/tevams/mokslo-kainos.html">Mokslų kainos</a
+            ><a href="pages/tevams/amazon-wishlist.html">Amazon norų sąrašas</a>
+          </div>
+        </details>
+        <a href="pages/pedagogams.html">Pedagogams</a
+        ><a href="pages/partneriams.html">Partneriams</a
+        ><a href="pages/kontaktai.html">Kontaktai</a>
+      </nav>
+      <div class="language-switch" aria-label="Kalba">
+        <button class="active" data-lang="lt">LT</button
+        ><button data-lang="en">EN</button>
+      </div>
+      <a class="portal-btn" href="pages/registracija.html"
+        >Registracija <span>→</span></a
+      >
+    </header>
+
+    <main>
+      <section id="home" class="hero">
+        <div class="shell hero-inner">
+          <div class="hero-copy">
+            <p class="eyebrow light">SAN FRANCISKO LITUANISTINĖ MOKYKLA</p>
+            <h1>Puoselėkime<br />lietuvybę <i>kartu!</i></h1>
+            <p>Vieta, kur lietuvių kalba, kultūra ir tradicijos atgyja.</p>
+            <div class="hero-actions">
+              <a href="#about" class="btn btn-light"
+                >Atraskite „Genį“ <span>→</span></a
+              ><a href="#news" class="text-link light"
+                >Naujienos <span>↓</span></a
+              >
+            </div>
+          </div>
+          <div class="hero-badge">
+            <b>SF · CA</b><span>Šeštadienio mokykla</span>
+          </div>
+        </div>
+      </section>
+      <section class="latest-news shell" aria-label="Naujausia naujiena">
+        <div id="latest-news"></div>
+      </section>
+      <section id="about" class="intro shell">
+        <div>
+          <p class="eyebrow">MŪSŲ PASAKOJIMAS</p>
+          <h2>Kalba, kultūra<br />ir draugystė.</h2>
+        </div>
+        <div class="intro-text">
+          <p>
+            San Francisko lituanistinė mokykla „Genys“ – vieta, kur vaikai ne
+            tik mokosi lietuviškai, bet ir smagiai auga kartu. Puoselėjame gyvą
+            ryšį su Lietuva ir vieni su kitais.
+          </p>
+          <a class="text-link" href="#contacts"
+            >Daugiau apie mus <span>→</span></a
+          >
+        </div>
+      </section>
+      <section id="news" class="section shell">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">KAS VYKSTA</p>
+            <h2>Naujienos ir įvykiai</h2>
+          </div>
+          <a href="pages/naujienos.html" class="text-link">Visos naujienos <span>→</span></a>
+        </div>
+        <div class="news-archive-cta"><p>Visos ankstesnės naujienos ir jų nuotraukos rasite mūsų naujienų archyve.</p><a class="btn btn-dark" href="pages/naujienos.html">Atidaryti naujienas <span>→</span></a></div>
+        <div id="news-preview" class="news-preview" aria-label="Naujienų kortelės"></div>
+      </section>
+      <section id="teachers" class="teachers">
+        <div class="shell teachers-grid">
+          <div class="teachers-copy">
+            <p class="eyebrow">MŪSŲ ŽMONĖS</p>
+            <h2>MŪSŲ MOKYTOJŲ KOMANDA</h2>
+            <p>
+              Mokytojai ir savanoriai čia kuria jaukią erdvę kalbai, kūrybai,
+              žaidimui ir kiekvieno vaiko pasitikėjimui.
+            </p>
+            <a class="btn btn-dark" href="pages/apie-mus/mokytojai.html">
+              Susipažinkite su komanda <span>→</span>
+            </a>
+          </div>
+          <div class="teacher-cards">
+            <figure class="teacher-team-photo">
+              <img
+                src="pages/Mokytojai/mokytojos.png"
+                alt="SF Genys mokytojų komanda"
+                loading="lazy"
+              />
+              <figcaption>SF „Genys“ mokytojų komanda</figcaption>
+            </figure>
+            <!--
+            <article class="teacher-card">
+              <div class="avatar avatar-one">LT</div>
+              <p>
+                <b>Kalba ir raštas</b
+                ><span>Mokomės kalbėti, skaityti, kurti</span>
+              </p>
+            </article>
+            <article class="teacher-card raised">
+              <div class="avatar avatar-two">✦</div>
+              <p>
+                <b>Kultūra ir tradicijos</b
+                ><span>Šventės, dainos, istorijos</span>
+              </p>
+            </article>
+            <article class="teacher-card">
+              <div class="avatar avatar-three">SF</div>
+              <p><b>Bendruomenė</b><span>Augame drauge įlankoje</span></p>
+            </article>
+            <div class="quote">„Lietuvybė gyva, kai ja dalijamės.“</div>
+            -->
+          </div>
+        </div>
+      </section>
+      <section id="gallery" class="section shell gallery-section">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">AKIMIRKOS</p>
+            <h2>Gyvenimas mokykloje</h2>
+          </div>
+          <button class="text-link gallery-open">
+            Atidaryti galeriją <span>↗</span>
+          </button>
+        </div>
+        <div id="gallery-grid" class="gallery-grid"></div>
+      </section>
+      <section id="calendar" class="calendar-section shell">
+        <div class="calendar-copy">
+          <p class="eyebrow">PLANUOKIME KARTU</p>
+          <h2>Mokslo metų<br />kalendorius</h2>
+          <p>
+            Renginiai, pamokos, šventės ir svarbios datos – viskas vienoje
+            vietoje.
+          </p>
+          <a
+            class="text-link"
+            target="_blank"
+            rel="noreferrer"
+            href="https://docs.google.com/spreadsheets/d/1E41uHWyJROE8XZN5ykN-OAoAr2uksXJRjVpbtxbWaFk/edit?gid=1555677283#gid=1555677283"
+            >Atidaryti „Google Sheets“ <span>↗</span></a
+          >
+        </div>
+        <div class="calendar-frame">
+          <div class="calendar-bar">
+            <span><i></i> Pildomas dokumentas</span
+            ><small>Keičiant „Google Sheets“ jis atsinaujins čia</small>
+          </div>
+          <iframe
+            title="SF Genys mokslo metų kalendorius"
+            loading="lazy"
+            src="https://docs.google.com/spreadsheets/d/1E41uHWyJROE8XZN5ykN-OAoAr2uksXJRjVpbtxbWaFk/preview?gid=1555677283"
+          ></iframe>
+        </div>
+      </section>
+      <section id="contacts" class="contact shell">
+        <div>
+          <p class="eyebrow light">SUSISIEKIME</p>
+          <h2>Prisijunkite<br />prie mūsų.</h2>
+          <p>
+            Turite klausimų apie klases, registraciją ar bendruomenę? Parašykite
+            – mielai atsakysime.
+          </p>
+        </div>
+        <div class="contact-card">
+          <div><span>Dirbame</span><b>Šeštadieniais 9:30–13:30 val.</b></div>
+          <div>
+            <span>Adresas</span
+            ><b>19806 Wisteria St<br />Castro Valley, CA 94546</b>
+          </div>
+          <div><span>Internete</span><b>sfgenys.org</b></div>
+          <a
+            class="btn btn-light"
+            href="https://www.facebook.com/sfgenys"
+            target="_blank"
+            rel="noreferrer"
+            >Facebook <span>↗</span></a
+          >
+        </div>
+        <div class="map-card">
+          <div class="map-label">
+            <span>RASKITE MUS</span
+            ><a
+              href="https://www.google.com/maps/search/?api=1&query=19806+Wisteria+St,+Castro+Valley,+CA+94546"
+              target="_blank"
+              rel="noreferrer"
+              >Atidaryti žemėlapyje ↗</a
+            >
+          </div>
+          <iframe
+            title="SF Genys vieta Castro Valley"
+            loading="lazy"
+            src="https://www.google.com/maps?q=19806%20Wisteria%20St%2C%20Castro%20Valley%2C%20CA%2094546&z=16&output=embed"
+          ></iframe>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <div class="shell footer-inner">
+        <span>© 2026 SF lituanistinė mokykla „Genys“</span
+        ><span>Kalba mus jungia.</span>
+        <div>
+          <a
+            href="https://www.facebook.com/sfgenys"
+            target="_blank"
+            rel="noreferrer"
+            >Facebook</a
+          ><a href="#home">Instagram</a>
+        </div>
+      </div>
+    </footer>
+    <dialog id="gallery-modal">
+      <button class="close-modal" aria-label="Uždaryti">×</button
+      ><img alt="Galerijos nuotrauka" />
+      <p></p>
+    </dialog>
+    <script src="app.js"></script>
+  </body>
+</html>

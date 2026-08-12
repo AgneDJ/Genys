@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="lt">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Kontaktai | SF Genys</title>
+    <link rel="stylesheet" href="article.css" />
+  </head>
+  <body>
+    <main class="page">
+      <header class="top">
+        <a class="brand" href="../index.html"><b>G</b>SF „Genys“</a>
+        <a class="back" href="../index.html">← Į pradžią</a>
+      </header>
+      <article class="article contact-page">
+        <p class="eyebrow">SUSISIEKIME</p>
+        <h1>Užsukite pas mus</h1>
+        <p>Turite klausimų apie klases, registraciją ar bendruomenę? Mielai atsakysime.</p>
+
+        <div class="contact-details">
+          <div><span>DIRBAME</span><b>Šeštadieniais 9:30–13:30 val.</b></div>
+          <div><span>ADRESAS</span><b>19806 Wisteria St<br />Castro Valley, CA 94546</b></div>
+          <div><span>INTERNETE</span><b>sfgenys.org</b></div>
+        </div>
+
+        <p class="contact-actions">
+          <a class="contact-button" href="https://www.facebook.com/sfgenys" target="_blank" rel="noreferrer">Facebook ↗</a>
+          <a class="contact-link" href="https://www.google.com/maps/search/?api=1&query=19806+Wisteria+St,+Castro+Valley,+CA+94546" target="_blank" rel="noreferrer">Atidaryti „Google Maps“ ↗</a>
+        </p>
+
+        <section class="street-view" aria-labelledby="street-view-heading">
+          <div class="street-view-heading">
+            <span id="street-view-heading">RASKITE MUS</span>
+            <small>Google Street View</small>
+          </div>
+          <iframe
+            title="SF Genys vieta – Google Street View"
+            loading="lazy"
+            src="https://www.google.com/maps?q=19806%20Wisteria%20St%2C%20Castro%20Valley%2C%20CA%2094546&layer=c&output=svembed"
+          ></iframe>
+        </section>
+      </article>
+    </main>
+    <button class="chat-launcher" type="button" aria-expanded="false" aria-controls="contact-chat">Susisiekite <span>💬</span></button>
+    <aside class="chat-box" id="contact-chat" hidden aria-label="Susisiekite">
+      <button class="chat-close" type="button" aria-label="Uždaryti pokalbį">×</button>
+      <p class="eyebrow">SUSISIEKITE</p>
+      <h2>Parašykite mums</h2>
+      <div class="chat-messages" aria-live="polite">
+        <p class="chat-bubble chat-bubble-reply">Sveiki! Kuo galime padėti?</p>
+      </div>
+      <form class="chat-form">
+        <label class="sr-only" for="chat-message">Jūsų žinutė</label>
+        <input id="chat-message" name="message" type="text" placeholder="Rašykite žinutę..." autocomplete="off" required />
+        <button type="submit" aria-label="Siųsti žinutę">↑</button>
+      </form>
+    </aside>
+    <script src="site-nav.js" defer></script>
+    <script>
+      const chatLauncher = document.querySelector('.chat-launcher');
+      const chatBox = document.querySelector('.chat-box');
+      const closeChat = () => { chatBox.hidden = true; chatLauncher.setAttribute('aria-expanded', 'false'); };
+      chatLauncher.addEventListener('click', () => { const isOpen = chatBox.hidden; chatBox.hidden = !isOpen; chatLauncher.setAttribute('aria-expanded', String(isOpen)); });
+      document.querySelector('.chat-close').addEventListener('click', closeChat);
+      document.querySelector('.chat-form').addEventListener('submit', event => {
+        event.preventDefault();
+        const input = event.currentTarget.elements.message;
+        const message = input.value.trim();
+        if (!message) return;
+        const bubble = document.createElement('p');
+        bubble.className = 'chat-bubble chat-bubble-sent';
+        bubble.textContent = message;
+        document.querySelector('.chat-messages').append(bubble);
+        input.value = '';
+        input.focus();
+      });
+    </script>
+  </body>
+</html>
