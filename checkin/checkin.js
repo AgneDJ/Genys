@@ -6,6 +6,7 @@
 const QR_ACCESS_TOKEN = 'sf-genys-entry';
 const DEMO_FAMILY_PIN = '2026';
 const STORAGE_KEY = 'sf-genys-attendance-records';
+const checkinConfig = window.CHECKIN_CONFIG || {};
 
 const screens = ['invalid-access', 'pin-screen', 'register-screen', 'success-screen'];
 const show = id => screens.forEach(screen => document.getElementById(screen).hidden = screen !== id);
@@ -26,8 +27,10 @@ document.getElementById('pin-form').addEventListener('submit', event => {
   const error = document.getElementById('pin-error');
   if (pin !== DEMO_FAMILY_PIN) { error.textContent = 'That PIN is not recognised. Please try again.'; return; }
   sessionStorage.setItem(sessionKey, 'yes');
+  sessionStorage.setItem('sf-genys-checkin-pin', pin);
   error.textContent = '';
   show('register-screen');
+  requestAnimationFrame(resizeCanvas);
 });
 
 const canvas = document.getElementById('signature-canvas');
@@ -37,37 +40,63 @@ let hasSignature = false;
 function resizeCanvas() {
   const ratio = window.devicePixelRatio || 1;
   const image = hasSignature ? canvas.toDataURL() : null;
-  canvas.width = canvas.offsetWidth * ratio; canvas.height = canvas.offsetHeight * ratio;
-  context.scale(ratio, ratio); context.lineWidth = 2; context.lineCap = 'round'; context.strokeStyle = '#1d3156';
+  canvas.width = Math.max(1, canvas.offsetWidth * ratio); canvas.height = Math.max(1, canvas.offsetHeight * ratio);
+  context.setTransform(ratio, 0, 0, ratio, 0, 0); context.lineWidth = 2; context.lineCap = 'round'; context.strokeStyle = '#1d3156';
   if (image) { const saved = new Image(); saved.onload = () => context.drawImage(saved, 0, 0, canvas.offsetWidth, canvas.offsetHeight); saved.src = image; }
 }
 resizeCanvas(); window.addEventListener('resize', resizeCanvas);
+// The form can be hidden on page load, so size the drawing surface after it appears.
+if (!document.getElementById('register-screen').hidden) requestAnimationFrame(resizeCanvas);
 function point(event) { const rect = canvas.getBoundingClientRect(); return { x: event.clientX - rect.left, y: event.clientY - rect.top }; }
-canvas.addEventListener('pointerdown', event => { signing = true; hasSignature = true; canvas.setPointerCapture(event.pointerId); const p = point(event); context.beginPath(); context.moveTo(p.x, p.y); });
-canvas.addEventListener('pointermove', event => { if (!signing) return; const p = point(event); context.lineTo(p.x, p.y); context.stroke(); });
-canvas.addEventListener('pointerup', () => signing = false); canvas.addEventListener('pointercancel', () => signing = false);
+function beginSignature(event) {
+  event.preventDefault(); signing = true; hasSignature = true;
+  if (event.pointerId !== undefined) canvas.setPointerCapture?.(event.pointerId);
+  const p = point(event); context.beginPath(); context.moveTo(p.x, p.y);
+  context.arc(p.x, p.y, 1, 0, Math.PI * 2); context.fillStyle = context.strokeStyle; context.fill();
+}
+function continueSignature(event) {
+  if (!signing) return; event.preventDefault(); const p = point(event); context.lineTo(p.x, p.y); context.stroke();
+}
+function endSignature(event) {
+  signing = false;
+  if (event?.pointerId !== undefined && canvas.hasPointerCapture?.(event.pointerId)) canvas.releasePointerCapture(event.pointerId);
+}
+canvas.addEventListener('pointerdown', beginSignature); canvas.addEventListener('pointermove', continueSignature);
+canvas.addEventListener('pointerup', endSignature); canvas.addEventListener('pointercancel', endSignature);
+// Fallback for older mobile browsers that do not emit Pointer Events.
+canvas.addEventListener('touchstart', event => { const touch = event.touches[0]; beginSignature({ clientX: touch.clientX, clientY: touch.clientY, preventDefault: () => event.preventDefault() }); }, { passive: false });
+canvas.addEventListener('touchmove', event => { const touch = event.touches[0]; continueSignature({ clientX: touch.clientX, clientY: touch.clientY, preventDefault: () => event.preventDefault() }); }, { passive: false });
+canvas.addEventListener('touchend', endSignature);
 document.getElementById('clear-signature').addEventListener('click', () => { context.clearRect(0, 0, canvas.width, canvas.height); hasSignature = false; });
 
 document.querySelectorAll('input[name="action"]').forEach(input => input.addEventListener('change', () => {
   document.getElementById('submit-action').textContent = input.value.toLowerCase();
 }));
-document.getElementById('attendance-form').addEventListener('submit', event => {
+document.getElementById('attendance-form').addEventListener('submit', async event => {
   event.preventDefault();
   const signatureError = document.getElementById('signature-error');
   if (!hasSignature) { signatureError.textContent = 'Please add your signature before confirming.'; return; }
   signatureError.textContent = '';
   const form = new FormData(event.currentTarget);
   const now = new Date();
-  const record = { id: crypto.randomUUID(), timestamp: now.toISOString(), child: form.get('child'), action: form.get('action'), guardian: `${form.get('guardianFirst')} ${form.get('guardianLast')}`, signature: canvas.toDataURL('image/png') };
+  const record = { id: crypto.randomUUID(), timestamp: now.toISOString(), child: form.get('child'), action: form.get('action'), guardian: `${form.get('guardianFirst')} ${form.get('guardianLast')}`, signature: canvas.toDataURL('image/png'), familyPin: sessionStorage.getItem('sf-genys-checkin-pin'), accessToken: params.get('access') };
   const records = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
   records.push(record); localStorage.setItem(STORAGE_KEY, JSON.stringify(records));
+  if (checkinConfig.endpoint) {
+    try {
+      await fetch(checkinConfig.endpoint, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(record) });
+    } catch (error) {
+      signatureError.textContent = 'Your entry could not be sent. Please ask a staff member for help.';
+      return;
+    }
+  }
   document.getElementById('success-child').textContent = record.child;
   document.getElementById('success-detail').textContent = `${record.action === 'DROP OFF' ? 'Dropped off' : 'Picked up'} at ${new Intl.DateTimeFormat('en-US', { hour: 'numeric', minute: '2-digit' }).format(now)} by ${record.guardian}.`;
   event.currentTarget.reset(); document.querySelector('input[name="action"][value="DROP OFF"]').checked = true;
   document.getElementById('submit-action').textContent = 'drop off'; context.clearRect(0, 0, canvas.width, canvas.height); hasSignature = false;
   show('success-screen');
 });
-function endSession() { sessionStorage.removeItem(sessionKey); location.href = location.pathname; }
+function endSession() { sessionStorage.removeItem(sessionKey); sessionStorage.removeItem('sf-genys-checkin-pin'); location.href = location.pathname; }
 document.getElementById('end-session').addEventListener('click', endSession);
 document.getElementById('finish-session').addEventListener('click', endSession);
-document.getElementById('new-entry').addEventListener('click', () => show('register-screen'));
+document.getElementById('new-entry').addEventListener('click', () => { show('register-screen'); requestAnimationFrame(resizeCanvas); });
