@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="checkin.css" />
-    <style>#signature-canvas { z-index: 1; }.checkin-language{display:flex;gap:4px;padding:3px;border-radius:999px;background:#edf2ff}.checkin-language button{border:0;border-radius:99px;background:transparent;color:#476082;padding:6px 9px;font:700 .67rem 'DM Sans';cursor:pointer}.checkin-language button.active{background:#fff;color:#316ed4;box-shadow:0 1px 5px #4c66942b}</style>
+    <style>#signature-canvas { z-index: 1; }.checkin-language{display:flex;gap:4px;padding:3px;border-radius:999px;background:#edf2ff}.checkin-language button{border:0;border-radius:99px;background:transparent;color:#476082;padding:6px 9px;font:700 .67rem 'DM Sans';cursor:pointer}.checkin-language button.active{background:#fff;color:#316ed4;box-shadow:0 1px 5px #4c66942b}.guardian-label{margin:0 -0px -10px;color:#354665;font-size:.79rem;font-weight:700}</style>
   </head>
   <body>
     <main class="checkin-page">
@@ -68,9 +68,10 @@
               <option value="7–8 klasė" data-lt="7–8 klasė" data-en="Grades 7–8">7–8 klasė</option>
               <option value="Šokių ir dainų klasė" data-lt="Šokių ir dainų klasė" data-en="Dance and song class">Šokių ir dainų klasė</option>
             </select>
+            <p id="guardian-label" class="guardian-label">Pasiėmė:</p>
             <div class="name-grid">
-              <label for="guardian-first"><span id="guardian-first-label">Pasiėmė:</span><input id="guardian-first" name="guardianFirst" autocomplete="given-name" required /></label>
-              <label for="guardian-last"><span id="guardian-last-label">Globėjo pavardė</span><input id="guardian-last" name="guardianLast" autocomplete="family-name" required /></label>
+              <label for="guardian-first"><span id="guardian-first-label">Vardas</span><input id="guardian-first" name="guardianFirst" autocomplete="given-name" required /></label>
+              <label for="guardian-last"><span id="guardian-last-label">Pavardė</span><input id="guardian-last" name="guardianLast" autocomplete="family-name" required /></label>
             </div>
             <div class="signature-label"><label id="signature-label" for="signature-canvas">Parašas</label><button type="button" id="clear-signature">Išvalyti</button></div>
             <div class="signature-wrap"><canvas id="signature-canvas" aria-label="Pasirašykite pirštu arba pele"></canvas><span id="signature-hint">Pasirašykite čia</span></div>
