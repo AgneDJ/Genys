@@ -26,7 +26,7 @@ function doPost(event) {
 
 function validateRecord_(record) {
   if (!SETTINGS.validPins.includes(String(record.familyPin || ''))) throw new Error('Invalid family PIN.');
-  ['timestamp', 'child', 'action', 'guardian', 'signature'].forEach(key => {
+  ['timestamp', 'child', 'schoolClass', 'action', 'guardian', 'signature'].forEach(key => {
     if (!record[key]) throw new Error(`Missing ${key}.`);
   });
   if (!['DROP OFF', 'PICK UP'].includes(record.action)) throw new Error('Invalid action.');
@@ -35,10 +35,11 @@ function validateRecord_(record) {
 
 function appendToSheet_(record, timestamp, signatureUrl) {
   const spreadsheet = SpreadsheetApp.openById(SETTINGS.spreadsheetId);
-  const sheet = spreadsheet.getSheetByName(SETTINGS.sheetName) || spreadsheet.insertSheet(SETTINGS.sheetName);
+  const sheetName = classSheetName_(record.schoolClass);
+  const sheet = spreadsheet.getSheetByName(sheetName) || spreadsheet.insertSheet(sheetName);
   if (sheet.getLastRow() === 0) {
-    sheet.appendRow(['Date & time', 'Date', 'Time', 'Child', 'Action', 'Guardian', 'Signature']);
-    sheet.getRange(1, 1, 1, 7).setFontWeight('bold').setBackground('#dbe8ff');
+    sheet.appendRow(['Date & time', 'Date', 'Time', 'Child', 'Class / group', 'Action', 'Guardian', 'Signature']);
+    sheet.getRange(1, 1, 1, 8).setFontWeight('bold').setBackground('#dbe8ff');
     sheet.setFrozenRows(1);
   }
   const timezone = Session.getScriptTimeZone();
@@ -47,12 +48,13 @@ function appendToSheet_(record, timestamp, signatureUrl) {
     Utilities.formatDate(timestamp, timezone, 'yyyy-MM-dd'),
     Utilities.formatDate(timestamp, timezone, 'h:mm a'),
     record.child,
+    record.schoolClass,
     record.action,
     record.guardian,
     `=HYPERLINK("${signatureUrl}", "Open signature")`
   ]);
   sheet.getRange(sheet.getLastRow(), 1).setNumberFormat('yyyy-mm-dd h:mm AM/PM');
-  sheet.autoResizeColumns(1, 7);
+  sheet.autoResizeColumns(1, 8);
 }
 
 function saveSignature_(dataUrl, timestamp, child) {
@@ -66,12 +68,12 @@ function saveSignature_(dataUrl, timestamp, child) {
 
 function updateDailyDocument_(record, timestamp, signatureBlob) {
   const date = Utilities.formatDate(timestamp, Session.getScriptTimeZone(), 'yyyy-MM-dd');
-  const title = `Attendance_${date}`;
+  const title = `Attendance_${date}_${safeName_(record.schoolClass)}`;
   const folder = getOrCreateFolder_(SETTINGS.documentsFolder);
   const files = folder.getFilesByName(title);
   const existingDocument = files.hasNext() ? files.next() : null;
   const document = existingDocument ? DocumentApp.openById(existingDocument.getId()) : DocumentApp.create(title);
-  if (!existingDocument) document.getBody().appendParagraph(`Child Drop-off and Pickup Register — ${date}`).setHeading(DocumentApp.ParagraphHeading.HEADING1);
+  if (!existingDocument) document.getBody().appendParagraph(`Child Drop-off and Pickup Register — ${record.schoolClass} — ${date}`).setHeading(DocumentApp.ParagraphHeading.HEADING1);
   const body = document.getBody();
   body.appendHorizontalRule();
   body.appendParagraph(`${Utilities.formatDate(timestamp, Session.getScriptTimeZone(), 'h:mm a')} — ${record.child} — ${record.action}`).setHeading(DocumentApp.ParagraphHeading.HEADING2);
@@ -93,6 +95,14 @@ function exportWordCopy_(documentId, folder, filename) {
 function getOrCreateFolder_(name) {
   const folders = DriveApp.getFoldersByName(name);
   return folders.hasNext() ? folders.next() : DriveApp.createFolder(name);
+}
+
+function classSheetName_(schoolClass) {
+  return `Attendance — ${safeName_(schoolClass)}`.slice(0, 100);
+}
+
+function safeName_(value) {
+  return String(value).replace(/[\\/:?*\[\]]/g, '-').trim() || 'Unassigned';
 }
 
 function moveToFolder_(file, folder) {

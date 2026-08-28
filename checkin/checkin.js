@@ -79,7 +79,7 @@ document.getElementById('attendance-form').addEventListener('submit', async even
   signatureError.textContent = '';
   const form = new FormData(event.currentTarget);
   const now = new Date();
-  const record = { id: crypto.randomUUID(), timestamp: now.toISOString(), child: form.get('child'), action: form.get('action'), guardian: `${form.get('guardianFirst')} ${form.get('guardianLast')}`, signature: canvas.toDataURL('image/png'), familyPin: sessionStorage.getItem('sf-genys-checkin-pin'), accessToken: params.get('access') };
+  const record = { id: crypto.randomUUID(), timestamp: now.toISOString(), child: form.get('child'), schoolClass: form.get('schoolClass'), action: form.get('action'), guardian: `${form.get('guardianFirst')} ${form.get('guardianLast')}`, signature: canvas.toDataURL('image/png'), familyPin: sessionStorage.getItem('sf-genys-checkin-pin'), accessToken: params.get('access') };
   const records = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
   records.push(record); localStorage.setItem(STORAGE_KEY, JSON.stringify(records));
   if (checkinConfig.endpoint) {

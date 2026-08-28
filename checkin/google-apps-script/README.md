@@ -1,6 +1,6 @@
 # Connect the SF Genys register to Google Sheets
 
-This script writes every check-in and check-out to the Google Sheet provided by the school, stores the signature PNG privately in Drive, and updates a daily Google Doc plus a daily Word `.docx` copy.
+This script writes every check-in and check-out to the Google Sheet provided by the school, stores the signature PNG privately in Drive, and updates a daily Google Doc plus a daily Word `.docx` copy. It creates a separate attendance worksheet and daily document for each selected class/group.
 
 1. Open the school spreadsheet, then select **Extensions → Apps Script**.
 2. Replace the default code with `Code.gs` from this folder and save it.
