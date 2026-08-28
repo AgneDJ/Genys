@@ -16,7 +16,7 @@
       <section class="checkin-card" aria-live="polite">
         <header class="checkin-brand">
           <img src="../assets/logo.png" alt="SF Genys" />
-          <span id="brand-title">Mokyklos atvykimo registras</span>
+          <span id="brand-title">Registracija</span>
           <div class="checkin-language" aria-label="Kalba / Language"><button class="active" type="button" data-language="lt">LT</button><button type="button" data-language="en">EN</button></div>
         </header>
 
@@ -41,25 +41,24 @@
 
         <div id="register-screen" hidden>
           <div class="register-heading">
-            <div><p id="register-eyebrow" class="eyebrow">SF GENYS · PRIVATUS REGISTRAS</p><h1 id="register-title">Atvykimas ar<br /><i>išvykimas</i></h1></div>
+            <div><p id="register-eyebrow" class="eyebrow">SF GENYS · LANKOMUMAS</p><h1 id="register-title">Atvykimas ar<br /><i>išvykimas</i></h1></div>
             <time id="current-date"></time>
           </div>
           <form id="attendance-form" novalidate>
-            <fieldset class="action-choices">
-              <legend id="action-legend">Ką norite užregistruoti?</legend>
+            <fieldset class="action-choices" aria-label="Pasirinkite veiksmą">
               <label><input type="radio" name="action" value="DROP OFF" checked /><span><b>↓</b> <em id="drop-label">Atvykimas</em></span></label>
               <label><input type="radio" name="action" value="PICK UP" /><span><b>↑</b> <em id="pickup-label">Išvykimas</em></span></label>
             </fieldset>
             <label id="child-label" for="child">Vaikas</label>
             <select id="child" name="child" required>
-              <option id="child-placeholder" value="" selected disabled>Pasirinkite vaiką</option>
+              <option id="child-placeholder" value="" selected disabled>Pasirinkite vaiko vardą</option>
               <option>Emma Smith</option>
               <option>Mark Johnson</option>
               <option>Sofija Petraitė</option>
               <option>Jonas Kazlauskas</option>
               <option>Gabija Vaitkutė</option>
             </select>
-            <label id="class-label" for="school-class">Klasė / grupė</label>
+            <label id="class-label" for="school-class">Klasė</label>
             <select id="school-class" name="schoolClass" required>
               <option id="class-placeholder" value="" selected disabled>Pasirinkite klasę</option>
               <option value="Priešmokyklinė ir darželio klasė" data-lt="Priešmokyklinė ir darželio klasė" data-en="Preschool & kindergarten">Priešmokyklinė ir darželio klasė</option>
@@ -70,7 +69,7 @@
               <option value="Šokių ir dainų klasė" data-lt="Šokių ir dainų klasė" data-en="Dance and song class">Šokių ir dainų klasė</option>
             </select>
             <div class="name-grid">
-              <label for="guardian-first"><span id="guardian-first-label">Globėjo vardas</span><input id="guardian-first" name="guardianFirst" autocomplete="given-name" required /></label>
+              <label for="guardian-first"><span id="guardian-first-label">Pasiėmė:</span><input id="guardian-first" name="guardianFirst" autocomplete="given-name" required /></label>
               <label for="guardian-last"><span id="guardian-last-label">Globėjo pavardė</span><input id="guardian-last" name="guardianLast" autocomplete="family-name" required /></label>
             </div>
             <div class="signature-label"><label id="signature-label" for="signature-canvas">Parašas</label><button type="button" id="clear-signature">Išvalyti</button></div>
