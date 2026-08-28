@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>SF Genys | School check-in</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="checkin.css" />
+  </head>
+  <body>
+    <main class="checkin-page">
+      <section class="checkin-card" aria-live="polite">
+        <header class="checkin-brand">
+          <img src="../assets/logo.png" alt="SF Genys" />
+          <span>School arrival register</span>
+        </header>
+
+        <div id="invalid-access" class="access-message" hidden>
+          <span class="lock-icon">⌁</span>
+          <h1>Private school register</h1>
+          <p>Please scan the printed school QR code to open this page.</p>
+        </div>
+
+        <div id="pin-screen" hidden>
+          <p class="eyebrow">PARENT / GUARDIAN ACCESS</p>
+          <h1>Welcome to<br /><i>SF Genys</i></h1>
+          <p class="screen-copy">Enter the family PIN provided by the school. The QR code and PIN are both required.</p>
+          <form id="pin-form" novalidate>
+            <label for="family-pin">Family PIN</label>
+            <input id="family-pin" name="pin" inputmode="numeric" autocomplete="one-time-code" maxlength="6" pattern="[0-9]*" placeholder="••••" required />
+            <p id="pin-error" class="form-error" role="alert"></p>
+            <button class="primary-button" type="submit">Continue <span>→</span></button>
+          </form>
+          <p class="help-text">Need help? Please speak with a school staff member.</p>
+        </div>
+
+        <div id="register-screen" hidden>
+          <div class="register-heading">
+            <div><p class="eyebrow">SF GENYS · PRIVATE REGISTER</p><h1>Check in or<br /><i>check out</i></h1></div>
+            <time id="current-date"></time>
+          </div>
+          <form id="attendance-form">
+            <fieldset class="action-choices">
+              <legend>What would you like to record?</legend>
+              <label><input type="radio" name="action" value="DROP OFF" checked /><span><b>↓</b> Drop off</span></label>
+              <label><input type="radio" name="action" value="PICK UP" /><span><b>↑</b> Pick up</span></label>
+            </fieldset>
+            <label for="child">Child</label>
+            <select id="child" name="child" required>
+              <option value="" selected disabled>Select child</option>
+              <option>Emma Smith</option>
+              <option>Mark Johnson</option>
+              <option>Sofija Petraitė</option>
+              <option>Jonas Kazlauskas</option>
+              <option>Gabija Vaitkutė</option>
+            </select>
+            <div class="name-grid">
+              <label for="guardian-first">Guardian first name<input id="guardian-first" name="guardianFirst" autocomplete="given-name" required /></label>
+              <label for="guardian-last">Guardian last name<input id="guardian-last" name="guardianLast" autocomplete="family-name" required /></label>
+            </div>
+            <div class="signature-label"><label for="signature-canvas">Signature</label><button type="button" id="clear-signature">Clear</button></div>
+            <div class="signature-wrap"><canvas id="signature-canvas" aria-label="Sign here using your finger or mouse"></canvas><span>Sign here</span></div>
+            <p id="signature-error" class="form-error" role="alert"></p>
+            <button class="primary-button" type="submit">Confirm <span id="submit-action">drop off</span> <span>→</span></button>
+          </form>
+          <button id="end-session" class="text-button" type="button">End secure session</button>
+        </div>
+
+        <div id="success-screen" class="success-screen" hidden>
+          <div class="success-icon">✓</div>
+          <p class="eyebrow">RECORD SAVED</p>
+          <h1 id="success-child"></h1>
+          <p id="success-detail" class="screen-copy"></p>
+          <button id="new-entry" class="primary-button" type="button">New entry <span>→</span></button>
+          <button id="finish-session" class="text-button" type="button">Finish</button>
+        </div>
+      </section>
+      <p class="privacy-note">For school attendance records only. Do not share the QR code or family PIN.</p>
+    </main>
+    <script src="checkin.js"></script>
+  </body>
+</html>
