@@ -77,18 +77,20 @@ document.getElementById('attendance-form').addEventListener('submit', async even
   const signatureError = document.getElementById('signature-error');
   if (!hasSignature) { signatureError.textContent = 'Please add your signature before confirming.'; return; }
   signatureError.textContent = '';
+  if (!checkinConfig.endpoint) {
+    signatureError.textContent = 'The school register is not connected yet. Please ask a staff member for help.';
+    return;
+  }
   const form = new FormData(event.currentTarget);
   const now = new Date();
   const record = { id: crypto.randomUUID(), timestamp: now.toISOString(), child: form.get('child'), schoolClass: form.get('schoolClass'), action: form.get('action'), guardian: `${form.get('guardianFirst')} ${form.get('guardianLast')}`, signature: canvas.toDataURL('image/png'), familyPin: sessionStorage.getItem('sf-genys-checkin-pin'), accessToken: params.get('access') };
   const records = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
   records.push(record); localStorage.setItem(STORAGE_KEY, JSON.stringify(records));
-  if (checkinConfig.endpoint) {
-    try {
-      await fetch(checkinConfig.endpoint, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(record) });
-    } catch (error) {
-      signatureError.textContent = 'Your entry could not be sent. Please ask a staff member for help.';
-      return;
-    }
+  try {
+    await fetch(checkinConfig.endpoint, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(record) });
+  } catch (error) {
+    signatureError.textContent = 'Your entry could not be sent. Please ask a staff member for help.';
+    return;
   }
   document.getElementById('success-child').textContent = record.child;
   document.getElementById('success-detail').textContent = `${record.action === 'DROP OFF' ? 'Dropped off' : 'Picked up'} at ${new Intl.DateTimeFormat('en-US', { hour: 'numeric', minute: '2-digit' }).format(now)} by ${record.guardian}.`;
