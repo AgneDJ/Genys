@@ -1,0 +1,19 @@
+#pin-title.school-name {
+  margin-bottom: 29px;
+  color: #184d38;
+  font-size: clamp(2.8rem, 8vw, 4.1rem);
+  font-weight: 700;
+  letter-spacing: -0.045em;
+  text-shadow: 0 2px 0 #f4c449;
+}
+
+#pin-title.school-name i {
+  color: #b6312d;
+  font-weight: 600;
+}
+
+#family-pin {
+  max-width: 260px;
+  font-size: 1.32rem;
+  letter-spacing: 0.29em;
+}

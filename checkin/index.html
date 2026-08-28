@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="checkin.css" />
+    <link rel="stylesheet" href="pin-screen.css" />
     <style>#signature-canvas { z-index: 1; }.checkin-language{display:flex;gap:4px;padding:3px;border-radius:999px;background:#edf2ff}.checkin-language button{border:0;border-radius:99px;background:transparent;color:#476082;padding:6px 9px;font:700 .67rem 'DM Sans';cursor:pointer}.checkin-language button.active{background:#fff;color:#316ed4;box-shadow:0 1px 5px #4c66942b}.guardian-label{margin:0 -0px -10px;color:#354665;font-size:.79rem;font-weight:700}</style>
   </head>
   <body>
@@ -28,10 +29,10 @@
 
         <div id="pin-screen" hidden>
           <p id="pin-eyebrow" class="eyebrow">TĖVŲ / GLOBĖJŲ PRISIJUNGIMAS</p>
-          <h1 id="pin-title">SF Genys</h1>
+          <h1 id="pin-title" class="school-name">SF <i>Genys</i></h1>
           <form id="pin-form" novalidate>
             <label id="pin-label" for="family-pin">Įveskite mokyklos suteiktą PIN kodą:</label>
-            <input id="family-pin" name="pin" inputmode="numeric" autocomplete="one-time-code" maxlength="6" pattern="[0-9]*" placeholder="••••" required />
+            <input id="family-pin" name="pin" inputmode="numeric" autocomplete="one-time-code" maxlength="6" pattern="[0-9]*" placeholder="••••••" required />
             <p id="pin-error" class="form-error" role="alert"></p>
             <button id="pin-continue" class="primary-button" type="submit">Tęsti <span>→</span></button>
           </form>
