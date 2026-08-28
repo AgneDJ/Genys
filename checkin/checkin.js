@@ -12,6 +12,10 @@ const show = id => screens.forEach(screen => document.getElementById(screen).hid
 const params = new URLSearchParams(location.search);
 const hasQrAccess = params.get('access') === QR_ACCESS_TOKEN;
 const sessionKey = 'sf-genys-checkin-authorized';
+if (params.get('fresh') === '1') {
+  sessionStorage.removeItem(sessionKey);
+  sessionStorage.removeItem('sf-genys-checkin-pin');
+}
 const translations = {
   lt: {
     brand: 'Registracija', accessTitle: 'Privatus mokyklos registras', accessCopy: 'Norėdami atidaryti šį puslapį, nuskenuokite atspausdintą mokyklos QR kodą.', pinEyebrow: 'TĖVŲ / GLOBĖJŲ PRISIJUNGIMAS', pinTitle: 'SF Genys', pinLabel: 'Įveskite mokyklos suteiktą PIN kodą:', continue: 'Tęsti <span>→</span>', pinHelp: 'Reikia pagalbos? Kreipkitės į mokytoją.', registerEyebrow: 'SF GENYS · LANKOMUMAS', registerTitle: 'Atvykimas ar<br /><i>išvykimas</i>', actionLegend: '', drop: 'Atvykimas', pickup: 'Išvykimas', child: 'Vaikas', childPlaceholder: 'Pasirinkite vaiko vardą', schoolClass: 'Klasė', classPlaceholder: 'Pasirinkite klasę', guardian: 'Pasiėmė:', guardianFirst: 'Vardas', guardianLast: 'Pavardė', signature: 'Parašas', clear: 'Išvalyti', signatureHint: 'Pasirašykite čia', confirmDrop: 'Patvirtinti atvykimą', confirmPickup: 'Patvirtinti išvykimą', endSession: 'Baigti saugų seansą', saved: 'ĮRAŠAS IŠSAUGOTAS', newEntry: 'Naujas įrašas <span>→</span>', finish: 'Baigti', privacy: 'Skirta tik mokyklos lankomumo apskaitai. Nesidalykite QR kodu ar PIN kodu.', invalidPin: 'Įveskite šešių skaitmenų PIN kodą.', incorrectChildPin: 'PIN kodas neteisingas arba pasirinktas ne tas vaikas.', required: 'Pasirinkite vaiko vardą ir klasę bei įveskite pasiėmusiojo vardą ir pavardę.', missingSignature: 'Prieš patvirtindami įrašą, pasirašykite.', unconnected: 'Mokyklos registras dar neprijungtas. Kreipkitės į mokyklos darbuotoją.', sendError: 'Įrašo nepavyko išsiųsti. Kreipkitės į mokyklos darbuotoją.', sending: 'Siunčiamas įrašas…', dropped: 'Atvyko', picked: 'Išvyko', by: 'Užregistravo'
