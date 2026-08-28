@@ -178,7 +178,7 @@ document.getElementById('attendance-form').addEventListener('submit', async even
   updateConfirmButton(); context.clearRect(0, 0, canvas.width, canvas.height); hasSignature = false;
   show('success-screen');
 });
-function endSession() { sessionStorage.removeItem(sessionKey); sessionStorage.removeItem('sf-genys-checkin-pin'); location.href = location.pathname; }
+function endSession() { sessionStorage.removeItem(sessionKey); sessionStorage.removeItem('sf-genys-checkin-pin'); location.href = `${location.pathname}?access=${QR_ACCESS_TOKEN}&fresh=1`; }
 document.getElementById('end-session').addEventListener('click', endSession);
 document.getElementById('finish-session').addEventListener('click', endSession);
 document.getElementById('new-entry').addEventListener('click', () => { show('register-screen'); requestAnimationFrame(resizeCanvas); });
