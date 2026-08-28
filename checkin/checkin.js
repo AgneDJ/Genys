@@ -13,19 +13,47 @@ const show = id => screens.forEach(screen => document.getElementById(screen).hid
 const params = new URLSearchParams(location.search);
 const hasQrAccess = params.get('access') === QR_ACCESS_TOKEN;
 const sessionKey = 'sf-genys-checkin-authorized';
+const translations = {
+  lt: {
+    brand: 'Mokyklos atvykimo registras', accessTitle: 'Privatus mokyklos registras', accessCopy: 'Norėdami atidaryti šį puslapį, nuskenuokite atspausdintą mokyklos QR kodą.', pinEyebrow: 'TĖVŲ / GLOBĖJŲ PRISIJUNGIMAS', pinTitle: 'Sveiki atvykę į<br /><i>SF Genys</i>', pinCopy: 'Įveskite mokyklos suteiktą šeimos PIN kodą. Reikalingi ir QR kodas, ir PIN kodas.', pinLabel: 'Šeimos PIN kodas', continue: 'Tęsti <span>→</span>', pinHelp: 'Reikia pagalbos? Kreipkitės į mokyklos darbuotoją.', registerEyebrow: 'SF GENYS · PRIVATUS REGISTRAS', registerTitle: 'Atvykimas ar<br /><i>išvykimas</i>', actionLegend: 'Ką norite užregistruoti?', drop: 'Atvykimas', pickup: 'Išvykimas', child: 'Vaikas', childPlaceholder: 'Pasirinkite vaiką', schoolClass: 'Klasė / grupė', classPlaceholder: 'Pasirinkite klasę', guardianFirst: 'Globėjo vardas', guardianLast: 'Globėjo pavardė', signature: 'Parašas', clear: 'Išvalyti', signatureHint: 'Pasirašykite čia', confirm: 'Patvirtinti:', endSession: 'Baigti saugų seansą', saved: 'ĮRAŠAS IŠSAUGOTAS', newEntry: 'Naujas įrašas <span>→</span>', finish: 'Baigti', privacy: 'Skirta tik mokyklos lankomumo apskaitai. Nesidalykite QR kodu ar šeimos PIN kodu.', invalidPin: 'PIN kodas neatpažintas. Bandykite dar kartą.', required: 'Pasirinkite vaiką ir klasę / grupę bei įveskite globėjo vardą ir pavardę.', missingSignature: 'Prieš patvirtindami įrašą, pasirašykite.', unconnected: 'Mokyklos registras dar neprijungtas. Kreipkitės į mokyklos darbuotoją.', sendError: 'Įrašo nepavyko išsiųsti. Kreipkitės į mokyklos darbuotoją.', sending: 'Siunčiamas įrašas…', dropped: 'Atvyko', picked: 'Išvyko', by: 'Užregistravo'
+  },
+  en: {
+    brand: 'School arrival register', accessTitle: 'Private school register', accessCopy: 'Please scan the printed school QR code to open this page.', pinEyebrow: 'PARENT / GUARDIAN ACCESS', pinTitle: 'Welcome to<br /><i>SF Genys</i>', pinCopy: 'Enter the family PIN provided by the school. The QR code and PIN are both required.', pinLabel: 'Family PIN', continue: 'Continue <span>→</span>', pinHelp: 'Need help? Please speak with a school staff member.', registerEyebrow: 'SF GENYS · PRIVATE REGISTER', registerTitle: 'Check in or<br /><i>check out</i>', actionLegend: 'What would you like to record?', drop: 'Drop off', pickup: 'Pick up', child: 'Child', childPlaceholder: 'Select child', schoolClass: 'Class / group', classPlaceholder: 'Select class', guardianFirst: 'Guardian first name', guardianLast: 'Guardian last name', signature: 'Signature', clear: 'Clear', signatureHint: 'Sign here', confirm: 'Confirm', endSession: 'End secure session', saved: 'RECORD SAVED', newEntry: 'New entry <span>→</span>', finish: 'Finish', privacy: 'For school attendance records only. Do not share the QR code or family PIN.', invalidPin: 'That PIN is not recognised. Please try again.', required: 'Please select the child and class/group, and enter the guardian’s name.', missingSignature: 'Please add your signature before confirming.', unconnected: 'The school register is not connected yet. Please ask a staff member for help.', sendError: 'Your entry could not be sent. Please ask a staff member for help.', sending: 'Sending entry…', dropped: 'Dropped off', picked: 'Picked up', by: 'by'
+  }
+};
+let language = localStorage.getItem('sf-genys-checkin-language') || 'lt';
+const text = key => translations[language][key];
+const setText = (id, value) => document.getElementById(id).innerHTML = value;
+function actionLabel(action) { return action === 'DROP OFF' ? text('drop') : text('pickup'); }
+function updateConfirmButton() {
+  const action = document.querySelector('input[name="action"]:checked').value;
+  document.getElementById('confirm-attendance').innerHTML = `${text('confirm')} <span id="submit-action">${actionLabel(action).toLowerCase()}</span> <span>→</span>`;
+}
+function renderDate() {
+  document.getElementById('current-date').textContent = new Intl.DateTimeFormat(language === 'lt' ? 'lt-LT' : 'en-US', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' }).format(new Date());
+}
+function applyLanguage(nextLanguage) {
+  language = nextLanguage; localStorage.setItem('sf-genys-checkin-language', language); document.documentElement.lang = language;
+  const copy = { 'brand-title': 'brand', 'access-title': 'accessTitle', 'access-copy': 'accessCopy', 'pin-eyebrow': 'pinEyebrow', 'pin-title': 'pinTitle', 'pin-copy': 'pinCopy', 'pin-label': 'pinLabel', 'pin-continue': 'continue', 'pin-help': 'pinHelp', 'register-eyebrow': 'registerEyebrow', 'register-title': 'registerTitle', 'action-legend': 'actionLegend', 'drop-label': 'drop', 'pickup-label': 'pickup', 'child-label': 'child', 'child-placeholder': 'childPlaceholder', 'class-label': 'schoolClass', 'class-placeholder': 'classPlaceholder', 'guardian-first-label': 'guardianFirst', 'guardian-last-label': 'guardianLast', 'signature-label': 'signature', 'clear-signature': 'clear', 'signature-hint': 'signatureHint', 'end-session': 'endSession', 'saved-eyebrow': 'saved', 'new-entry': 'newEntry', 'finish-session': 'finish', 'privacy-note': 'privacy' };
+  Object.entries(copy).forEach(([id, key]) => setText(id, text(key)));
+  document.querySelectorAll('#school-class option[data-lt]').forEach(option => option.textContent = option.dataset[language]);
+  document.getElementById('signature-canvas').setAttribute('aria-label', language === 'lt' ? 'Pasirašykite pirštu arba pele' : 'Sign here using your finger or mouse');
+  document.querySelectorAll('[data-language]').forEach(button => button.classList.toggle('active', button.dataset.language === language));
+  renderDate(); updateConfirmButton();
+}
 
 if (!hasQrAccess) show('invalid-access');
 else if (sessionStorage.getItem(sessionKey) === 'yes') show('register-screen');
 else show('pin-screen');
 
-const dateFormatter = new Intl.DateTimeFormat('en-US', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' });
-document.getElementById('current-date').textContent = dateFormatter.format(new Date());
+applyLanguage(language);
+document.querySelectorAll('[data-language]').forEach(button => button.addEventListener('click', () => applyLanguage(button.dataset.language)));
 
 document.getElementById('pin-form').addEventListener('submit', event => {
   event.preventDefault();
   const pin = document.getElementById('family-pin').value.trim();
   const error = document.getElementById('pin-error');
-  if (pin !== DEMO_FAMILY_PIN) { error.textContent = 'That PIN is not recognised. Please try again.'; return; }
+  if (pin !== DEMO_FAMILY_PIN) { error.textContent = text('invalidPin'); return; }
   sessionStorage.setItem(sessionKey, 'yes');
   sessionStorage.setItem('sf-genys-checkin-pin', pin);
   error.textContent = '';
@@ -70,7 +98,7 @@ canvas.addEventListener('touchend', endSignature);
 document.getElementById('clear-signature').addEventListener('click', () => { context.clearRect(0, 0, canvas.width, canvas.height); hasSignature = false; });
 
 document.querySelectorAll('input[name="action"]').forEach(input => input.addEventListener('change', () => {
-  document.getElementById('submit-action').textContent = input.value.toLowerCase();
+  updateConfirmButton();
 }));
 function submitToReceiver(record) {
   const receiverForm = document.createElement('form');
@@ -89,14 +117,14 @@ document.getElementById('attendance-form').addEventListener('submit', async even
   const formElement = event.currentTarget;
   const submitButton = document.getElementById('confirm-attendance');
   if (!formElement.checkValidity()) {
-    signatureError.textContent = 'Please select the child and class/group, and enter the guardian’s name.';
+    signatureError.textContent = text('required');
     formElement.reportValidity();
     return;
   }
-  if (!hasSignature) { signatureError.textContent = 'Please add your signature before confirming.'; return; }
+  if (!hasSignature) { signatureError.textContent = text('missingSignature'); return; }
   signatureError.textContent = '';
   if (!checkinConfig.endpoint) {
-    signatureError.textContent = 'The school register is not connected yet. Please ask a staff member for help.';
+    signatureError.textContent = text('unconnected');
     return;
   }
   const form = new FormData(formElement);
@@ -105,21 +133,21 @@ document.getElementById('attendance-form').addEventListener('submit', async even
   const records = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
   records.push(record); localStorage.setItem(STORAGE_KEY, JSON.stringify(records));
   submitButton.disabled = true;
-  submitButton.textContent = 'Sending entry…';
+  submitButton.textContent = text('sending');
   try {
     submitToReceiver(record);
   } catch (error) {
-    signatureError.textContent = 'Your entry could not be sent. Please ask a staff member for help.';
+    signatureError.textContent = text('sendError');
     submitButton.disabled = false;
-    submitButton.innerHTML = 'Confirm <span id="submit-action">drop off</span> <span>→</span>';
+    updateConfirmButton();
     return;
   }
   submitButton.disabled = false;
-  submitButton.innerHTML = 'Confirm <span id="submit-action">drop off</span> <span>→</span>';
+  updateConfirmButton();
   document.getElementById('success-child').textContent = record.child;
-  document.getElementById('success-detail').textContent = `${record.action === 'DROP OFF' ? 'Dropped off' : 'Picked up'} at ${new Intl.DateTimeFormat('en-US', { hour: 'numeric', minute: '2-digit' }).format(now)} by ${record.guardian}.`;
+  document.getElementById('success-detail').textContent = `${record.action === 'DROP OFF' ? text('dropped') : text('picked')} ${new Intl.DateTimeFormat(language === 'lt' ? 'lt-LT' : 'en-US', { hour: 'numeric', minute: '2-digit' }).format(now)} ${text('by')} ${record.guardian}.`;
   formElement.reset(); document.querySelector('input[name="action"][value="DROP OFF"]').checked = true;
-  document.getElementById('submit-action').textContent = 'drop off'; context.clearRect(0, 0, canvas.width, canvas.height); hasSignature = false;
+  updateConfirmButton(); context.clearRect(0, 0, canvas.width, canvas.height); hasSignature = false;
   show('success-screen');
 });
 function endSession() { sessionStorage.removeItem(sessionKey); sessionStorage.removeItem('sf-genys-checkin-pin'); location.href = location.pathname; }
