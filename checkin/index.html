@@ -43,7 +43,7 @@
             <div><p class="eyebrow">SF GENYS · PRIVATE REGISTER</p><h1>Check in or<br /><i>check out</i></h1></div>
             <time id="current-date"></time>
           </div>
-          <form id="attendance-form">
+          <form id="attendance-form" novalidate>
             <fieldset class="action-choices">
               <legend>What would you like to record?</legend>
               <label><input type="radio" name="action" value="DROP OFF" checked /><span><b>↓</b> Drop off</span></label>
@@ -75,7 +75,7 @@
             <div class="signature-label"><label for="signature-canvas">Signature</label><button type="button" id="clear-signature">Clear</button></div>
             <div class="signature-wrap"><canvas id="signature-canvas" aria-label="Sign here using your finger or mouse"></canvas><span>Sign here</span></div>
             <p id="signature-error" class="form-error" role="alert"></p>
-            <button class="primary-button" type="submit">Confirm <span id="submit-action">drop off</span> <span>→</span></button>
+            <button id="confirm-attendance" class="primary-button" type="submit">Confirm <span id="submit-action">drop off</span> <span>→</span></button>
           </form>
           <button id="end-session" class="text-button" type="button">End secure session</button>
         </div>
