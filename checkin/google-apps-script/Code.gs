@@ -110,7 +110,7 @@ function signatureBlob_(dataUrl, timestamp, child) {
 }
 
 function classSheetName_(schoolClass) {
-  return `Attendance — ${safeName_(schoolClass)}`.slice(0, 100);
+  return safeName_(schoolClass).slice(0, 100);
 }
 
 function safeName_(value) {
