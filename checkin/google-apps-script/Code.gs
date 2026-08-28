@@ -5,6 +5,10 @@ const SETTINGS = {
   validPins: ['2026']
 };
 
+function doGet() {
+  return response_({ ok: true, message: 'SF Genys attendance receiver is ready.' });
+}
+
 function doPost(event) {
   try {
     const record = JSON.parse(event.postData.contents);

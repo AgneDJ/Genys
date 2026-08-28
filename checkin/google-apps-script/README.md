@@ -10,4 +10,6 @@ This script writes every check-in and check-out to the Google Sheet provided by 
 6. Copy the generated `/exec` web-app URL into `checkin/config.js` as `endpoint`.
 7. Deploy the website again and submit a test entry. The matching class attendance tab is created automatically and will contain the signature image in the final column.
 
+Opening the Web App URL in a browser should display a small `attendance receiver is ready` response. That only tests the connection; records are added when the check-in page sends a `POST` request.
+
 The web app URL is intentionally not included in this repository: it belongs to the school’s Google account and is only available after the deployment above.
