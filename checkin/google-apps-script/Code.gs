@@ -1,8 +1,25 @@
 /* SF Genys attendance receiver — paste into Extensions > Apps Script in the
    provided Google Sheet. See README.md in this folder before deploying. */
-const SETTINGS = {
-  // Replace these demonstration PINs with the family's real 4–6 digit PINs.
-  validPins: ['2026']
+// Keep this map private in Apps Script. Each PIN must match the selected child.
+const CHILD_PINS = {
+  'Sara Kirtikar': '454992', 'Anouk Vala-Thiery (Anūkė)': '814792',
+  'Percy Andrius Alexander (Persiukas)': '147140', 'Saulė Vierra': '914995',
+  'Lukas Stempel': '826201', 'Emma Presswood': '110994',
+  'Julius Djacenko': '588379', 'Emilija Burlingė': '396355',
+  'Athena Bouzidi': '194087', 'Jonas Sebastian Laucys': '801792',
+  'Ulla Putz': '714073', 'Melissa Jariga': '227726',
+  'Marija Kudirka': '856046', 'Pranas Kudirka': '471347',
+  'Aurelija Vierra': '531260', 'Emily Radlinski': '218858',
+  'Karim Rapolas Ghassan El Chmaytilli (Karimas)': '600922',
+  'Nida Kiaune': '795208', 'Julius Kudirka': '193950',
+  'Noah Bouzidi': '483010', 'Melina Grivickas': '809234',
+  'Mavi Grivickas': '618297', 'Jonas Aklifazla': '427117',
+  'Arya Apke': '777694', 'Jordan Abudeab': '436389',
+  'Christopher Radlinski': '867231', 'Akila Aklifazla': '211103',
+  'Kalani Valverde': '121906', 'Nida Šukytė': '117171',
+  'Ugnė Olivia Laučys': '596387', 'Amber Apke': '741009',
+  'Arvydas Kudirka': '662102', 'Adam Abudeab': '508075',
+  'Kintas Valverde': '670389'
 };
 
 function doGet() {
@@ -25,7 +42,9 @@ function doPost(event) {
 }
 
 function validateRecord_(record) {
-  if (!SETTINGS.validPins.includes(String(record.familyPin || ''))) throw new Error('Invalid family PIN.');
+  if (!CHILD_PINS[record.child] || CHILD_PINS[record.child] !== String(record.familyPin || '')) {
+    throw new Error('Incorrect PIN for selected child.');
+  }
   ['timestamp', 'child', 'schoolClass', 'action', 'guardian', 'signature'].forEach(key => {
     if (!record[key]) throw new Error(`Missing ${key}.`);
   });

@@ -4,7 +4,6 @@
   as security controls for a production attendance register.
 */
 const QR_ACCESS_TOKEN = 'sf-genys-entry';
-const DEMO_FAMILY_PIN = '2026';
 const STORAGE_KEY = 'sf-genys-attendance-records';
 const checkinConfig = window.CHECKIN_CONFIG || {};
 
@@ -15,10 +14,10 @@ const hasQrAccess = params.get('access') === QR_ACCESS_TOKEN;
 const sessionKey = 'sf-genys-checkin-authorized';
 const translations = {
   lt: {
-    brand: 'Registracija', accessTitle: 'Privatus mokyklos registras', accessCopy: 'Norėdami atidaryti šį puslapį, nuskenuokite atspausdintą mokyklos QR kodą.', pinEyebrow: 'TĖVŲ / GLOBĖJŲ PRISIJUNGIMAS', pinTitle: 'Sveiki atvykę į<br /><i>SF Genys</i>', pinCopy: 'Įveskite mokyklos suteiktą šeimos PIN kodą. Reikalingi ir QR kodas, ir PIN kodas.', pinLabel: 'Šeimos PIN kodas', continue: 'Tęsti <span>→</span>', pinHelp: 'Reikia pagalbos? Kreipkitės į mokyklos darbuotoją.', registerEyebrow: 'SF GENYS · LANKOMUMAS', registerTitle: 'Atvykimas ar<br /><i>išvykimas</i>', actionLegend: '', drop: 'Atvykimas', pickup: 'Išvykimas', child: 'Vaikas', childPlaceholder: 'Pasirinkite vaiko vardą', schoolClass: 'Klasė', classPlaceholder: 'Pasirinkite klasę', guardian: 'Pasiėmė:', guardianFirst: 'Vardas', guardianLast: 'Pavardė', signature: 'Parašas', clear: 'Išvalyti', signatureHint: 'Pasirašykite čia', confirm: 'Patvirtinti:', endSession: 'Baigti saugų seansą', saved: 'ĮRAŠAS IŠSAUGOTAS', newEntry: 'Naujas įrašas <span>→</span>', finish: 'Baigti', privacy: 'Skirta tik mokyklos lankomumo apskaitai. Nesidalykite QR kodu ar PIN kodu.', invalidPin: 'PIN kodas neatpažintas. Bandykite dar kartą.', required: 'Pasirinkite vaiko vardą ir klasę bei įveskite pasiėmusiojo vardą ir pavardę.', missingSignature: 'Prieš patvirtindami įrašą, pasirašykite.', unconnected: 'Mokyklos registras dar neprijungtas. Kreipkitės į mokyklos darbuotoją.', sendError: 'Įrašo nepavyko išsiųsti. Kreipkitės į mokyklos darbuotoją.', sending: 'Siunčiamas įrašas…', dropped: 'Atvyko', picked: 'Išvyko', by: 'Užregistravo'
+    brand: 'Registracija', accessTitle: 'Privatus mokyklos registras', accessCopy: 'Norėdami atidaryti šį puslapį, nuskenuokite atspausdintą mokyklos QR kodą.', pinEyebrow: 'TĖVŲ / GLOBĖJŲ PRISIJUNGIMAS', pinTitle: 'Sveiki atvykę į<br /><i>SF Genys</i>', pinCopy: 'Įveskite mokyklos suteiktą šeimos PIN kodą. Reikalingi ir QR kodas, ir PIN kodas.', pinLabel: 'Šeimos PIN kodas', continue: 'Tęsti <span>→</span>', pinHelp: 'Reikia pagalbos? Kreipkitės į mokyklos darbuotoją.', registerEyebrow: 'SF GENYS · LANKOMUMAS', registerTitle: 'Atvykimas ar<br /><i>išvykimas</i>', actionLegend: '', drop: 'Atvykimas', pickup: 'Išvykimas', child: 'Vaikas', childPlaceholder: 'Pasirinkite vaiko vardą', schoolClass: 'Klasė', classPlaceholder: 'Pasirinkite klasę', guardian: 'Pasiėmė:', guardianFirst: 'Vardas', guardianLast: 'Pavardė', signature: 'Parašas', clear: 'Išvalyti', signatureHint: 'Pasirašykite čia', confirmDrop: 'Patvirtinti atvykimą', confirmPickup: 'Patvirtinti išvykimą', endSession: 'Baigti saugų seansą', saved: 'ĮRAŠAS IŠSAUGOTAS', newEntry: 'Naujas įrašas <span>→</span>', finish: 'Baigti', privacy: 'Skirta tik mokyklos lankomumo apskaitai. Nesidalykite QR kodu ar PIN kodu.', invalidPin: 'Įveskite šešių skaitmenų PIN kodą.', incorrectChildPin: 'PIN kodas neteisingas arba pasirinktas ne tas vaikas.', required: 'Pasirinkite vaiko vardą ir klasę bei įveskite pasiėmusiojo vardą ir pavardę.', missingSignature: 'Prieš patvirtindami įrašą, pasirašykite.', unconnected: 'Mokyklos registras dar neprijungtas. Kreipkitės į mokyklos darbuotoją.', sendError: 'Įrašo nepavyko išsiųsti. Kreipkitės į mokyklos darbuotoją.', sending: 'Siunčiamas įrašas…', dropped: 'Atvyko', picked: 'Išvyko', by: 'Užregistravo'
   },
   en: {
-    brand: 'School arrival register', accessTitle: 'Private school register', accessCopy: 'Please scan the printed school QR code to open this page.', pinEyebrow: 'PARENT / GUARDIAN ACCESS', pinTitle: 'Welcome to<br /><i>SF Genys</i>', pinCopy: 'Enter the family PIN provided by the school. The QR code and PIN are both required.', pinLabel: 'Family PIN', continue: 'Continue <span>→</span>', pinHelp: 'Need help? Please speak with a school staff member.', registerEyebrow: 'SF GENYS · PRIVATE REGISTER', registerTitle: 'Check in or<br /><i>check out</i>', actionLegend: 'What would you like to record?', drop: 'Drop off', pickup: 'Pick up', child: 'Child', childPlaceholder: 'Select child', schoolClass: 'Class / group', classPlaceholder: 'Select class', guardian: 'Collected by:', guardianFirst: 'First name', guardianLast: 'Last name', signature: 'Signature', clear: 'Clear', signatureHint: 'Sign here', confirm: 'Confirm', endSession: 'End secure session', saved: 'RECORD SAVED', newEntry: 'New entry <span>→</span>', finish: 'Finish', privacy: 'For school attendance records only. Do not share the QR code or family PIN.', invalidPin: 'That PIN is not recognised. Please try again.', required: 'Please select the child and class/group, and enter the guardian’s name.', missingSignature: 'Please add your signature before confirming.', unconnected: 'The school register is not connected yet. Please ask a staff member for help.', sendError: 'Your entry could not be sent. Please ask a staff member for help.', sending: 'Sending entry…', dropped: 'Dropped off', picked: 'Picked up', by: 'by'
+    brand: 'School arrival register', accessTitle: 'Private school register', accessCopy: 'Please scan the printed school QR code to open this page.', pinEyebrow: 'PARENT / GUARDIAN ACCESS', pinTitle: 'Welcome to<br /><i>SF Genys</i>', pinCopy: 'Enter the family PIN provided by the school. The QR code and PIN are both required.', pinLabel: 'Family PIN', continue: 'Continue <span>→</span>', pinHelp: 'Need help? Please speak with a school staff member.', registerEyebrow: 'SF GENYS · PRIVATE REGISTER', registerTitle: 'Check in or<br /><i>check out</i>', actionLegend: 'What would you like to record?', drop: 'Drop off', pickup: 'Pick up', child: 'Child', childPlaceholder: 'Select child', schoolClass: 'Class / group', classPlaceholder: 'Select class', guardian: 'Collected by:', guardianFirst: 'First name', guardianLast: 'Last name', signature: 'Signature', clear: 'Clear', signatureHint: 'Sign here', confirmDrop: 'Confirm drop off', confirmPickup: 'Confirm pick up', endSession: 'End secure session', saved: 'RECORD SAVED', newEntry: 'New entry <span>→</span>', finish: 'Finish', privacy: 'For school attendance records only. Do not share the QR code or family PIN.', invalidPin: 'Enter a six-digit PIN.', incorrectChildPin: 'The PIN is incorrect or does not belong to the selected child.', required: 'Please select the child and class/group, and enter the guardian’s name.', missingSignature: 'Please add your signature before confirming.', unconnected: 'The school register is not connected yet. Please ask a staff member for help.', sendError: 'Your entry could not be sent. Please ask a staff member for help.', sending: 'Sending entry…', dropped: 'Dropped off', picked: 'Picked up', by: 'by'
   }
 };
 let language = localStorage.getItem('sf-genys-checkin-language') || 'lt';
@@ -46,7 +45,7 @@ function renderChildren() {
 function actionLabel(action) { return action === 'DROP OFF' ? text('drop') : text('pickup'); }
 function updateConfirmButton() {
   const action = document.querySelector('input[name="action"]:checked').value;
-  document.getElementById('confirm-attendance').innerHTML = `${text('confirm')} <span id="submit-action">${actionLabel(action).toLowerCase()}</span> <span>→</span>`;
+  document.getElementById('confirm-attendance').innerHTML = `<span id="submit-action">${action === 'DROP OFF' ? text('confirmDrop') : text('confirmPickup')}</span> <span>→</span>`;
 }
 function renderDate() {
   document.getElementById('current-date').textContent = new Intl.DateTimeFormat(language === 'lt' ? 'lt-LT' : 'en-US', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' }).format(new Date());
@@ -73,7 +72,7 @@ document.getElementById('pin-form').addEventListener('submit', event => {
   event.preventDefault();
   const pin = document.getElementById('family-pin').value.trim();
   const error = document.getElementById('pin-error');
-  if (pin !== DEMO_FAMILY_PIN) { error.textContent = text('invalidPin'); return; }
+  if (!/^\d{6}$/.test(pin)) { error.textContent = text('invalidPin'); return; }
   sessionStorage.setItem(sessionKey, 'yes');
   sessionStorage.setItem('sf-genys-checkin-pin', pin);
   error.textContent = '';
@@ -142,6 +141,11 @@ document.getElementById('attendance-form').addEventListener('submit', async even
     return;
   }
   if (!hasSignature) { signatureError.textContent = text('missingSignature'); return; }
+  const selectedChild = roster.flatMap(group => group.children).find(child => child.name === formElement.elements.child.value);
+  if (!selectedChild || sessionStorage.getItem('sf-genys-checkin-pin') !== selectedChild.pin) {
+    signatureError.textContent = text('incorrectChildPin');
+    return;
+  }
   signatureError.textContent = '';
   if (!checkinConfig.endpoint) {
     signatureError.textContent = text('unconnected');
