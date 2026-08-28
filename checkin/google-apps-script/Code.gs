@@ -11,7 +11,8 @@ function doGet() {
 
 function doPost(event) {
   try {
-    const record = JSON.parse(event.postData.contents);
+    const payload = event.parameter && event.parameter.payload ? event.parameter.payload : event.postData.contents;
+    const record = JSON.parse(payload);
     validateRecord_(record);
     const timestamp = new Date(record.timestamp);
     const signature = signatureBlob_(record.signature, timestamp, record.child);

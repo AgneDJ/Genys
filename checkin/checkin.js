@@ -72,6 +72,17 @@ document.getElementById('clear-signature').addEventListener('click', () => { con
 document.querySelectorAll('input[name="action"]').forEach(input => input.addEventListener('change', () => {
   document.getElementById('submit-action').textContent = input.value.toLowerCase();
 }));
+function submitToReceiver(record) {
+  const receiverForm = document.createElement('form');
+  receiverForm.method = 'POST';
+  receiverForm.action = checkinConfig.endpoint;
+  receiverForm.target = 'attendance-receiver';
+  receiverForm.hidden = true;
+  const payload = document.createElement('input');
+  payload.type = 'hidden'; payload.name = 'payload'; payload.value = JSON.stringify(record);
+  receiverForm.appendChild(payload); document.body.appendChild(receiverForm);
+  receiverForm.submit(); receiverForm.remove();
+}
 document.getElementById('attendance-form').addEventListener('submit', async event => {
   event.preventDefault();
   const signatureError = document.getElementById('signature-error');
@@ -96,7 +107,7 @@ document.getElementById('attendance-form').addEventListener('submit', async even
   submitButton.disabled = true;
   submitButton.textContent = 'Sending entry…';
   try {
-    await fetch(checkinConfig.endpoint, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(record) });
+    submitToReceiver(record);
   } catch (error) {
     signatureError.textContent = 'Your entry could not be sent. Please ask a staff member for help.';
     submitButton.disabled = false;
