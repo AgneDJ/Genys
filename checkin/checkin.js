@@ -24,6 +24,25 @@ const translations = {
 let language = localStorage.getItem('sf-genys-checkin-language') || 'lt';
 const text = key => translations[language][key];
 const setText = (id, value) => document.getElementById(id).innerHTML = value;
+const roster = window.VAIKU_SARASAS || [];
+function renderRoster() {
+  const classSelect = document.getElementById('school-class');
+  const selectedClass = classSelect.value;
+  classSelect.innerHTML = `<option id="class-placeholder" value="" disabled>${text('classPlaceholder')}</option>` + roster.map(group => `<option value="${group.name}">${language === 'en' ? group.en : group.name}</option>`).join('');
+  classSelect.value = selectedClass;
+  if (!selectedClass) classSelect.selectedIndex = 0;
+  renderChildren();
+}
+function renderChildren() {
+  const className = document.getElementById('school-class').value;
+  const childSelect = document.getElementById('child');
+  const selectedChild = childSelect.value;
+  const group = roster.find(item => item.name === className);
+  childSelect.disabled = !group;
+  childSelect.innerHTML = `<option id="child-placeholder" value="" disabled>${text('childPlaceholder')}</option>` + (group ? group.children.map(child => `<option value="${child.name}">${child.name}</option>`).join('') : '');
+  childSelect.value = selectedChild;
+  if (!selectedChild || !group?.children.some(child => child.name === selectedChild)) childSelect.selectedIndex = 0;
+}
 function actionLabel(action) { return action === 'DROP OFF' ? text('drop') : text('pickup'); }
 function updateConfirmButton() {
   const action = document.querySelector('input[name="action"]:checked').value;
@@ -36,7 +55,7 @@ function applyLanguage(nextLanguage) {
   language = nextLanguage; localStorage.setItem('sf-genys-checkin-language', language); document.documentElement.lang = language;
   const copy = { 'brand-title': 'brand', 'access-title': 'accessTitle', 'access-copy': 'accessCopy', 'pin-eyebrow': 'pinEyebrow', 'pin-title': 'pinTitle', 'pin-copy': 'pinCopy', 'pin-label': 'pinLabel', 'pin-continue': 'continue', 'pin-help': 'pinHelp', 'register-eyebrow': 'registerEyebrow', 'drop-label': 'drop', 'pickup-label': 'pickup', 'child-label': 'child', 'child-placeholder': 'childPlaceholder', 'class-label': 'schoolClass', 'class-placeholder': 'classPlaceholder', 'guardian-label': 'guardian', 'guardian-first-label': 'guardianFirst', 'guardian-last-label': 'guardianLast', 'signature-label': 'signature', 'clear-signature': 'clear', 'signature-hint': 'signatureHint', 'end-session': 'endSession', 'saved-eyebrow': 'saved', 'new-entry': 'newEntry', 'finish-session': 'finish', 'privacy-note': 'privacy' };
   Object.entries(copy).forEach(([id, key]) => setText(id, text(key)));
-  document.querySelectorAll('#school-class option[data-lt]').forEach(option => option.textContent = option.dataset[language]);
+  renderRoster();
   document.getElementById('signature-canvas').setAttribute('aria-label', language === 'lt' ? 'Pasirašykite pirštu arba pele' : 'Sign here using your finger or mouse');
   document.querySelectorAll('[data-language]').forEach(button => button.classList.toggle('active', button.dataset.language === language));
   renderDate(); updateConfirmButton();
@@ -48,6 +67,7 @@ else show('pin-screen');
 
 applyLanguage(language);
 document.querySelectorAll('[data-language]').forEach(button => button.addEventListener('click', () => applyLanguage(button.dataset.language)));
+document.getElementById('school-class').addEventListener('change', renderChildren);
 
 document.getElementById('pin-form').addEventListener('submit', event => {
   event.preventDefault();
@@ -146,7 +166,7 @@ document.getElementById('attendance-form').addEventListener('submit', async even
   updateConfirmButton();
   document.getElementById('success-child').textContent = record.child;
   document.getElementById('success-detail').textContent = `${record.action === 'DROP OFF' ? text('dropped') : text('picked')} ${new Intl.DateTimeFormat(language === 'lt' ? 'lt-LT' : 'en-US', { hour: 'numeric', minute: '2-digit' }).format(now)} ${text('by')} ${record.guardian}.`;
-  formElement.reset(); document.querySelector('input[name="action"][value="DROP OFF"]').checked = true;
+  formElement.reset(); renderRoster(); document.querySelector('input[name="action"][value="DROP OFF"]').checked = true;
   updateConfirmButton(); context.clearRect(0, 0, canvas.width, canvas.height); hasSignature = false;
   show('success-screen');
 });
