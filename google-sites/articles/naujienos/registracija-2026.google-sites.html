@@ -18,7 +18,6 @@
 .calendar-page{max-width:1050px}.calendar-sheet-link{display:inline-flex;align-items:center;gap:11px;margin:10px 0 30px;color:var(--blue);font-size:.9rem;font-weight:700;text-decoration:none}.calendar-page-frame{overflow:hidden;border:1px solid #dce5f7;border-radius:18px;background:#fff;box-shadow:0 18px 45px #21477717}.calendar-page-bar{display:flex;align-items:center;justify-content:space-between;padding:14px 17px;border-bottom:1px solid #e5ebf7;color:#61718c;font-size:.72rem}.calendar-page-bar span{color:#1d3971;font-weight:700}.calendar-page-bar i{display:inline-block;width:8px;height:8px;margin-right:6px;border-radius:50%;background:#3bc481}.calendar-page-frame iframe{display:block;width:142.857%;height:586px;border:0;transform:scale(.7);transform-origin:top left}@media(max-width:500px){.calendar-page-bar small{display:none}.calendar-page-frame iframe{width:125%;height:450px;transform:scale(.8)}}
 
 /* Match the homepage information bar on secondary pages. */
-.topline{background:linear-gradient(90deg,#2455bb,#7d55ce);color:#b9cae8;font-size:.72rem;letter-spacing:.04em}.topline .shell{width:min(1160px,calc(100% - 48px));height:36px;margin:auto;display:flex;align-items:center;justify-content:space-between}@media(max-width:700px){.topline .top-links{display:none}}@media(max-width:500px){.topline .shell{height:32px;font-size:.64rem}}
 
 @media(min-width:851px) and (max-width:1200px){.site-nav{gap:14px}.site-nav .brand-logo{width:140px}.site-nav .main-nav{gap:12px}.site-nav .main-nav a,.site-nav .main-nav summary{font-size:.78rem}.site-nav .portal-btn{display:none}}
 
@@ -38,7 +37,6 @@
   const link = path => new URL(path, root).href;
 
   document.body.insertAdjacentHTML('afterbegin', `
-    <div class="topline"><div class="shell"><span>San Franciskas · Kalifornija</span><span class="top-links">Tėvams &nbsp; | &nbsp; Mokytojams &nbsp; | &nbsp; Bendruomenei</span></div></div>
     <header class="site-nav">
       <a href="${link('index.google-sites.html')}" class="brand" aria-label="SF Genys pradžia"><img class="brand-logo" src="${link('assets/logo.png')}" alt="SF Genys"></a>
       <button class="menu-btn" aria-label="Atidaryti meniu" aria-expanded="false">☰</button>
@@ -69,10 +67,6 @@
   const setLanguage = lang => {
     language = lang;
     document.querySelector('.site-nav').lang = lang;
-    const topline = document.querySelector('.topline');
-    topline.lang = lang;
-    topline.querySelector('span:first-child').textContent = lang === 'en' ? 'San Francisco Bay Area · California' : 'San Franciskas · Kalifornija';
-    topline.querySelector('.top-links').textContent = lang === 'en' ? 'For families   |   For teachers   |   Community' : 'Tėvams   |   Mokytojams   |   Bendruomenei';
     for (const [node, lt] of lithuanian) node.textContent = lang === 'en' ? labels[node.dataset.nav] : lt;
     const registrationButton = document.querySelector('.site-nav .portal-btn');
     if (registrationButton) registrationButton.innerHTML = (lang === 'en' ? 'Register' : 'Registracija') + ' <span>→</span>';

@@ -63,8 +63,6 @@ document.querySelectorAll('#main-nav a').forEach(link => link.addEventListener('
 document.addEventListener('keydown', event => { if (event.key === 'Escape') closeMenu(); });
 const translations = {
   en: {
-    '.topline .shell span:first-child': 'San Francisco Bay Area · California',
-    '.topline .shell span:last-child': 'For families   |   For teachers   |   Community',
     '.brand span:last-child': 'SF<br><strong>„Genys“</strong>',
     "#main-nav [data-nav=\"home\"]": "Home",
     "#main-nav [data-nav=\"about\"]": "About us",

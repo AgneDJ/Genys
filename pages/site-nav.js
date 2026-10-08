@@ -3,7 +3,6 @@
   const link = path => new URL(path, root).href;
 
   document.body.insertAdjacentHTML('afterbegin', `
-    <div class="topline"><div class="shell"><span>San Franciskas · Kalifornija</span><span class="top-links">Tėvams &nbsp; | &nbsp; Mokytojams &nbsp; | &nbsp; Bendruomenei</span></div></div>
     <header class="site-nav">
       <a href="${link('index.html')}" class="brand" aria-label="SF Genys pradžia"><img class="brand-logo" src="${link('assets/logo.png')}" alt="SF Genys"></a>
       <button class="menu-btn" aria-label="Atidaryti meniu" aria-expanded="false">☰</button>
@@ -34,10 +33,6 @@
   const setLanguage = lang => {
     language = lang;
     document.querySelector('.site-nav').lang = lang;
-    const topline = document.querySelector('.topline');
-    topline.lang = lang;
-    topline.querySelector('span:first-child').textContent = lang === 'en' ? 'San Francisco Bay Area · California' : 'San Franciskas · Kalifornija';
-    topline.querySelector('.top-links').textContent = lang === 'en' ? 'For families   |   For teachers   |   Community' : 'Tėvams   |   Mokytojams   |   Bendruomenei';
     for (const [node, lt] of lithuanian) node.textContent = lang === 'en' ? labels[node.dataset.nav] : lt;
     const registrationButton = document.querySelector('.site-nav .portal-btn');
     if (registrationButton) registrationButton.innerHTML = (lang === 'en' ? 'Register' : 'Registracija') + ' <span>→</span>';
