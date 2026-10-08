@@ -30,11 +30,17 @@ const setText = (id, value) => document.getElementById(id).innerHTML = value;
 const roster = window.VAIKU_SARASAS || [];
 function renderRoster() {
   const classSelect = document.getElementById('school-class');
-  const selectedClass = classSelect.value;
+  const pin = sessionStorage.getItem('sf-genys-checkin-pin');
+  const pinGroup = roster.find(group => group.children.some(child => child.pin === pin));
+  const selectedClass = classSelect.value || pinGroup?.name || '';
   classSelect.innerHTML = `<option id="class-placeholder" value="" disabled>${text('classPlaceholder')}</option>` + roster.map(group => `<option value="${group.name}">${language === 'en' ? group.en : group.name}</option>`).join('');
   classSelect.value = selectedClass;
   if (!selectedClass) classSelect.selectedIndex = 0;
   renderChildren();
+  const childSelect = document.getElementById('child');
+  if (pinGroup?.name === selectedClass && !childSelect.value) {
+    childSelect.value = pinGroup.children.find(child => child.pin === pin).name;
+  }
 }
 function renderChildren() {
   const className = document.getElementById('school-class').value;
@@ -82,6 +88,7 @@ document.getElementById('pin-form').addEventListener('submit', event => {
   if (!/^\d{4}$/.test(pin)) { error.textContent = text('invalidPin'); return; }
   sessionStorage.setItem(sessionKey, 'yes');
   sessionStorage.setItem('sf-genys-checkin-pin', pin);
+  renderRoster();
   error.textContent = '';
   show('register-screen');
   requestAnimationFrame(resizeCanvas);
