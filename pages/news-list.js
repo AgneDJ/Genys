@@ -3,6 +3,9 @@
   if (!list) return;
   const root = new URL('../', document.currentScript.src).href;
   const archive = document.querySelector('[data-news-archive]');
+  let language = 'lt';
+  let news = [];
+  try { if (localStorage.getItem('sf-genys-language') === 'en') language = 'en'; } catch {}
   const element = (tag, text, className) => {
     const node = document.createElement(tag);
     if (text !== undefined) node.textContent = text;
@@ -16,8 +19,11 @@
       return ['http:', 'https:', 'file:'].includes(url.protocol) ? url.href : null;
     } catch { return null; }
   };
-  const card = (item, index) => {
+  const card = (source, index) => {
+    const translated = language === 'en' && source.en && typeof source.en === 'object' && !Array.isArray(source.en);
+    const item = translated ? { ...source, ...source.en } : source;
     const article = element('article', undefined, 'local-news-card');
+    article.lang = translated ? 'en' : 'lt';
     const content = item.image ? element('div') : article;
     const imageURL = safeURL(item.image);
     if (imageURL) {
@@ -33,13 +39,24 @@
     content.append(meta, element('h3', item.title), element('p', item.text || ''));
     const linkURL = safeURL(item.link);
     if (linkURL) {
-      const link = element('a', 'Skaityti daugiau →');
+      const link = element('a', language === 'en' ? 'Read more →' : 'Skaityti daugiau →');
+      link.lang = language;
       link.href = linkURL;
       content.append(link);
     }
     if (content !== article) article.append(content);
     return article;
   };
+  const render = () => {
+    if (!news.length) return;
+    const visible = archive ? news.slice(4) : news.slice(0, 4);
+    list.replaceChildren(...visible.map(card));
+    if (archive) archive.hidden = visible.length === 0;
+  };
+  document.addEventListener('sf-genys-language-change', event => {
+    language = event.detail.language === 'en' ? 'en' : 'lt';
+    render();
+  });
   // The editorial news array is maintained newest first; date labels also include school years.
   fetch('../data/site-data.json')
     .then(response => {
@@ -48,11 +65,8 @@
     })
     .then(data => {
       if (!Array.isArray(data.news)) return;
-      const news = data.news.filter(item => item && typeof item.title === 'string' && item.title.trim());
-      if (!news.length) return;
-      const visible = archive ? news.slice(4) : news.slice(0, 4);
-      list.replaceChildren(...visible.map(card));
-      if (archive) archive.hidden = visible.length === 0;
+      news = data.news.filter(item => item && typeof item.title === 'string' && item.title.trim());
+      render();
     })
     .catch(() => { /* Keep the existing cards and historical archive available offline. */ });
 })();

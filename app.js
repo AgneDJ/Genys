@@ -1,5 +1,7 @@
 const localData = {
   news: [
+    {"date":"2026-09-14","category":"BENDRUOMENĖ","title":"Sėkmės, Aidai!","text":"„Genio“ bendruomenė linki kuo didžiausios sėkmės, ištvermės ir sveikatos Aidui Ardzijauskui bėgime per Ameriką!","link":"articles/naujienos/sekmes-aidui-2026.html"},
+    {"date":"2026-09-13","category":"BENDRUOMENĖ","title":"Sugrįžome į „Genį“!","text":"Po vasaros atostogų mokyklos kiemas vėl prisipildė vaikų juoko, draugų susitikimų ir lietuviško šurmulio. Tegu nauji mokslo metai būna kupini atradimų ir gražių draugysčių!","link":"articles/naujienos/mokslo-metu-pradzia-2026.html"},
     { date: '2026–2027', category: 'BENDRUOMENĖ', title: 'Sveikiname su 2026–2027 mokslo metais!', text: 'Lauksime visų rugsėjo 12 d. San Francisko lituanistinėje mokykloje „Genys“.', link: 'https://sites.google.com/sfgenys.org/sfgenys/naujienos/2026-2027-mokslo-met%C5%B3-info', image: 'https://lh3.googleusercontent.com/sitesv/AG8ngQUjDKxPMIuyKjwU0gbAqsUdMhFSqGYtHFxsVo8KD2tR2_DrPN7Yh4G7DCbcnDb28WjN7BaXM4YByTXnXV84GHqFcWDD2AbYFe1XaFa7CvEZQpjGTCxNrPG9ymw-M2z8PmGk2158RvMFN3ArLz78sX6kjf9_OIbG5L6V0oe8-h5Q2ol5N0SSO_2qL5Qn8GSLEMkziHmKaVaVe96-HZ_9vEIAP95y_VFym97j1HD9MWk=w1280' },
     { date: '08.18', category: 'ŠVENTĖS', title: 'Kartu minėsime Lietuvos valstybines šventes', text: 'Mokykloje tradicijas pažįstame gyvai – per istorijas, dainas ir bendras veiklas.', link: 'articles/naujienos/sventes-2026.html' },
     { date: '08.11', category: 'KLASĖS', title: 'Šeštadieniai, pilni lietuviškų atradimų', text: 'Kalba, kūryba, žaidimas ir draugystė – kiekvienam amžiui pritaikyta programa.', link: 'articles/naujienos/sestadieniai-2026.html' }
@@ -11,6 +13,8 @@ const localData = {
 };
 const englishData = {
   news: [
+    {"date":"2026-09-14","category":"COMMUNITY","title":"Good luck, Aidas!","text":"The Genys community wishes Aidas Ardzijauskas every success, endurance, and good health on his run across America!","link":"articles/naujienos/sekmes-aidui-2026.html"},
+    {"date":"2026-09-13","category":"COMMUNITY","title":"Welcome back to Genys!","text":"After the summer break, our schoolyard was once again filled with children’s laughter, reunions with friends, and the lively sound of Lithuanian. May the new school year bring discoveries and wonderful friendships!","link":"articles/naujienos/mokslo-metu-pradzia-2026.html"},
     { date: '2026–2027', category: 'COMMUNITY', title: 'Welcome to the 2026–2027 school year!', text: 'We look forward to welcoming everyone on September 12 at SF Genys.', link: 'https://sites.google.com/sfgenys.org/sfgenys/naujienos/2026-2027-mokslo-met%C5%B3-info', image: 'https://lh3.googleusercontent.com/sitesv/AG8ngQUjDKxPMIuyKjwU0gbAqsUdMhFSqGYtHFxsVo8KD2tR2_DrPN7Yh4G7DCbcnDb28WjN7BaXM4YByTXnXV84GHqFcWDD2AbYFe1XaFa7CvEZQpjGTCxNrPG9ymw-M2z8PmGk2158RvMFN3ArLz78sX6kjf9_OIbG5L6V0oe8-h5Q2ol5N0SSO_2qL5Qn8GSLEMkziHmKaVaVe96-HZ_9vEIAP95y_VFym97j1HD9MWk=w1280' },
     { date: '08.18', category: 'CELEBRATIONS', title: 'We will celebrate Lithuania’s national holidays together', text: 'We discover traditions through stories, songs, and hands-on activities.', link: 'articles/naujienos/sventes-2026.html' },
     { date: '08.11', category: 'CLASSES', title: 'Saturdays full of Lithuanian discoveries', text: 'Language, creativity, play, and friendship – a programme for every age.', link: 'articles/naujienos/sestadieniai-2026.html' }
@@ -21,10 +25,10 @@ let database = localData;
 
 function render(data) {
   const latest = document.querySelector('#latest-news');
-  if (latest) { const n = data.news[0]; latest.innerHTML = `<article class="latest-card"><img src="${n.image || 'assets/sf-genys-community.png'}" alt="${n.title}"><div><p class="eyebrow">NAUJAUSIA NAUJIENA · ${n.date}</p><h2>${n.title}</h2><p>${n.text}</p><a class="btn btn-dark" href="${n.link || 'pages/naujienos.html'}">Skaityti daugiau <span>→</span></a></div></article>`; }
+  if (latest) { const n = data.news[0]; latest.innerHTML = `<article class="latest-card"><img src="${n.image || 'assets/sf-genys-community.png'}" alt="${n.title}"><div><p class="eyebrow">${document.documentElement.lang === 'en' ? 'LATEST NEWS' : 'NAUJAUSIA NAUJIENA'} · ${n.date}</p><h2>${n.title}</h2><p>${n.text}</p><a class="btn btn-dark" href="${n.link || 'pages/naujienos.html'}">${document.documentElement.lang === 'en' ? 'Read more' : 'Skaityti daugiau'} <span>→</span></a></div></article>`; }
   const preview = document.querySelector('#news-preview');
   const images = ['assets/su naujais.png', 'pages/apie-mus/vaikai.jpg', 'pages/Mokytojai/mokytojos.png'];
-  if (preview) preview.innerHTML = data.news.map((n, i) => `<a class="news-preview-card" href="${n.link || 'pages/naujienos.html'}"><img src="${n.image || images[i] || images[0]}" alt="${n.title}" loading="lazy"><span>${n.category}</span><b>${n.title}</b><small>${n.text}</small><em>Skaityti daugiau →</em></a>`).join('');
+  if (preview) preview.innerHTML = data.news.slice(0, 4).map((n, i) => `<a class="news-preview-card" href="${n.link || 'pages/naujienos.html'}"><img src="${n.image || images[i] || images[0]}" alt="${n.title}" loading="lazy"><span>${n.category}</span><b>${n.title}</b><small>${n.text}</small><em>${document.documentElement.lang === 'en' ? 'Read more' : 'Skaityti daugiau'} →</em></a>`).join('');
   document.querySelector('#gallery-grid').innerHTML = data.gallery.map((g, i) => `<button class="gallery-item item-${i + 1}" data-title="${g.title}" style="--pos:${g.position}"><img src="assets/sf-genys-community.png" alt="${g.title}" loading="lazy"><span>${g.title}</span><b>↗</b></button>`).join('');
   document.querySelectorAll('.gallery-item, .gallery-open').forEach(el => el.addEventListener('click', () => openGallery(el.dataset.title || data.gallery[0].title)));
 }
@@ -73,6 +77,8 @@ const translations = {
     "#main-nav [data-nav=\"classes\"]": "Classes",
     "#main-nav [data-nav=\"teachers\"]": "Our teachers",
     "#main-nav [data-nav=\"news\"]": "News",
+    "#main-nav [data-nav=\"news-overview\"]": "All news",
+    "#main-nav [data-nav=\"events\"]": "Events",
     "#main-nav [data-nav=\"schedule\"]": "Schedule",
     "#main-nav [data-nav=\"parents\"]": "For parents",
     "#main-nav [data-nav=\"parents-overview\"]": "For parents – overview",
