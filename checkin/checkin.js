@@ -18,10 +18,10 @@ if (params.get('fresh') === '1') {
 }
 const translations = {
   lt: {
-    home: '← Pradžia', brand: 'Registracija', accessTitle: 'Privatus mokyklos registras', accessCopy: 'Norėdami atidaryti šį puslapį, nuskenuokite atspausdintą mokyklos QR kodą.', pinEyebrow: 'TĖVŲ / GLOBĖJŲ PRISIJUNGIMAS', pinTitle: 'SF Genys', pinLabel: 'Įveskite mokyklos suteiktą PIN kodą:', continue: 'Tęsti <span>→</span>', pinHelp: 'Reikia pagalbos? Kreipkitės į mokytoją.', registerEyebrow: 'SF GENYS · LANKOMUMAS', registerTitle: 'Atvykimas ar<br /><i>išvykimas</i>', actionLegend: '', drop: 'Atvykimas', pickup: 'Išvykimas', child: 'Vaikas', childPlaceholder: 'Pasirinkite vaiko vardą', schoolClass: 'Klasė', classPlaceholder: 'Pasirinkite klasę', guardian: 'Pasiėmė:', guardianFirst: 'Vardas', guardianLast: 'Pavardė', signature: 'Parašas', clear: 'Išvalyti', signatureHint: 'Pasirašykite čia', confirmDrop: 'Patvirtinti atvykimą', confirmPickup: 'Patvirtinti išvykimą', endSession: 'Baigti saugų seansą', saved: 'ĮRAŠAS IŠSAUGOTAS', newEntry: 'Naujas įrašas <span>→</span>', finish: 'Baigti', privacy: 'Skirta tik mokyklos lankomumo apskaitai. Nesidalykite QR kodu ar PIN kodu.', invalidPin: 'Įveskite keturių skaitmenų PIN kodą.', incorrectChildPin: 'PIN kodas neteisingas arba pasirinktas ne tas vaikas.', required: 'Pasirinkite vaiko vardą ir klasę bei įveskite pasiėmusiojo vardą ir pavardę.', missingSignature: 'Prieš patvirtindami įrašą, pasirašykite.', unconnected: 'Mokyklos registras dar neprijungtas. Kreipkitės į mokyklos darbuotoją.', sendError: 'Įrašo nepavyko išsiųsti. Kreipkitės į mokyklos darbuotoją.', sending: 'Siunčiamas įrašas…', dropped: 'Atvyko', picked: 'Išvyko', by: 'Užregistravo'
+    home: '← Pradžia', brand: 'Registracija', accessTitle: 'Privatus mokyklos registras', accessCopy: 'Norėdami atidaryti šį puslapį, nuskenuokite atspausdintą mokyklos QR kodą.', pinEyebrow: 'TĖVŲ / GLOBĖJŲ PRISIJUNGIMAS', pinTitle: 'SF Genys', pinLabel: 'Įveskite mokyklos suteiktą PIN kodą:', continue: 'Tęsti <span>→</span>', pinHelp: 'Reikia pagalbos? Kreipkitės į mokytoją.', registerEyebrow: 'SF GENYS · LANKOMUMAS', registerTitle: 'Atvykimas ar<br /><i>išvykimas</i>', actionLegend: '', drop: 'Atvykimas', pickup: 'Išvykimas', child: 'Vaikas', childPlaceholder: 'Pasirinkite vaiko vardą', schoolClass: 'Klasė', classPlaceholder: 'Pasirinkite klasę', guardian: 'Pasiėmė:', guardianFirst: 'Vardas', guardianLast: 'Pavardė', signature: 'Parašas', clear: 'Išvalyti', signatureHint: 'Pasirašykite čia', confirmDrop: 'Patvirtinti atvykimą', confirmPickup: 'Patvirtinti išvykimą', endSession: 'Baigti saugų seansą', saved: 'ĮRAŠAS IŠSAUGOTAS', newEntry: 'Naujas įrašas <span>→</span>', finish: 'Baigti', privacy: 'Skirta tik mokyklos lankomumo apskaitai. Nesidalykite QR kodu ar PIN kodu.', invalidPin: 'Įveskite keturių skaitmenų PIN kodą.', incorrectChildPin: 'PIN kodas neteisingas arba pasirinktas ne tas vaikas.', required: 'Pasirinkite vaiko vardą ir klasę bei įveskite pasiėmusiojo vardą ir pavardę.', missingSignature: 'Prieš patvirtindami įrašą, pasirašykite.', unconnected: 'Mokyklos registras dar neprijungtas. Kreipkitės į mokyklos darbuotoją.', sendError: 'Google nepatvirtino įrašo išsaugojimo. Kreipkitės į mokyklos darbuotoją.', sending: 'Siunčiamas įrašas…', dropped: 'Atvyko', picked: 'Išvyko', by: 'Užregistravo'
   },
   en: {
-    home: '← Home', brand: 'School arrival register', accessTitle: 'Private school register', accessCopy: 'Please scan the printed school QR code to open this page.', pinEyebrow: 'PARENT / GUARDIAN ACCESS', pinTitle: 'SF Genys', pinLabel: 'Enter the PIN provided by the school:', continue: 'Continue <span>→</span>', pinHelp: 'Need help? Please speak with a school staff member.', registerEyebrow: 'SF GENYS · PRIVATE REGISTER', registerTitle: 'Check in or<br /><i>check out</i>', actionLegend: 'What would you like to record?', drop: 'Drop off', pickup: 'Pick up', child: 'Child', childPlaceholder: 'Select child', schoolClass: 'Class / group', classPlaceholder: 'Select class', guardian: 'Collected by:', guardianFirst: 'First name', guardianLast: 'Last name', signature: 'Signature', clear: 'Clear', signatureHint: 'Sign here', confirmDrop: 'Confirm drop off', confirmPickup: 'Confirm pick up', endSession: 'End secure session', saved: 'RECORD SAVED', newEntry: 'New entry <span>→</span>', finish: 'Finish', privacy: 'For school attendance records only. Do not share the QR code or family PIN.', invalidPin: 'Enter a four-digit PIN.', incorrectChildPin: 'The PIN is incorrect or does not belong to the selected child.', required: 'Please select the child and class/group, and enter the guardian’s name.', missingSignature: 'Please add your signature before confirming.', unconnected: 'The school register is not connected yet. Please ask a staff member for help.', sendError: 'Your entry could not be sent. Please ask a staff member for help.', sending: 'Sending entry…', dropped: 'Dropped off', picked: 'Picked up', by: 'by'
+    home: '← Home', brand: 'School arrival register', accessTitle: 'Private school register', accessCopy: 'Please scan the printed school QR code to open this page.', pinEyebrow: 'PARENT / GUARDIAN ACCESS', pinTitle: 'SF Genys', pinLabel: 'Enter the PIN provided by the school:', continue: 'Continue <span>→</span>', pinHelp: 'Need help? Please speak with a school staff member.', registerEyebrow: 'SF GENYS · PRIVATE REGISTER', registerTitle: 'Check in or<br /><i>check out</i>', actionLegend: 'What would you like to record?', drop: 'Drop off', pickup: 'Pick up', child: 'Child', childPlaceholder: 'Select child', schoolClass: 'Class / group', classPlaceholder: 'Select class', guardian: 'Collected by:', guardianFirst: 'First name', guardianLast: 'Last name', signature: 'Signature', clear: 'Clear', signatureHint: 'Sign here', confirmDrop: 'Confirm drop off', confirmPickup: 'Confirm pick up', endSession: 'End secure session', saved: 'RECORD SAVED', newEntry: 'New entry <span>→</span>', finish: 'Finish', privacy: 'For school attendance records only. Do not share the QR code or family PIN.', invalidPin: 'Enter a four-digit PIN.', incorrectChildPin: 'The PIN is incorrect or does not belong to the selected child.', required: 'Please select the child and class/group, and enter the guardian’s name.', missingSignature: 'Please add your signature before confirming.', unconnected: 'The school register is not connected yet. Please ask a staff member for help.', sendError: 'Google has not confirmed that this entry was saved. Please ask a staff member for help.', sending: 'Sending entry…', dropped: 'Dropped off', picked: 'Picked up', by: 'by'
   }
 };
 let language = localStorage.getItem('sf-genys-checkin-language') || 'lt';
@@ -126,7 +126,30 @@ document.getElementById('clear-signature').addEventListener('click', () => { con
 document.querySelectorAll('input[name="action"]').forEach(input => input.addEventListener('change', () => {
   updateConfirmButton();
 }));
-function submitToReceiver(record) {
+function receiptStatus(recordId, timeoutMs) {
+  return new Promise((resolve, reject) => {
+    const callback = 'sfGenysReceipt_' + crypto.randomUUID().replace(/-/g, '');
+    const script = document.createElement('script');
+    const url = new URL(checkinConfig.endpoint);
+    url.searchParams.set('receipt', recordId);
+    url.searchParams.set('callback', callback);
+    url.searchParams.set('_', String(Date.now()));
+    let timer;
+    const cleanup = () => {
+      clearTimeout(timer);
+      script.remove();
+      // Ignore a response that arrives after this request times out.
+      window[callback] = () => {};
+      setTimeout(() => { delete window[callback]; }, 60000);
+    };
+    window[callback] = result => { cleanup(); resolve(result); };
+    script.onerror = () => { cleanup(); reject(new Error('Confirmation unavailable.')); };
+    script.src = url.href;
+    timer = setTimeout(() => { cleanup(); reject(new Error('Confirmation timed out.')); }, timeoutMs);
+    document.head.appendChild(script);
+  });
+}
+async function submitToReceiver(record) {
   const receiverForm = document.createElement('form');
   receiverForm.method = 'POST';
   receiverForm.action = checkinConfig.endpoint;
@@ -135,7 +158,19 @@ function submitToReceiver(record) {
   const payload = document.createElement('input');
   payload.type = 'hidden'; payload.name = 'payload'; payload.value = JSON.stringify(record);
   receiverForm.appendChild(payload); document.body.appendChild(receiverForm);
-  receiverForm.submit(); receiverForm.remove();
+  try { receiverForm.submit(); } finally { receiverForm.remove(); }
+  const deadline = Date.now() + 30000;
+  while (Date.now() < deadline) {
+    await new Promise(resolve => setTimeout(resolve, 1200));
+    let result;
+    try { result = await receiptStatus(record.id, Math.min(5000, Math.max(1, deadline - Date.now()))); }
+    catch { continue; }
+    // An old deployment's readiness message is not proof that this record was saved.
+    if (!result || result.receipt !== record.id) continue;
+    if (result.ok === true) return;
+    if (result.ok === false) throw new Error(result.error || 'Google rejected this entry.');
+  }
+  throw new Error(language === 'lt' ? 'Patikrinkite ryšį ir Apps Script diegimą.' : 'Check the connection and Apps Script deployment.');
 }
 document.getElementById('attendance-form').addEventListener('submit', async event => {
   event.preventDefault();
@@ -166,9 +201,9 @@ document.getElementById('attendance-form').addEventListener('submit', async even
   submitButton.disabled = true;
   submitButton.textContent = text('sending');
   try {
-    submitToReceiver(record);
+    await submitToReceiver(record);
   } catch (error) {
-    signatureError.textContent = text('sendError');
+    signatureError.textContent = text('sendError') + (error.message ? ' ' + error.message : '');
     submitButton.disabled = false;
     updateConfirmButton();
     return;

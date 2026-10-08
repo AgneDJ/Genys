@@ -1,6 +1,7 @@
 /*
   VAIKŲ SĄRAŠAS
-  This is the only file you need to edit to add, remove, or move children.
+  Edit this roster to add, remove, or move children.
+  Keep each child PIN synchronized with google-apps-script/Code.gs.
   Keep the class `name` in Lithuanian: it is used for the Google Sheet tab.
 */
 window.VAIKU_SARASAS = [
@@ -18,6 +19,7 @@ window.VAIKU_SARASAS = [
   {
     name: 'Priešmokyklinė ir darželio klasė', en: 'Preschool & kindergarten',
     children: [
+      { name: 'Miles', pin: '1799' },
       { name: 'Julius Djacenko', pin: '8379' }, { name: 'Emilija Burlingė', pin: '6355' },
       { name: 'Athena Bouzidi', pin: '4087' }, { name: 'Jonas Sebastian Laucys', pin: '1792' },
       { name: 'Ulla Putz', pin: '4073' }, { name: 'Melissa Jariga', pin: '7726' },

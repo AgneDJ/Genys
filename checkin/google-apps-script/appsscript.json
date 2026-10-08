@@ -2,6 +2,6 @@
   "timeZone": "America/Los_Angeles",
   "exceptionLogging": "STACKDRIVER",
   "oauthScopes": [
-    "https://www.googleapis.com/auth/spreadsheets.currentonly"
+    "https://www.googleapis.com/auth/spreadsheets"
   ]
 }
