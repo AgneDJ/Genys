@@ -33,3 +33,7 @@ Open [index.html](index.html) in a browser, or serve this folder with any static
 ## Notes
 
 The chat interface currently provides the on-page conversation layout only. To deliver submitted messages to staff, connect it to a form endpoint, email service, or chat backend.
+
+## AI project team
+
+Project-scoped Codex leader and specialist agents are configured in [AGENTS.md](AGENTS.md), [AI_TEAM.md](AI_TEAM.md), and [.codex/](.codex/). The setup routes routine work to lower-cost models and reserves stronger reasoning for complex implementation and review.
