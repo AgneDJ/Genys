@@ -20,6 +20,7 @@
           <span id="brand-title">Registracija</span>
           <div class="checkin-language" aria-label="Kalba / Language"><button class="active" type="button" data-language="lt">LT</button><button type="button" data-language="en">EN</button></div>
         </header>
+        <a id="checkin-home" class="checkin-home" href="../index.html">← Pradžia</a>
 
         <div id="invalid-access" class="access-message" hidden>
           <span class="lock-icon">⌁</span>
@@ -32,7 +33,7 @@
           <h1 id="pin-title" class="school-name">SF <i>Genys</i></h1>
           <form id="pin-form" novalidate>
             <label id="pin-label" for="family-pin">Įveskite mokyklos suteiktą PIN kodą:</label>
-            <input id="family-pin" name="pin" inputmode="numeric" autocomplete="one-time-code" maxlength="6" pattern="[0-9]*" placeholder="••••••" required />
+            <input id="family-pin" name="pin" inputmode="numeric" autocomplete="one-time-code" maxlength="4" pattern="[0-9]{4}" placeholder="••••" required />
             <p id="pin-error" class="form-error" role="alert"></p>
             <button id="pin-continue" class="primary-button" type="submit">Tęsti <span>→</span></button>
           </form>

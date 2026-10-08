@@ -2,24 +2,24 @@
    provided Google Sheet. See README.md in this folder before deploying. */
 // Keep this map private in Apps Script. Each PIN must match the selected child.
 const CHILD_PINS = {
-  'Sara Kirtikar': '454992', 'Anouk Vala-Thiery (Anūkė)': '814792',
-  'Percy Andrius Alexander (Persiukas)': '147140', 'Saulė Vierra': '914995',
-  'Lukas Stempel': '826201', 'Emma Presswood': '110994',
-  'Julius Djacenko': '588379', 'Emilija Burlingė': '396355',
-  'Athena Bouzidi': '194087', 'Jonas Sebastian Laucys': '801792',
-  'Ulla Putz': '714073', 'Melissa Jariga': '227726',
-  'Marija Kudirka': '856046', 'Pranas Kudirka': '471347',
-  'Aurelija Vierra': '531260', 'Emily Radlinski': '218858',
-  'Karim Rapolas Ghassan El Chmaytilli (Karimas)': '600922',
-  'Nida Kiaune': '795208', 'Julius Kudirka': '193950',
-  'Noah Bouzidi': '483010', 'Melina Grivickas': '809234',
-  'Mavi Grivickas': '618297', 'Jonas Aklifazla': '427117',
-  'Arya Apke': '777694', 'Jordan Abudeab': '436389',
-  'Christopher Radlinski': '867231', 'Akila Aklifazla': '211103',
-  'Kalani Valverde': '121906', 'Nida Šukytė': '117171',
-  'Ugnė Olivia Laučys': '596387', 'Amber Apke': '741009',
-  'Arvydas Kudirka': '662102', 'Adam Abudeab': '508075',
-  'Kintas Valverde': '670389'
+  'Sara Kirtikar': '4992', 'Anouk Vala-Thiery (Anūkė)': '4792',
+  'Percy Andrius Alexander (Persiukas)': '7140', 'Saulė Vierra': '4995',
+  'Lukas Stempel': '6201', 'Emma Presswood': '0994',
+  'Julius Djacenko': '8379', 'Emilija Burlingė': '6355',
+  'Athena Bouzidi': '4087', 'Jonas Sebastian Laucys': '1792',
+  'Ulla Putz': '4073', 'Melissa Jariga': '7726',
+  'Marija Kudirka': '6046', 'Pranas Kudirka': '1347',
+  'Aurelija Vierra': '1260', 'Emily Radlinski': '8858',
+  'Karim Rapolas Ghassan El Chmaytilli (Karimas)': '0922',
+  'Nida Kiaune': '5208', 'Julius Kudirka': '3950',
+  'Noah Bouzidi': '3010', 'Melina Grivickas': '9234',
+  'Mavi Grivickas': '8297', 'Jonas Aklifazla': '7117',
+  'Arya Apke': '7694', 'Jordan Abudeab': '6389',
+  'Christopher Radlinski': '7231', 'Akila Aklifazla': '1103',
+  'Kalani Valverde': '1906', 'Nida Šukytė': '7171',
+  'Ugnė Olivia Laučys': '6387', 'Amber Apke': '1009',
+  'Arvydas Kudirka': '2102', 'Adam Abudeab': '8075',
+  'Kintas Valverde': '0389'
 };
 
 function doGet() {
@@ -42,6 +42,10 @@ function doPost(event) {
 }
 
 function validateRecord_(record) {
+  if (!/^\d{4}$/.test(String(record.familyPin || ''))) {
+    throw new Error('Enter a four-digit PIN.');
+  }
+
   if (!CHILD_PINS[record.child] || CHILD_PINS[record.child] !== String(record.familyPin || '')) {
     throw new Error('Incorrect PIN for selected child.');
   }

@@ -21,7 +21,11 @@ add('pages/pedagogams.html',section('pedagogams','pages/pedagogams.html','Semina
 edit('pages/partneriams.html',lambda x:re.sub(r'src="https://lh3.googleusercontent.com/sitesv/[^"]+"','src="../assets/google-site/d78bb4d490364f87.png"',x).replace('2023–2024','2026–2027').replace('https://gofund.me/8a72b933','https://gofund.me/41ccc1c1'))
 add('pages/partneriams.html',images('partneriai/parama-fundraising','pages/partneriams.html').replace('<figure class="source-image"><img src="../assets/google-site/d78bb4d490364f87.png" alt="parama fundraising – mokyklos archyvo vaizdas" loading="lazy"></figure>','')+section('partneriai','pages/partneriams.html','Mūsų rėmėjai ir partneriai','partneriai'))
 edit('pages/kontaktai.html',lambda x:x if 'mailto:info@sfgenys.org' in x else x.replace('<p class="contact-actions">','<p><a href="mailto:info@sfgenys.org">info@sfgenys.org</a></p><p class="contact-actions">',1))
+# The existing Street View already covers the address; import source images only.
+contact_blocks=PAGES['kontaktai']['blocks']
+PAGES['kontaktai']['blocks']=[b for b in contact_blocks if b['type']=='image']
 add('pages/kontaktai.html',images('kontaktai','pages/kontaktai.html'))
+PAGES['kontaktai']['blocks']=contact_blocks
 add('pages/kalendorius.html',section('tėvams/kalendorius','pages/kalendorius.html','Mokyklos kalendorius ir prenumerata'))
 add('pages/registracija.html','<p><a href="mokslo-metu-info.html">2026–2027 mokslo metų pradžios informacija →</a></p><details class="source-section"><summary>2025–2026 mokslo metų registracijos archyvas</summary><p>Šie pranešimai ir registracijos nuorodos skirti ankstesniems 2025–2026 mokslo metams.</p>'+render('tėvams/registracija','pages/registracija.html')+'</details>')
 new_page('pages/mokslo-metu-info.html','2026–2027 mokslo metų informacija',render('naujienos/2026-2027-mokslo-metų-info','pages/mokslo-metu-info.html')+'<p><a href="registracija.html">Registracija →</a> · <a href="naujienos.html">Visos naujienos →</a></p>')

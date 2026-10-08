@@ -32,7 +32,7 @@ function render(data) {
 async function loadDatabase() {
   try { const response = await fetch('data/site-data.json'); if (!response.ok) throw Error(); database = await response.json(); }
   catch { database = localData; }
-  render(database);
+  render(document.documentElement.lang === 'en' ? englishData : database);
 }
 async function loadTeachers() {
   const target = document.querySelector('#teachers-list');
@@ -52,12 +52,12 @@ const mainNav = document.querySelector('#main-nav');
 const closeMenu = () => {
   mainNav.classList.remove('open');
   menuButton.setAttribute('aria-expanded', 'false');
-  menuButton.setAttribute('aria-label', 'Atidaryti meniu');
+  menuButton.setAttribute('aria-label', document.documentElement.lang === 'en' ? 'Open menu' : 'Atidaryti meniu');
 };
 menuButton.addEventListener('click', () => {
   const isOpen = mainNav.classList.toggle('open');
   menuButton.setAttribute('aria-expanded', String(isOpen));
-  menuButton.setAttribute('aria-label', isOpen ? 'Uždaryti meniu' : 'Atidaryti meniu');
+  menuButton.setAttribute('aria-label', document.documentElement.lang === 'en' ? (isOpen ? 'Close menu' : 'Open menu') : (isOpen ? 'Uždaryti meniu' : 'Atidaryti meniu'));
 });
 document.querySelectorAll('#main-nav a').forEach(link => link.addEventListener('click', () => { document.querySelectorAll('#main-nav a').forEach(a => a.classList.remove('active')); link.classList.add('active'); closeMenu(); }));
 document.addEventListener('keydown', event => { if (event.key === 'Escape') closeMenu(); });
@@ -66,7 +66,28 @@ const translations = {
     '.topline .shell span:first-child': 'San Francisco Bay Area · California',
     '.topline .shell span:last-child': 'For families   |   For teachers   |   Community',
     '.brand span:last-child': 'SF<br><strong>„Genys“</strong>',
-    '#main-nav>a:nth-child(1)': 'Home', '#main-nav>details:nth-child(2)>summary': 'About us', '#main-nav>a:nth-child(3)': 'News', '#main-nav>details:nth-child(4)>summary': 'For parents', '#main-nav>a:nth-child(5)': 'Educators', '#main-nav>a:nth-child(6)': 'Partners', '#main-nav>a:nth-child(7)': 'Contacts', '#main-nav>details:nth-child(2) a:nth-child(1)': 'Director’s message', '#main-nav>details:nth-child(2) a:nth-child(2)': 'Mission & goals', '#main-nav>details:nth-child(2) a:nth-child(3)': 'Activities', '#main-nav>details:nth-child(2) a:nth-child(4)': 'Classes', '#main-nav>details:nth-child(2) a:nth-child(6)': 'Our teachers', '#main-nav>details:nth-child(4) a:nth-child(1)': 'Registration', '#main-nav>details:nth-child(4) a:nth-child(2)': 'Calendar', '#main-nav>details:nth-child(4) a:nth-child(3)': 'Parents committee', '#main-nav>details:nth-child(4) a:nth-child(4)': 'School items', '#main-nav>details:nth-child(4) a:nth-child(5)': 'Duty roster', '#main-nav>details:nth-child(4) a:nth-child(6)': 'Tuition', '#main-nav>details:nth-child(4) a:nth-child(7)': 'Amazon wishlist',
+    "#main-nav [data-nav=\"home\"]": "Home",
+    "#main-nav [data-nav=\"about\"]": "About us",
+    "#main-nav [data-nav=\"about-overview\"]": "About us – overview",
+    "#main-nav [data-nav=\"director\"]": "Director’s message",
+    "#main-nav [data-nav=\"mission\"]": "Mission & goals",
+    "#main-nav [data-nav=\"activities\"]": "Activities",
+    "#main-nav [data-nav=\"classes\"]": "Classes",
+    "#main-nav [data-nav=\"teachers\"]": "Our teachers",
+    "#main-nav [data-nav=\"news\"]": "News",
+    "#main-nav [data-nav=\"schedule\"]": "Schedule",
+    "#main-nav [data-nav=\"parents\"]": "For parents",
+    "#main-nav [data-nav=\"parents-overview\"]": "For parents – overview",
+    "#main-nav [data-nav=\"registration\"]": "Registration",
+    "#main-nav [data-nav=\"calendar\"]": "Calendar",
+    "#main-nav [data-nav=\"committee\"]": "Parents committee",
+    "#main-nav [data-nav=\"items\"]": "School items",
+    "#main-nav [data-nav=\"duties\"]": "Duty roster",
+    "#main-nav [data-nav=\"tuition\"]": "Tuition",
+    "#main-nav [data-nav=\"wishlist\"]": "Amazon wishlist",
+    "#main-nav [data-nav=\"educators\"]": "Educators",
+    "#main-nav [data-nav=\"partners\"]": "Partners",
+    "#main-nav [data-nav=\"contacts\"]": "Contacts",
     '.portal-btn': 'Register <span>→</span>', '.hero .eyebrow': 'SAN FRANCISCO LITHUANIAN SCHOOL', '.hero h1': 'Let’s nurture<br>Lithuanian heritage <i>together!</i>', '.hero-copy>p:not(.eyebrow)': 'A place where Lithuanian language, culture, and traditions come alive.', '.hero-actions .btn': 'Discover „Genys“ <span>→</span>', '.hero-actions .text-link': 'News <span>↓</span>', '.hero-badge': '<b>SF · CA</b><span>Saturday school</span>',
     '.alert-label': 'IMPORTANT NOTICE', '.alert p': 'Registration for the new school year is now open. Join the „Genys“ community!',
     '#registration .eyebrow': 'BUNNY CLUB · 2026–2027', '#registration h2': 'Registration is<br><i>now open!</i>', '#registration .registration-lead': 'We invite the youngest members of our community to join „Bunny Club“ – an early childhood learning group.', '#registration .registration-facts div:nth-child(1)': '<span>AGE</span><b>1–3 years, 11 months</b>', '#registration .registration-facts div:nth-child(2)': '<span>WHEN</span><b>Every other Saturday</b>', '#registration .registration-facts div:nth-child(3)': '<span>TIME</span><b>9:30 AM–12:00 PM</b>', '#registration .registration-text': 'A fun, playful, and warm Lithuanian environment where little ones and their families learn the language, discover traditions, sing, play, create, and make friends. Afterwards, playtime continues at the school playground with parent supervision.', '#registration .btn': 'Open registration form <span>↗</span>', '#registration .form-card-head span': 'REGISTRATION FORM', '#registration .form-card-head small': '„Bunny Club“',
@@ -81,10 +102,14 @@ const translations = {
 };
 document.querySelectorAll('[data-lang]').forEach(button => button.addEventListener('click', () => {
   const lang = button.dataset.lang;
+  try { localStorage.setItem('sf-genys-language', lang); } catch {}
   document.documentElement.lang = lang;
+  closeMenu();
   document.querySelectorAll('[data-lang]').forEach(item => item.classList.toggle('active', item === button));
   if (lang === 'en') { Object.entries(translations.en).forEach(([selector, value]) => { const element = document.querySelector(selector); if (element) element.innerHTML = value; }); render(englishData); }
   else { window.location.reload(); }
 }));
-loadDatabase();
+loadDatabase().then(() => {
+  try { if (localStorage.getItem('sf-genys-language') === 'en') document.querySelector('[data-lang="en"]').click(); } catch {}
+});
 loadTeachers();

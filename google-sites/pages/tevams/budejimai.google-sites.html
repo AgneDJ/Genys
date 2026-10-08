@@ -13,6 +13,11 @@
 .wishlist-page{max-width:760px}.wishlist-lead{margin-top:0;color:var(--blue);font:600 clamp(1.35rem,3vw,1.8rem)/1.35 'Playfair Display',serif}.wishlist-button{display:inline-flex;align-items:center;gap:12px;margin-top:18px;padding:15px 21px;border-radius:999px;background:linear-gradient(135deg,#ff6d65,#ff9c54);box-shadow:0 8px 18px #ff72563d;color:#fff;font-size:.85rem;font-weight:700;text-decoration:none}.wishlist-note{margin-top:28px;color:#51617c;font-size:.9rem}
 .calendar-page{max-width:1050px}.calendar-sheet-link{display:inline-flex;align-items:center;gap:11px;margin:10px 0 30px;color:var(--blue);font-size:.9rem;font-weight:700;text-decoration:none}.calendar-page-frame{overflow:hidden;border:1px solid #dce5f7;border-radius:18px;background:#fff;box-shadow:0 18px 45px #21477717}.calendar-page-bar{display:flex;align-items:center;justify-content:space-between;padding:14px 17px;border-bottom:1px solid #e5ebf7;color:#61718c;font-size:.72rem}.calendar-page-bar span{color:#1d3971;font-weight:700}.calendar-page-bar i{display:inline-block;width:8px;height:8px;margin-right:6px;border-radius:50%;background:#3bc481}.calendar-page-frame iframe{display:block;width:142.857%;height:586px;border:0;transform:scale(.7);transform-origin:top left}@media(max-width:500px){.calendar-page-bar small{display:none}.calendar-page-frame iframe{width:125%;height:450px;transform:scale(.8)}}
 
+/* Match the homepage information bar on secondary pages. */
+.topline{background:linear-gradient(90deg,#2455bb,#7d55ce);color:#b9cae8;font-size:.72rem;letter-spacing:.04em}.topline .shell{width:min(1160px,calc(100% - 48px));height:36px;margin:auto;display:flex;align-items:center;justify-content:space-between}@media(max-width:700px){.topline .top-links{display:none}}@media(max-width:500px){.topline .shell{height:32px;font-size:.64rem}}
+
+@media(min-width:851px) and (max-width:1200px){.site-nav{gap:14px}.site-nav .brand-logo{width:140px}.site-nav .main-nav{gap:12px}.site-nav .main-nav a,.site-nav .main-nav summary{font-size:.78rem}.site-nav .portal-btn{display:none}}
+
 </style><style>
 /* Inlined from ../source-content.css */
 .source-section{margin-top:40px;padding-top:12px;border-top:1px solid #dce6f5}.source-section h2{margin-top:28px}.source-image{margin:22px 0;max-width:100%}.source-image img{display:block;width:auto;max-width:100%;height:auto;max-height:none;border-radius:14px}.source-embed{width:100%;margin:22px 0;overflow:hidden;border:1px solid #dce6f5;border-radius:14px;background:#fff}.source-embed iframe{display:block;width:100%;height:600px;border:0}.source-video iframe{height:auto;aspect-ratio:16/9}.source-media-link{font-size:.85rem;overflow-wrap:anywhere}.source-section a{color:var(--blue);overflow-wrap:anywhere}.source-section table{display:block;max-width:100%;overflow-x:auto;border-collapse:collapse}.source-section td,.source-section th{padding:8px;border:1px solid #dce6f5}.source-section ul,.source-section ol{max-width:750px;line-height:1.75;padding-left:24px}.source-section h3{margin-top:28px}.source-section:target{scroll-margin-top:140px}@media(max-width:600px){.source-embed iframe{height:440px}.source-video iframe{height:auto}.source-section:target{scroll-margin-top:100px}}
@@ -27,28 +32,63 @@
   const link = path => new URL(path, root).href;
 
   document.body.insertAdjacentHTML('afterbegin', `
+    <div class="topline"><div class="shell"><span>San Franciskas · Kalifornija</span><span class="top-links">Tėvams &nbsp; | &nbsp; Mokytojams &nbsp; | &nbsp; Bendruomenei</span></div></div>
     <header class="site-nav">
       <a href="${link('index.google-sites.html')}" class="brand" aria-label="SF Genys pradžia"><img class="brand-logo" src="${link('assets/logo.png')}" alt="SF Genys"></a>
       <button class="menu-btn" aria-label="Atidaryti meniu" aria-expanded="false">☰</button>
       <nav class="main-nav">
-        <a href="${link('index.google-sites.html')}">Pradžia</a>
-        <details><summary>Apie mus</summary><div class="nav-menu"><a href="${link('pages/apie-mus/index.google-sites.html')}">Apie mus – apžvalga</a><a href="${link('pages/apie-mus/vadoves-zodis.google-sites.html')}">Vadovės žodis</a><a href="${link('pages/apie-mus/misija-ir-tikslai.google-sites.html')}">Misija ir tikslai</a><a href="${link('pages/apie-mus/veikla.google-sites.html')}">Veikla</a><a href="${link('pages/apie-mus/klases.google-sites.html')}">Klasės</a><a href="${link('pages/apie-mus/mokytojai.google-sites.html')}">Mūsų mokytojai</a></div></details>
-        <a href="${link('pages/naujienos.google-sites.html')}">Naujienos</a><a href="${link('pages/tvarkarastis.google-sites.html')}">Tvarkaraštis</a>
-        <details><summary>Tėvams</summary><div class="nav-menu"><a href="${link('pages/tevams/index.google-sites.html')}">Tėvams – apžvalga</a><a href="${link('pages/registracija.google-sites.html')}">Registracija</a><a href="${link('pages/kalendorius.google-sites.html')}">Kalendorius</a><a href="${link('pages/tevams/tevu-komitetas.google-sites.html')}">Tėvų komitetas</a><a href="${link('pages/tevams/atributika.google-sites.html')}">Atributika</a><a href="${link('pages/tevams/budejimai.google-sites.html')}">Budėjimai</a><a href="${link('pages/tevams/mokslo-kainos.google-sites.html')}">Mokslų kainos</a><a href="${link('pages/tevams/amazon-wishlist.google-sites.html')}">Amazon norų sąrašas</a></div></details>
-        <a href="${link('pages/pedagogams.google-sites.html')}">Pedagogams</a><a href="${link('pages/partneriams.google-sites.html')}">Partneriams</a><a href="${link('pages/kontaktai.google-sites.html')}">Kontaktai</a>
+        <a data-nav="home" href="${link('index.google-sites.html')}">Pradžia</a>
+        <details><summary data-nav="about">Apie mus</summary><div class="nav-menu"><a data-nav="about-overview" href="${link('pages/apie-mus/index.google-sites.html')}">Apie mus – apžvalga</a><a data-nav="director" href="${link('pages/apie-mus/vadoves-zodis.google-sites.html')}">Vadovės žodis</a><a data-nav="mission" href="${link('pages/apie-mus/misija-ir-tikslai.google-sites.html')}">Misija ir tikslai</a><a data-nav="activities" href="${link('pages/apie-mus/veikla.google-sites.html')}">Veikla</a><a data-nav="classes" href="${link('pages/apie-mus/klases.google-sites.html')}">Klasės</a><a data-nav="teachers" href="${link('pages/apie-mus/mokytojai.google-sites.html')}">Mūsų mokytojai</a></div></details>
+        <a data-nav="news" href="${link('pages/naujienos.google-sites.html')}">Naujienos</a><a data-nav="schedule" href="${link('pages/tvarkarastis.google-sites.html')}">Tvarkaraštis</a>
+        <details><summary data-nav="parents">Tėvams</summary><div class="nav-menu"><a data-nav="parents-overview" href="${link('pages/tevams/index.google-sites.html')}">Tėvams – apžvalga</a><a data-nav="registration" href="${link('pages/registracija.google-sites.html')}">Registracija</a><a data-nav="calendar" href="${link('pages/kalendorius.google-sites.html')}">Kalendorius</a><a data-nav="committee" href="${link('pages/tevams/tevu-komitetas.google-sites.html')}">Tėvų komitetas</a><a data-nav="items" href="${link('pages/tevams/atributika.google-sites.html')}">Atributika</a><a data-nav="duties" href="${link('pages/tevams/budejimai.google-sites.html')}">Budėjimai</a><a data-nav="tuition" href="${link('pages/tevams/mokslo-kainos.google-sites.html')}">Mokslų kainos</a><a data-nav="wishlist" href="${link('pages/tevams/amazon-wishlist.google-sites.html')}">Amazon norų sąrašas</a></div></details>
+        <a data-nav="educators" href="${link('pages/pedagogams.google-sites.html')}">Pedagogams</a><a data-nav="partners" href="${link('pages/partneriams.google-sites.html')}">Partneriams</a><a data-nav="contacts" href="${link('pages/kontaktai.google-sites.html')}">Kontaktai</a>
       </nav>
+      <div class="language-switch" aria-label="Kalba / Language"><button type="button" class="active" data-lang="lt" aria-pressed="true">LT</button><button type="button" data-lang="en" aria-pressed="false">EN</button></div>
+      <!-- REGISTRATION BUTTON TEMPORARILY DISABLED
       <a class="portal-btn" href="${link('pages/registracija.google-sites.html')}">Registracija <span>→</span></a>
+      -->
     </header>
   `);
 
   const button = document.querySelector('.site-nav .menu-btn');
   const menu = document.querySelector('.site-nav .main-nav');
+  const labels = {"home":"Home","about":"About us","about-overview":"About us – overview","director":"Director’s message","mission":"Mission & goals","activities":"Activities","classes":"Classes","teachers":"Our teachers","news":"News","schedule":"Schedule","parents":"For parents","parents-overview":"For parents – overview","registration":"Registration","calendar":"Calendar","committee":"Parents committee","items":"School items","duties":"Duty roster","tuition":"Tuition","wishlist":"Amazon wishlist","educators":"Educators","partners":"Partners","contacts":"Contacts"};
+  const lithuanian = new Map([...menu.querySelectorAll('[data-nav]')].map(node => [node, node.textContent]));
+  let language = 'lt';
+  const closeMenu = () => {
+    menu.classList.remove('open');
+    button.setAttribute('aria-expanded', 'false');
+    button.setAttribute('aria-label', language === 'en' ? 'Open menu' : 'Atidaryti meniu');
+  };
+  const setLanguage = lang => {
+    language = lang;
+    document.querySelector('.site-nav').lang = lang;
+    const topline = document.querySelector('.topline');
+    topline.lang = lang;
+    topline.querySelector('span:first-child').textContent = lang === 'en' ? 'San Francisco Bay Area · California' : 'San Franciskas · Kalifornija';
+    topline.querySelector('.top-links').textContent = lang === 'en' ? 'For families   |   For teachers   |   Community' : 'Tėvams   |   Mokytojams   |   Bendruomenei';
+    for (const [node, lt] of lithuanian) node.textContent = lang === 'en' ? labels[node.dataset.nav] : lt;
+    const registrationButton = document.querySelector('.site-nav .portal-btn');
+    if (registrationButton) registrationButton.innerHTML = (lang === 'en' ? 'Register' : 'Registracija') + ' <span>→</span>';
+    document.querySelectorAll('.site-nav [data-lang]').forEach(item => {
+      const selected = item.dataset.lang === lang;
+      item.classList.toggle('active', selected);
+      item.setAttribute('aria-pressed', String(selected));
+    });
+    try { localStorage.setItem('sf-genys-language', lang); } catch {}
+    closeMenu();
+  };
+  document.querySelectorAll('.site-nav [data-lang]').forEach(item => item.addEventListener('click', () => setLanguage(item.dataset.lang)));
   button.addEventListener('click', () => {
     const isOpen = menu.classList.toggle('open');
     button.setAttribute('aria-expanded', String(isOpen));
-    button.setAttribute('aria-label', isOpen ? 'Uždaryti meniu' : 'Atidaryti meniu');
+    button.setAttribute('aria-label', language === 'en' ? (isOpen ? 'Close menu' : 'Open menu') : (isOpen ? 'Uždaryti meniu' : 'Atidaryti meniu'));
   });
-  menu.querySelectorAll('a').forEach(item => item.addEventListener('click', () => menu.classList.remove('open')));
+  menu.querySelectorAll('a').forEach(item => item.addEventListener('click', closeMenu));
+  document.addEventListener('keydown', event => { if (event.key === 'Escape') closeMenu(); });
+  let savedLanguage = 'lt';
+  try { if (localStorage.getItem('sf-genys-language') === 'en') savedLanguage = 'en'; } catch {}
+  setLanguage(savedLanguage);
 })();
 
 </script>
