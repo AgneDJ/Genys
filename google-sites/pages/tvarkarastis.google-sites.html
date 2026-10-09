@@ -23,6 +23,8 @@
 
 .news-photo-section{margin:38px 0}.news-photo-section h2{font-size:1.7rem;line-height:1.2;margin-bottom:18px}.news-photo-gallery{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.news-photo-slot{aspect-ratio:4/3;border:1px dashed #c5d3ea;border-radius:14px;background:#edf3fb}.news-photo-gallery img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:14px}@media(max-width:600px){.news-photo-gallery{grid-template-columns:1fr}}
 
+.content-editor-entry{padding:28px 24px;text-align:center;background:transparent}.content-editor-entry a{color:#62718b;font-size:.8rem;text-decoration:none}.news-photo-gallery figure{margin:0}.content-events .article{padding:30px 0}.news-photo-gallery{margin:28px 0}
+
 </style>
   <style>
     .schedule-intro{margin-bottom:34px}.schedule-section{margin-top:45px}.schedule-section h2{margin:0 0 14px}.schedule-table{width:100%;border-collapse:separate;border-spacing:0;overflow:hidden;border:1px solid #dbe5f5;border-radius:18px;background:#fff;box-shadow:0 10px 26px #31518112}.schedule-table th,.schedule-table td{padding:16px 18px;text-align:left;border-bottom:1px solid #e5ebf6}.schedule-table th{background:linear-gradient(90deg,#eaf3ff,#fff0e8);color:#244c9e;font-size:.68rem;letter-spacing:.1em}.schedule-table td{font-size:.91rem;line-height:1.5}.schedule-table tr:last-child td{border-bottom:0}.schedule-table td:first-child{width:31%;color:#e05d56;font-weight:700}.schedule-note{margin-top:18px;padding:18px 20px;border-radius:14px;background:#fff0d8;color:#5c5564;font-size:.92rem;line-height:1.6}.schedule-note b{color:#c05a45}@media(max-width:600px){.schedule-table th,.schedule-table td{padding:13px 11px}.schedule-table td:first-child{width:36%}}
@@ -55,6 +57,11 @@
     </header>
   `);
 
+  const editorFooter = document.createElement('footer');
+  editorFooter.className = 'content-editor-entry';
+  const editorLogin = document.createElement('a'); editorLogin.href = link('https://genys.agne.dev/admin/'); editorLogin.textContent = 'Prisijungti';
+  editorFooter.append(editorLogin); document.body.append(editorFooter);
+
   const button = document.querySelector('.site-nav .menu-btn');
   const menu = document.querySelector('.site-nav .main-nav');
   const labels = {"home":"Home","about":"About us","about-overview":"About us – overview","director":"Director’s message","mission":"Mission & goals","activities":"Activities","classes":"Classes","teachers":"Our teachers","news":"News","news-overview":"All news","events":"Events","schedule":"Schedule","parents":"For parents","parents-overview":"For parents – overview","registration":"Registration","calendar":"Calendar","committee":"Parents committee","items":"School items","duties":"Duty roster","tuition":"Tuition","wishlist":"Amazon wishlist","educators":"Educators","partners":"Partners","contacts":"Contacts"};
@@ -71,6 +78,7 @@
   };
   const setLanguage = lang => {
     language = lang;
+    editorLogin.textContent = lang === 'en' ? 'Log in' : 'Prisijungti';
     document.querySelector('.site-nav').lang = lang;
     for (const [node, lt] of bilingual) node.textContent = lang === 'en' ? node.dataset.en : lt;
     if (bilingual.size) document.documentElement.lang = lang;

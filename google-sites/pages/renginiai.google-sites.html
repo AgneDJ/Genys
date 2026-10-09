@@ -25,6 +25,8 @@
 
 .news-photo-section{margin:38px 0}.news-photo-section h2{font-size:1.7rem;line-height:1.2;margin-bottom:18px}.news-photo-gallery{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.news-photo-slot{aspect-ratio:4/3;border:1px dashed #c5d3ea;border-radius:14px;background:#edf3fb}.news-photo-gallery img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:14px}@media(max-width:600px){.news-photo-gallery{grid-template-columns:1fr}}
 
+.content-editor-entry{padding:28px 24px;text-align:center;background:transparent}.content-editor-entry a{color:#62718b;font-size:.8rem;text-decoration:none}.news-photo-gallery figure{margin:0}.content-events .article{padding:30px 0}.news-photo-gallery{margin:28px 0}
+
 </style>
 </head>
 <body data-title-en="Events | San Francisco Lithuanian School ‘Genys’">
@@ -32,6 +34,7 @@
     <article class="article">
       <h1 data-en="Events">Renginiai</h1>
 
+      <div class="content-events" data-content-events>
       <h2 data-en="A meeting with writer Adrijus Kveda">Susitikimas su rašytoju Adrijumi Kveda</h2>
       <p data-en="On January 17 at 11 a.m., San Francisco Lithuanian School ‘Genys’ invites you to meet young Lithuanian writer Adrijus Kveda, who will present his book ‘Statera.’">Sausio 17 dieną 11 val. ryte San Francisko lituanistinė mokykla „Genys“ kviečia į susitikimą su jaunu lietuvių rašytoju Adrijumi Kveda, kuriame bus pristatoma jo knyga „Statera“.</p>
       <p data-en="The story draws on our history of deportations, partisan resistance, and the war in Ukraine.">Istorija gimusi iš mūsų trėmimų, partizanų kovų ir karo Ukrainoje.</p>
@@ -40,6 +43,7 @@
         <!-- Reserved image space for a future event photo. -->
         <div class="news-photo-slot" aria-hidden="true"></div>
       </section>
+      </div>
       <p><a class="back" href="naujienos.google-sites.html" data-en="Back to news">Grįžti į naujienas</a></p>
     </article>
   </main>
@@ -67,6 +71,11 @@
     </header>
   `);
 
+  const editorFooter = document.createElement('footer');
+  editorFooter.className = 'content-editor-entry';
+  const editorLogin = document.createElement('a'); editorLogin.href = link('https://genys.agne.dev/admin/'); editorLogin.textContent = 'Prisijungti';
+  editorFooter.append(editorLogin); document.body.append(editorFooter);
+
   const button = document.querySelector('.site-nav .menu-btn');
   const menu = document.querySelector('.site-nav .main-nav');
   const labels = {"home":"Home","about":"About us","about-overview":"About us – overview","director":"Director’s message","mission":"Mission & goals","activities":"Activities","classes":"Classes","teachers":"Our teachers","news":"News","news-overview":"All news","events":"Events","schedule":"Schedule","parents":"For parents","parents-overview":"For parents – overview","registration":"Registration","calendar":"Calendar","committee":"Parents committee","items":"School items","duties":"Duty roster","tuition":"Tuition","wishlist":"Amazon wishlist","educators":"Educators","partners":"Partners","contacts":"Contacts"};
@@ -83,6 +92,7 @@
   };
   const setLanguage = lang => {
     language = lang;
+    editorLogin.textContent = lang === 'en' ? 'Log in' : 'Prisijungti';
     document.querySelector('.site-nav').lang = lang;
     for (const [node, lt] of bilingual) node.textContent = lang === 'en' ? node.dataset.en : lt;
     if (bilingual.size) document.documentElement.lang = lang;
@@ -111,6 +121,117 @@
   let savedLanguage = 'lt';
   try { if (localStorage.getItem('sf-genys-language') === 'en') savedLanguage = 'en'; } catch {}
   setLanguage(savedLanguage);
+})();
+
+</script>
+  <script defer>
+/* Inlined from ../data/content-client.js */
+(() => {
+  const root = new URL('../', document.baseURI).href;
+  let request;
+  const imageURL = value => {
+    try {
+      if (typeof value !== 'string' || !value.trim()) return null;
+      const url = new URL(value, root);
+      return ['https:', 'http:', 'file:'].includes(url.protocol) ? url.href : null;
+    } catch { return null; }
+  };
+  async function readRows(config, table, order) {
+    const rows = [];
+    for (let offset = 0; offset < 5000; offset += 100) {
+      const url = config.url + '/rest/v1/' + table + '?select=*&status=eq.published&order=' + order + '&limit=100&offset=' + offset;
+      const response = await fetch(url, { headers: { apikey: config.publishableKey }, signal: AbortSignal.timeout(10000) });
+      if (!response.ok) throw new Error('Content unavailable');
+      const page = await response.json();
+      if (!Array.isArray(page)) throw new Error('Invalid content');
+      rows.push(...page);
+      if (page.length < 100) break;
+    }
+    return rows;
+  }
+  const load = () => request ||= (async () => {
+    try {
+      const response = await fetch('/api/content-config', { signal: AbortSignal.timeout(5000), cache: 'no-store' });
+      if (!response.ok) return null;
+      const config = await response.json();
+      if (!config.configured || !config.url || !config.publishableKey) return null;
+      const [posts, photos] = await Promise.all([
+        readRows(config, 'content_posts', 'date.desc.nullslast,created_at.desc,id.desc'),
+        readRows(config, 'content_photos', 'sort_order.asc,id.asc')
+      ]);
+      return { posts, photos };
+    } catch { return null; }
+  })();
+  const text = (item, key, lang) => String(item[key + '_' + lang] || item[key + '_lt'] || '');
+  const postLink = post => new URL('pages/straipsnis.google-sites.html?slug=' + encodeURIComponent(post.slug), root).href;
+  const news = post => ({
+    date: post.date_label_lt || post.date || '', category: 'BENDRUOMENĖ',
+    title: text(post, 'title', 'lt'), text: text(post, 'summary', 'lt'), link: postLink(post),
+    image: imageURL(post.photos?.[0]?.url),
+    en: { date: post.date_label_en || post.date || '', category: 'COMMUNITY', title: text(post, 'title', 'en'), text: text(post, 'summary', 'en') }
+  });
+  window.SiteContent = { load, imageURL, text, postLink, news, root };
+})();
+
+</script>
+  <script defer>
+/* Inlined from content-article.js */
+(() => {
+  const target = document.querySelector('[data-content-article]');
+  const eventList = document.querySelector('[data-content-events]');
+  if (!target && !eventList) return;
+  let content, lang = 'lt';
+  try { if (localStorage.getItem('sf-genys-language') === 'en') lang = 'en'; } catch {}
+  const node = (tag, text, className) => {
+    const item = document.createElement(tag);
+    if (text !== undefined) item.textContent = text;
+    if (className) item.className = className;
+    return item;
+  };
+  const article = post => {
+    const result = node('article', undefined, 'article');
+    result.lang = lang;
+    const date = SiteContent.text(post, 'date_label', lang) || post.date || '';
+    result.append(node('p', (post.kind === 'event' ? (lang === 'en' ? 'EVENTS' : 'RENGINIAI') : (lang === 'en' ? 'NEWS' : 'NAUJIENOS')) + (date ? ' · ' + date : ''), 'eyebrow'));
+    result.append(node(target ? 'h1' : 'h2', SiteContent.text(post, 'title', lang)));
+    const body = SiteContent.text(post, 'body', lang) || SiteContent.text(post, 'summary', lang);
+    body.split(/\n\s*\n|\n/).filter(part => part.trim()).forEach(part => result.append(node('p', part)));
+    const photos = Array.isArray(post.photos) ? post.photos : [];
+    if (photos.length) {
+      const grid = node('div', undefined, 'news-photo-gallery');
+      photos.forEach(photo => {
+        const url = SiteContent.imageURL(photo.url);
+        if (!url) return;
+        const figure = node('figure');
+        const image = node('img'); image.src = url; image.alt = SiteContent.text(photo, 'alt', lang); image.loading = 'lazy';
+        figure.append(image); grid.append(figure);
+      });
+      result.append(grid);
+    }
+    const source = SiteContent.imageURL(post.source_url);
+    if (source) {
+      const link = node('a', lang === 'en' ? 'More information →' : 'Daugiau informacijos →', 'back');
+      link.href = source; const paragraph = node('p'); paragraph.append(link); result.append(paragraph);
+    }
+    return result;
+  };
+  const render = () => {
+    if (!content) return;
+    if (target) {
+      const slug = new URLSearchParams(location.search).get('slug');
+      const post = content.posts.find(item => item.slug === slug);
+      target.replaceChildren(post ? article(post) : node('p', lang === 'en' ? 'This article is not available.' : 'Šis straipsnis nepasiekiamas.'));
+      if (post) document.title = SiteContent.text(post, 'title', lang) + ' | SF Genys';
+      document.documentElement.lang = lang;
+    }
+    if (eventList) {
+      const posts = content.posts.filter(post => post.kind === 'event');
+      eventList.replaceChildren(...posts.map(article));
+      if (!posts.length) eventList.append(node('p', lang === 'en' ? 'No events have been announced yet.' : 'Renginiai dar nepaskelbti.'));
+    }
+  };
+  document.addEventListener('sf-genys-language-change', event => { lang = event.detail.language === 'en' ? 'en' : 'lt'; render(); });
+  SiteContent.load().then(data => { content = data; render(); if (!content && target) target.textContent = lang === 'en' ? 'The article could not be loaded. Please try again later.' : 'Straipsnio nepavyko įkelti. Pabandykite vėliau.'; });
 })();
 
 </script>

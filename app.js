@@ -22,21 +22,59 @@ const englishData = {
   gallery: [{ title: 'Together for a new year', position: '50% 50%' }, { title: 'Ideas in motion', position: '22% 48%' }, { title: 'Between classes', position: '76% 55%' }, { title: 'Our school community', position: '50% 24%' }]
 };
 let database = localData;
+let cmsContent = null;
+function currentData(lang) {
+  const fallback = lang === 'en' ? englishData : database;
+  if (!cmsContent) return fallback;
+  const news = cmsContent.posts.filter(post => post.kind === 'news').map(SiteContent.news).map(item => lang === 'en' ? { ...item, ...item.en } : item);
+  const gallery = cmsContent.photos.map(photo => ({ title: SiteContent.text(photo, 'alt', lang), image: SiteContent.imageURL(photo.url), position: '50% 50%' })).filter(photo => photo.image);
+  return { news, gallery };
+}
+
 
 function render(data) {
+  const en = document.documentElement.lang === 'en';
+  const node = (tag, text, className) => { const item = document.createElement(tag); if (text !== undefined) item.textContent = text; if (className) item.className = className; return item; };
+  const url = value => window.SiteContent?.imageURL(value) || 'pages/naujienos.html';
+  const image = (source, title) => { const img = node('img'); img.src = url(source); img.alt = title || ''; img.loading = 'lazy'; return img; };
   const latest = document.querySelector('#latest-news');
-  if (latest) { const n = data.news[0]; latest.innerHTML = `<article class="latest-card"><img src="${n.image || 'assets/sf-genys-community.png'}" alt="${n.title}"><div><p class="eyebrow">${document.documentElement.lang === 'en' ? 'LATEST NEWS' : 'NAUJAUSIA NAUJIENA'} · ${n.date}</p><h2>${n.title}</h2><p>${n.text}</p><a class="btn btn-dark" href="${n.link || 'pages/naujienos.html'}">${document.documentElement.lang === 'en' ? 'Read more' : 'Skaityti daugiau'} <span>→</span></a></div></article>`; }
+  if (latest) {
+    latest.replaceChildren();
+    const n = data.news[0];
+    if (n) {
+      const card = node('article', undefined, 'latest-card');
+      const copy = node('div');
+      copy.append(node('p', (en ? 'LATEST NEWS' : 'NAUJAUSIA NAUJIENA') + ' · ' + n.date, 'eyebrow'), node('h2', n.title), node('p', n.text));
+      const link = node('a', en ? 'Read more →' : 'Skaityti daugiau →', 'btn btn-dark'); link.href = url(n.link); copy.append(link);
+      card.append(image(n.image || 'assets/sf-genys-community.png', n.title), copy); latest.append(card);
+    }
+  }
   const preview = document.querySelector('#news-preview');
   const images = ['assets/su naujais.png', 'pages/apie-mus/vaikai.jpg', 'pages/Mokytojai/mokytojos.png'];
-  if (preview) preview.innerHTML = data.news.slice(0, 4).map((n, i) => `<a class="news-preview-card" href="${n.link || 'pages/naujienos.html'}"><img src="${n.image || images[i] || images[0]}" alt="${n.title}" loading="lazy"><span>${n.category}</span><b>${n.title}</b><small>${n.text}</small><em>${document.documentElement.lang === 'en' ? 'Read more' : 'Skaityti daugiau'} →</em></a>`).join('');
-  document.querySelector('#gallery-grid').innerHTML = data.gallery.map((g, i) => `<button class="gallery-item item-${i + 1}" data-title="${g.title}" style="--pos:${g.position}"><img src="assets/sf-genys-community.png" alt="${g.title}" loading="lazy"><span>${g.title}</span><b>↗</b></button>`).join('');
-  document.querySelectorAll('.gallery-item, .gallery-open').forEach(el => el.addEventListener('click', () => openGallery(el.dataset.title || data.gallery[0].title)));
+  if (preview) preview.replaceChildren(...data.news.slice(0,4).map((n,i) => {
+    const card = node('a', undefined, 'news-preview-card'); card.href = url(n.link);
+    card.append(image(n.image || images[i] || images[0], n.title), node('span', n.category), node('b', n.title), node('small', n.text), node('em', en ? 'Read more →' : 'Skaityti daugiau →'));
+    return card;
+  }));
+  const gallery = document.querySelector('#gallery-grid');
+  gallery.replaceChildren(...data.gallery.map((g,i) => {
+    const button = node('button', undefined, 'gallery-item item-' + (i+1)); button.type = 'button';
+    button.style.setProperty('--pos', /^\d{1,3}% \d{1,3}%$/.test(g.position) ? g.position : '50% 50%');
+    const src = g.image || 'assets/sf-genys-community.png';
+    button.append(image(src,g.title), node('span',g.title), node('b','↗'));
+    button.addEventListener('click', () => openGallery(g.title,src)); return button;
+  }));
+  document.querySelectorAll('.gallery-open').forEach(button => {
+    button.disabled = !data.gallery.length;
+    button.onclick = () => { const first = data.gallery[0]; if (first) openGallery(first.title, first.image); };
+  });
 }
 
 async function loadDatabase() {
   try { const response = await fetch('data/site-data.json'); if (!response.ok) throw Error(); database = await response.json(); }
   catch { database = localData; }
-  render(document.documentElement.lang === 'en' ? englishData : database);
+  cmsContent = window.SiteContent ? await SiteContent.load() : null;
+  render(currentData(document.documentElement.lang));
 }
 async function loadTeachers() {
   const target = document.querySelector('#teachers-list');
@@ -48,7 +86,7 @@ async function loadTeachers() {
     target.innerHTML = data.teachers.map(teacher => `<a class="teacher-profile" href="${teacher.article}"><span class="teacher-initial">${teacher.name.charAt(0)}</span><span><b>${teacher.name}</b><span>${teacher.role}</span></span></a>`).join('');
   } catch { target.innerHTML = '<p>Nepavyko įkelti mokytojų sąrašo.</p>'; }
 }
-function openGallery(title) { const modal = document.querySelector('#gallery-modal'); modal.querySelector('p').textContent = title; modal.showModal(); }
+function openGallery(title, image) { const modal = document.querySelector('#gallery-modal'); modal.querySelector('p').textContent = title; modal.querySelector('img').src = image || 'assets/sf-genys-community.png'; modal.querySelector('img').alt = title || ''; modal.showModal(); }
 document.querySelector('.close-modal').addEventListener('click', () => document.querySelector('#gallery-modal').close());
 document.querySelector('#gallery-modal').addEventListener('click', e => { if (e.target.id === 'gallery-modal') e.currentTarget.close(); });
 const menuButton = document.querySelector('.menu-btn');
@@ -67,6 +105,7 @@ document.querySelectorAll('#main-nav a').forEach(link => link.addEventListener('
 document.addEventListener('keydown', event => { if (event.key === 'Escape') closeMenu(); });
 const translations = {
   en: {
+    '.editor-login': 'Log in',
     '.brand span:last-child': 'SF<br><strong>„Genys“</strong>',
     "#main-nav [data-nav=\"home\"]": "Home",
     "#main-nav [data-nav=\"about\"]": "About us",
@@ -110,7 +149,7 @@ document.querySelectorAll('[data-lang]').forEach(button => button.addEventListen
   document.documentElement.lang = lang;
   closeMenu();
   document.querySelectorAll('[data-lang]').forEach(item => item.classList.toggle('active', item === button));
-  if (lang === 'en') { Object.entries(translations.en).forEach(([selector, value]) => { const element = document.querySelector(selector); if (element) element.innerHTML = value; }); render(englishData); }
+  if (lang === 'en') { Object.entries(translations.en).forEach(([selector, value]) => { const element = document.querySelector(selector); if (element) element.innerHTML = value; }); render(currentData('en')); }
   else { window.location.reload(); }
 }));
 loadDatabase().then(() => {

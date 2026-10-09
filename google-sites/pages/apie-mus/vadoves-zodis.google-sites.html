@@ -31,6 +31,8 @@
 
 .news-photo-section{margin:38px 0}.news-photo-section h2{font-size:1.7rem;line-height:1.2;margin-bottom:18px}.news-photo-gallery{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.news-photo-slot{aspect-ratio:4/3;border:1px dashed #c5d3ea;border-radius:14px;background:#edf3fb}.news-photo-gallery img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:14px}@media(max-width:600px){.news-photo-gallery{grid-template-columns:1fr}}
 
+.content-editor-entry{padding:28px 24px;text-align:center;background:transparent}.content-editor-entry a{color:#62718b;font-size:.8rem;text-decoration:none}.news-photo-gallery figure{margin:0}.content-events .article{padding:30px 0}.news-photo-gallery{margin:28px 0}
+
 </style>
 <style>
 /* Inlined from ../source-content.css */
@@ -166,6 +168,11 @@
     </header>
   `);
 
+  const editorFooter = document.createElement('footer');
+  editorFooter.className = 'content-editor-entry';
+  const editorLogin = document.createElement('a'); editorLogin.href = link('https://genys.agne.dev/admin/'); editorLogin.textContent = 'Prisijungti';
+  editorFooter.append(editorLogin); document.body.append(editorFooter);
+
   const button = document.querySelector('.site-nav .menu-btn');
   const menu = document.querySelector('.site-nav .main-nav');
   const labels = {"home":"Home","about":"About us","about-overview":"About us – overview","director":"Director’s message","mission":"Mission & goals","activities":"Activities","classes":"Classes","teachers":"Our teachers","news":"News","news-overview":"All news","events":"Events","schedule":"Schedule","parents":"For parents","parents-overview":"For parents – overview","registration":"Registration","calendar":"Calendar","committee":"Parents committee","items":"School items","duties":"Duty roster","tuition":"Tuition","wishlist":"Amazon wishlist","educators":"Educators","partners":"Partners","contacts":"Contacts"};
@@ -182,6 +189,7 @@
   };
   const setLanguage = lang => {
     language = lang;
+    editorLogin.textContent = lang === 'en' ? 'Log in' : 'Prisijungti';
     document.querySelector('.site-nav').lang = lang;
     for (const [node, lt] of bilingual) node.textContent = lang === 'en' ? node.dataset.en : lt;
     if (bilingual.size) document.documentElement.lang = lang;

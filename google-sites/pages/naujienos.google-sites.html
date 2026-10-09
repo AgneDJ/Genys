@@ -25,6 +25,8 @@
 
 .news-photo-section{margin:38px 0}.news-photo-section h2{font-size:1.7rem;line-height:1.2;margin-bottom:18px}.news-photo-gallery{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.news-photo-slot{aspect-ratio:4/3;border:1px dashed #c5d3ea;border-radius:14px;background:#edf3fb}.news-photo-gallery img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:14px}@media(max-width:600px){.news-photo-gallery{grid-template-columns:1fr}}
 
+.content-editor-entry{padding:28px 24px;text-align:center;background:transparent}.content-editor-entry a{color:#62718b;font-size:.8rem;text-decoration:none}.news-photo-gallery figure{margin:0}.content-events .article{padding:30px 0}.news-photo-gallery{margin:28px 0}
+
 </style>
   <script>
 /* Local JSON embedded for Google Sites. */
@@ -118,6 +120,11 @@
     </header>
   `);
 
+  const editorFooter = document.createElement('footer');
+  editorFooter.className = 'content-editor-entry';
+  const editorLogin = document.createElement('a'); editorLogin.href = link('https://genys.agne.dev/admin/'); editorLogin.textContent = 'Prisijungti';
+  editorFooter.append(editorLogin); document.body.append(editorFooter);
+
   const button = document.querySelector('.site-nav .menu-btn');
   const menu = document.querySelector('.site-nav .main-nav');
   const labels = {"home":"Home","about":"About us","about-overview":"About us – overview","director":"Director’s message","mission":"Mission & goals","activities":"Activities","classes":"Classes","teachers":"Our teachers","news":"News","news-overview":"All news","events":"Events","schedule":"Schedule","parents":"For parents","parents-overview":"For parents – overview","registration":"Registration","calendar":"Calendar","committee":"Parents committee","items":"School items","duties":"Duty roster","tuition":"Tuition","wishlist":"Amazon wishlist","educators":"Educators","partners":"Partners","contacts":"Contacts"};
@@ -134,6 +141,7 @@
   };
   const setLanguage = lang => {
     language = lang;
+    editorLogin.textContent = lang === 'en' ? 'Log in' : 'Prisijungti';
     document.querySelector('.site-nav').lang = lang;
     for (const [node, lt] of bilingual) node.textContent = lang === 'en' ? node.dataset.en : lt;
     if (bilingual.size) document.documentElement.lang = lang;
@@ -166,6 +174,56 @@
 
 </script>
     <script defer>
+/* Inlined from ../data/content-client.js */
+(() => {
+  const root = new URL('../', document.baseURI).href;
+  let request;
+  const imageURL = value => {
+    try {
+      if (typeof value !== 'string' || !value.trim()) return null;
+      const url = new URL(value, root);
+      return ['https:', 'http:', 'file:'].includes(url.protocol) ? url.href : null;
+    } catch { return null; }
+  };
+  async function readRows(config, table, order) {
+    const rows = [];
+    for (let offset = 0; offset < 5000; offset += 100) {
+      const url = config.url + '/rest/v1/' + table + '?select=*&status=eq.published&order=' + order + '&limit=100&offset=' + offset;
+      const response = await fetch(url, { headers: { apikey: config.publishableKey }, signal: AbortSignal.timeout(10000) });
+      if (!response.ok) throw new Error('Content unavailable');
+      const page = await response.json();
+      if (!Array.isArray(page)) throw new Error('Invalid content');
+      rows.push(...page);
+      if (page.length < 100) break;
+    }
+    return rows;
+  }
+  const load = () => request ||= (async () => {
+    try {
+      const response = await fetch('/api/content-config', { signal: AbortSignal.timeout(5000), cache: 'no-store' });
+      if (!response.ok) return null;
+      const config = await response.json();
+      if (!config.configured || !config.url || !config.publishableKey) return null;
+      const [posts, photos] = await Promise.all([
+        readRows(config, 'content_posts', 'date.desc.nullslast,created_at.desc,id.desc'),
+        readRows(config, 'content_photos', 'sort_order.asc,id.asc')
+      ]);
+      return { posts, photos };
+    } catch { return null; }
+  })();
+  const text = (item, key, lang) => String(item[key + '_' + lang] || item[key + '_lt'] || '');
+  const postLink = post => new URL('pages/straipsnis.google-sites.html?slug=' + encodeURIComponent(post.slug), root).href;
+  const news = post => ({
+    date: post.date_label_lt || post.date || '', category: 'BENDRUOMENĖ',
+    title: text(post, 'title', 'lt'), text: text(post, 'summary', 'lt'), link: postLink(post),
+    image: imageURL(post.photos?.[0]?.url),
+    en: { date: post.date_label_en || post.date || '', category: 'COMMUNITY', title: text(post, 'title', 'en'), text: text(post, 'summary', 'en') }
+  });
+  window.SiteContent = { load, imageURL, text, postLink, news, root };
+})();
+
+</script>
+    <script defer>
 /* Inlined from news-list.js */
 (() => {
   const list = document.querySelector('[data-news-list]');
@@ -174,6 +232,7 @@
   const archive = document.querySelector('[data-news-archive]');
   let language = 'lt';
   let news = [];
+  let loaded = false;
   try { if (localStorage.getItem('sf-genys-language') === 'en') language = 'en'; } catch {}
   const element = (tag, text, className) => {
     const node = document.createElement(tag);
@@ -217,7 +276,7 @@
     return article;
   };
   const render = () => {
-    if (!news.length) return;
+    if (!loaded) return;
     const visible = archive ? news.slice(4) : news.slice(0, 4);
     list.replaceChildren(...visible.map(card));
     if (archive) archive.hidden = visible.length === 0;
@@ -226,18 +285,22 @@
     language = event.detail.language === 'en' ? 'en' : 'lt';
     render();
   });
-  // The editorial news array is maintained newest first; date labels also include school years.
-  fetch('../data/site-data.json')
-    .then(response => {
-      if (!response.ok) throw new Error('News data unavailable');
-      return response.json();
-    })
-    .then(data => {
+  // The local JSON remains the fallback when the content service is unavailable.
+  (async () => {
+    const content = window.SiteContent ? await SiteContent.load() : null;
+    if (content) {
+      news = content.posts.filter(post => post.kind === 'news').map(SiteContent.news);
+      loaded = true; render(); return;
+    }
+    try {
+      const response = await fetch('../data/site-data.json');
+      if (!response.ok) throw new Error('News unavailable');
+      const data = await response.json();
       if (!Array.isArray(data.news)) return;
       news = data.news.filter(item => item && typeof item.title === 'string' && item.title.trim());
-      render();
-    })
-    .catch(() => { /* Keep the existing cards and historical archive available offline. */ });
+      loaded = true; render();
+    } catch { /* Keep static news and the historical archive available offline. */ }
+  })();
 })();
 
 </script>

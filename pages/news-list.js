@@ -5,6 +5,7 @@
   const archive = document.querySelector('[data-news-archive]');
   let language = 'lt';
   let news = [];
+  let loaded = false;
   try { if (localStorage.getItem('sf-genys-language') === 'en') language = 'en'; } catch {}
   const element = (tag, text, className) => {
     const node = document.createElement(tag);
@@ -48,7 +49,7 @@
     return article;
   };
   const render = () => {
-    if (!news.length) return;
+    if (!loaded) return;
     const visible = archive ? news.slice(4) : news.slice(0, 4);
     list.replaceChildren(...visible.map(card));
     if (archive) archive.hidden = visible.length === 0;
@@ -57,16 +58,20 @@
     language = event.detail.language === 'en' ? 'en' : 'lt';
     render();
   });
-  // The editorial news array is maintained newest first; date labels also include school years.
-  fetch('../data/site-data.json')
-    .then(response => {
-      if (!response.ok) throw new Error('News data unavailable');
-      return response.json();
-    })
-    .then(data => {
+  // The local JSON remains the fallback when the content service is unavailable.
+  (async () => {
+    const content = window.SiteContent ? await SiteContent.load() : null;
+    if (content) {
+      news = content.posts.filter(post => post.kind === 'news').map(SiteContent.news);
+      loaded = true; render(); return;
+    }
+    try {
+      const response = await fetch('../data/site-data.json');
+      if (!response.ok) throw new Error('News unavailable');
+      const data = await response.json();
       if (!Array.isArray(data.news)) return;
       news = data.news.filter(item => item && typeof item.title === 'string' && item.title.trim());
-      render();
-    })
-    .catch(() => { /* Keep the existing cards and historical archive available offline. */ });
+      loaded = true; render();
+    } catch { /* Keep static news and the historical archive available offline. */ }
+  })();
 })();

@@ -2,3 +2,7 @@ __pycache__/
 *.pyc
 /tools/source-cache/*.png
 /tools/source-cache/resource-inline-*.js
+
+.env
+.env.*
+!.env.example

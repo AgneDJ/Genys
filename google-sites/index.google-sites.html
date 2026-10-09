@@ -47,6 +47,8 @@ nav details{position:relative}nav summary{list-style:none;cursor:pointer;padding
 
 @media(min-width:851px) and (max-width:1200px){.header{gap:14px}.header .brand-logo{width:140px}.header #main-nav{gap:12px}.header #main-nav a,.header #main-nav summary{font-size:.78rem}.header .portal-btn{display:none}}
 
+.gallery-grid{grid-auto-rows:190px}.editor-login{white-space:nowrap}
+
 </style>
   <script>
 /* Local JSON embedded for Google Sites. */
@@ -348,6 +350,7 @@ nav details{position:relative}nav summary{list-style:none;cursor:pointer;padding
             >Facebook</a
           ><a href="#home">Instagram</a>
         </div>
+        <a class="editor-login" href="https://genys.agne.dev/admin/">Prisijungti</a>
       </div>
     </footer>
     <dialog id="gallery-modal">
@@ -355,7 +358,57 @@ nav details{position:relative}nav summary{list-style:none;cursor:pointer;padding
       ><img alt="Galerijos nuotrauka" />
       <p></p>
     </dialog>
-    <script>
+    <script defer>
+/* Inlined from data/content-client.js */
+(() => {
+  const root = new URL('./', document.baseURI).href;
+  let request;
+  const imageURL = value => {
+    try {
+      if (typeof value !== 'string' || !value.trim()) return null;
+      const url = new URL(value, root);
+      return ['https:', 'http:', 'file:'].includes(url.protocol) ? url.href : null;
+    } catch { return null; }
+  };
+  async function readRows(config, table, order) {
+    const rows = [];
+    for (let offset = 0; offset < 5000; offset += 100) {
+      const url = config.url + '/rest/v1/' + table + '?select=*&status=eq.published&order=' + order + '&limit=100&offset=' + offset;
+      const response = await fetch(url, { headers: { apikey: config.publishableKey }, signal: AbortSignal.timeout(10000) });
+      if (!response.ok) throw new Error('Content unavailable');
+      const page = await response.json();
+      if (!Array.isArray(page)) throw new Error('Invalid content');
+      rows.push(...page);
+      if (page.length < 100) break;
+    }
+    return rows;
+  }
+  const load = () => request ||= (async () => {
+    try {
+      const response = await fetch('/api/content-config', { signal: AbortSignal.timeout(5000), cache: 'no-store' });
+      if (!response.ok) return null;
+      const config = await response.json();
+      if (!config.configured || !config.url || !config.publishableKey) return null;
+      const [posts, photos] = await Promise.all([
+        readRows(config, 'content_posts', 'date.desc.nullslast,created_at.desc,id.desc'),
+        readRows(config, 'content_photos', 'sort_order.asc,id.asc')
+      ]);
+      return { posts, photos };
+    } catch { return null; }
+  })();
+  const text = (item, key, lang) => String(item[key + '_' + lang] || item[key + '_lt'] || '');
+  const postLink = post => new URL('pages/straipsnis.google-sites.html?slug=' + encodeURIComponent(post.slug), root).href;
+  const news = post => ({
+    date: post.date_label_lt || post.date || '', category: 'BENDRUOMENĖ',
+    title: text(post, 'title', 'lt'), text: text(post, 'summary', 'lt'), link: postLink(post),
+    image: imageURL(post.photos?.[0]?.url),
+    en: { date: post.date_label_en || post.date || '', category: 'COMMUNITY', title: text(post, 'title', 'en'), text: text(post, 'summary', 'en') }
+  });
+  window.SiteContent = { load, imageURL, text, postLink, news, root };
+})();
+
+</script>
+    <script defer>
 /* Inlined from app.js */
 const localData = {
   news: [
@@ -381,21 +434,59 @@ const englishData = {
   gallery: [{ title: 'Together for a new year', position: '50% 50%' }, { title: 'Ideas in motion', position: '22% 48%' }, { title: 'Between classes', position: '76% 55%' }, { title: 'Our school community', position: '50% 24%' }]
 };
 let database = localData;
+let cmsContent = null;
+function currentData(lang) {
+  const fallback = lang === 'en' ? englishData : database;
+  if (!cmsContent) return fallback;
+  const news = cmsContent.posts.filter(post => post.kind === 'news').map(SiteContent.news).map(item => lang === 'en' ? { ...item, ...item.en } : item);
+  const gallery = cmsContent.photos.map(photo => ({ title: SiteContent.text(photo, 'alt', lang), image: SiteContent.imageURL(photo.url), position: '50% 50%' })).filter(photo => photo.image);
+  return { news, gallery };
+}
+
 
 function render(data) {
+  const en = document.documentElement.lang === 'en';
+  const node = (tag, text, className) => { const item = document.createElement(tag); if (text !== undefined) item.textContent = text; if (className) item.className = className; return item; };
+  const url = value => window.SiteContent?.imageURL(value) || 'pages/naujienos.google-sites.html';
+  const image = (source, title) => { const img = node('img'); img.src = url(source); img.alt = title || ''; img.loading = 'lazy'; return img; };
   const latest = document.querySelector('#latest-news');
-  if (latest) { const n = data.news[0]; latest.innerHTML = `<article class="latest-card"><img src="${n.image || 'gs-asset:0'}" alt="${n.title}"><div><p class="eyebrow">${document.documentElement.lang === 'en' ? 'LATEST NEWS' : 'NAUJAUSIA NAUJIENA'} · ${n.date}</p><h2>${n.title}</h2><p>${n.text}</p><a class="btn btn-dark" href="${n.link || 'pages/naujienos.google-sites.html'}">${document.documentElement.lang === 'en' ? 'Read more' : 'Skaityti daugiau'} <span>→</span></a></div></article>`; }
+  if (latest) {
+    latest.replaceChildren();
+    const n = data.news[0];
+    if (n) {
+      const card = node('article', undefined, 'latest-card');
+      const copy = node('div');
+      copy.append(node('p', (en ? 'LATEST NEWS' : 'NAUJAUSIA NAUJIENA') + ' · ' + n.date, 'eyebrow'), node('h2', n.title), node('p', n.text));
+      const link = node('a', en ? 'Read more →' : 'Skaityti daugiau →', 'btn btn-dark'); link.href = url(n.link); copy.append(link);
+      card.append(image(n.image || 'gs-asset:0', n.title), copy); latest.append(card);
+    }
+  }
   const preview = document.querySelector('#news-preview');
   const images = ['gs-asset:4', 'gs-asset:1', 'gs-asset:2'];
-  if (preview) preview.innerHTML = data.news.slice(0, 4).map((n, i) => `<a class="news-preview-card" href="${n.link || 'pages/naujienos.google-sites.html'}"><img src="${n.image || images[i] || images[0]}" alt="${n.title}" loading="lazy"><span>${n.category}</span><b>${n.title}</b><small>${n.text}</small><em>${document.documentElement.lang === 'en' ? 'Read more' : 'Skaityti daugiau'} →</em></a>`).join('');
-  document.querySelector('#gallery-grid').innerHTML = data.gallery.map((g, i) => `<button class="gallery-item item-${i + 1}" data-title="${g.title}" style="--pos:${g.position}"><img src="gs-asset:0" alt="${g.title}" loading="lazy"><span>${g.title}</span><b>↗</b></button>`).join('');
-  document.querySelectorAll('.gallery-item, .gallery-open').forEach(el => el.addEventListener('click', () => openGallery(el.dataset.title || data.gallery[0].title)));
+  if (preview) preview.replaceChildren(...data.news.slice(0,4).map((n,i) => {
+    const card = node('a', undefined, 'news-preview-card'); card.href = url(n.link);
+    card.append(image(n.image || images[i] || images[0], n.title), node('span', n.category), node('b', n.title), node('small', n.text), node('em', en ? 'Read more →' : 'Skaityti daugiau →'));
+    return card;
+  }));
+  const gallery = document.querySelector('#gallery-grid');
+  gallery.replaceChildren(...data.gallery.map((g,i) => {
+    const button = node('button', undefined, 'gallery-item item-' + (i+1)); button.type = 'button';
+    button.style.setProperty('--pos', /^\d{1,3}% \d{1,3}%$/.test(g.position) ? g.position : '50% 50%');
+    const src = g.image || 'gs-asset:0';
+    button.append(image(src,g.title), node('span',g.title), node('b','↗'));
+    button.addEventListener('click', () => openGallery(g.title,src)); return button;
+  }));
+  document.querySelectorAll('.gallery-open').forEach(button => {
+    button.disabled = !data.gallery.length;
+    button.onclick = () => { const first = data.gallery[0]; if (first) openGallery(first.title, first.image); };
+  });
 }
 
 async function loadDatabase() {
   try { const response = await fetch('data/site-data.json'); if (!response.ok) throw Error(); database = await response.json(); }
   catch { database = localData; }
-  render(document.documentElement.lang === 'en' ? englishData : database);
+  cmsContent = window.SiteContent ? await SiteContent.load() : null;
+  render(currentData(document.documentElement.lang));
 }
 async function loadTeachers() {
   const target = document.querySelector('#teachers-list');
@@ -407,7 +498,7 @@ async function loadTeachers() {
     target.innerHTML = data.teachers.map(teacher => `<a class="teacher-profile" href="${teacher.article}"><span class="teacher-initial">${teacher.name.charAt(0)}</span><span><b>${teacher.name}</b><span>${teacher.role}</span></span></a>`).join('');
   } catch { target.innerHTML = '<p>Nepavyko įkelti mokytojų sąrašo.</p>'; }
 }
-function openGallery(title) { const modal = document.querySelector('#gallery-modal'); modal.querySelector('p').textContent = title; modal.showModal(); }
+function openGallery(title, image) { const modal = document.querySelector('#gallery-modal'); modal.querySelector('p').textContent = title; modal.querySelector('img').src = image || 'gs-asset:0'; modal.querySelector('img').alt = title || ''; modal.showModal(); }
 document.querySelector('.close-modal').addEventListener('click', () => document.querySelector('#gallery-modal').close());
 document.querySelector('#gallery-modal').addEventListener('click', e => { if (e.target.id === 'gallery-modal') e.currentTarget.close(); });
 const menuButton = document.querySelector('.menu-btn');
@@ -426,6 +517,7 @@ document.querySelectorAll('#main-nav a').forEach(link => link.addEventListener('
 document.addEventListener('keydown', event => { if (event.key === 'Escape') closeMenu(); });
 const translations = {
   en: {
+    '.editor-login': 'Log in',
     '.brand span:last-child': 'SF<br><strong>„Genys“</strong>',
     "#main-nav [data-nav=\"home\"]": "Home",
     "#main-nav [data-nav=\"about\"]": "About us",
@@ -469,7 +561,7 @@ document.querySelectorAll('[data-lang]').forEach(button => button.addEventListen
   document.documentElement.lang = lang;
   closeMenu();
   document.querySelectorAll('[data-lang]').forEach(item => item.classList.toggle('active', item === button));
-  if (lang === 'en') { Object.entries(translations.en).forEach(([selector, value]) => { const element = document.querySelector(selector); if (element) element.innerHTML = value; }); render(englishData); }
+  if (lang === 'en') { Object.entries(translations.en).forEach(([selector, value]) => { const element = document.querySelector(selector); if (element) element.innerHTML = value; }); render(currentData('en')); }
   else { window.location.reload(); }
 }));
 loadDatabase().then(() => {

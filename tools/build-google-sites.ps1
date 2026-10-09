@@ -182,6 +182,9 @@ function Convert-HtmlFile([System.IO.FileInfo]$file) {
         return "<script$keptAttrs>`n/* Inlined from $(Get-RelativeWebPath $file.DirectoryName $scriptPath) */`n$js`n</script>"
     }, 'IgnoreCase')
 
+    # The editor is hosted on the live website and is excluded from static exports.
+    $html = $html.Replace('admin/index.html', 'https://genys.agne.dev/admin/')
+
     # Point links between local HTML pages at their converted equivalents.
     $html = [regex]::Replace($html, '(?<prefix>\bhref\s*=\s*["''])(?<url>[^"'']+\.html)(?<tail>[?#][^"'']*)?(?<quote>["''])', {
         param($match)
@@ -321,7 +324,8 @@ $files = Get-ChildItem -LiteralPath $rootPath -Recurse -File -Filter '*.html' |
         $_.BaseName -notlike "*$Suffix" -and
         $_.FullName -notmatch '[\\/]tools[\\/]source-cache[\\/]' -and
         $_.FullName -notmatch '[\\/]\.codex[\\/]' -and
-        $_.FullName -notmatch '[\\/]google-apps-script[\\/]'
+        $_.FullName -notmatch '[\\/]google-apps-script[\\/]' -and
+        $_.FullName -notmatch '[\\/]admin[\\/]'
     }
 
 $outputs = foreach ($file in $files) { Convert-HtmlFile $file }
