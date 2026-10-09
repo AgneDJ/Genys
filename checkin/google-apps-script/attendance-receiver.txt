@@ -1,8 +1,8 @@
 /* SF Genys attendance receiver — paste into Extensions > Apps Script in the
    provided Google Sheet. See README.md in this folder before deploying. */
 // Keep this map private in Apps Script. Each PIN must match the selected child.
-// SET THIS TO THE ID BETWEEN /d/ AND /edit IN THE GOOGLE SHEETS URL.
-const SPREADSHEET_ID = '';
+// Target: Lankomumas/Attendance. Update this ID only when changing the attendance document.
+const SPREADSHEET_ID = '1T-T-EPUCfzy0hWExJkW3UJ2Z4J9inFyVO74LiydEbW0';
 
 const CHILD_PINS = {
   'Miles': '1799',
