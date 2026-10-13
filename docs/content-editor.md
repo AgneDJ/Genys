@@ -41,3 +41,11 @@ Successful PIN login issues a normal Supabase session. PIN rotation changes futu
 Posts support LT/EN content, drafts, preview, publishing and photos. Uploaded photos are public, even while a post is a draft. This editor provides no access to attendance records.
 
 Existing Auth accounts created outside this PIN editor are not overwritten. To migrate a previous invitation account, configure its internal password and the server-controlled genys_pin_editor app metadata separately. Use a dedicated Supabase project.
+
+## Edit schedule and other pages
+
+Run supabase/sections.sql (or open the identical sections.txt copy and paste it into SQL Editor) once for an existing project. New installations using schema.sql already include this table and its permissions. No seed is needed: the Pages editor starts with the original website content.
+
+Owner and editors can open Pages, choose an existing page and edit LT/EN text, schedule table cells, images, links and embedded-document URLs. Embedded links must use the same provider/domain as the original iframe. Save draft leaves the published page unchanged. Publish applies the edited content. Reset restores the original template content. Navigation, page structure and attendance controls remain in the templates.
+
+After changing static templates, run node tools/build-section-catalog.js before publishing to update editable defaults.

@@ -75,6 +75,7 @@ async function loadDatabase() {
   catch { database = localData; }
   cmsContent = window.SiteContent ? await SiteContent.load() : null;
   render(currentData(document.documentElement.lang));
+  document.dispatchEvent(new CustomEvent('sf-genys-content-ready'));
 }
 async function loadTeachers() {
   const target = document.querySelector('#teachers-list');
@@ -84,6 +85,7 @@ async function loadTeachers() {
     if (!response.ok) throw Error();
     const data = await response.json();
     target.innerHTML = data.teachers.map(teacher => `<a class="teacher-profile" href="${teacher.article}"><span class="teacher-initial">${teacher.name.charAt(0)}</span><span><b>${teacher.name}</b><span>${teacher.role}</span></span></a>`).join('');
+    document.dispatchEvent(new CustomEvent('sf-genys-content-ready'));
   } catch { target.innerHTML = '<p>Nepavyko įkelti mokytojų sąrašo.</p>'; }
 }
 function openGallery(title, image) { const modal = document.querySelector('#gallery-modal'); modal.querySelector('p').textContent = title; modal.querySelector('img').src = image || 'assets/sf-genys-community.png'; modal.querySelector('img').alt = title || ''; modal.showModal(); }
@@ -149,7 +151,7 @@ document.querySelectorAll('[data-lang]').forEach(button => button.addEventListen
   document.documentElement.lang = lang;
   closeMenu();
   document.querySelectorAll('[data-lang]').forEach(item => item.classList.toggle('active', item === button));
-  if (lang === 'en') { Object.entries(translations.en).forEach(([selector, value]) => { const element = document.querySelector(selector); if (element) element.innerHTML = value; }); render(currentData('en')); }
+  if (lang === 'en') { Object.entries(translations.en).forEach(([selector, value]) => { const element = document.querySelector(selector); if (element) element.innerHTML = value; }); render(currentData('en')); document.dispatchEvent(new CustomEvent('sf-genys-language-change', { detail: { language: 'en' } })); }
   else { window.location.reload(); }
 }));
 loadDatabase().then(() => {

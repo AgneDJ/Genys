@@ -63,7 +63,7 @@ def render(key,path,skip_text=False):
                 image='<img src="'+html.escape(rel(path,asset),quote=True)+'" alt="'+html.escape(alt,quote=True)+'" loading="lazy">'
                 if b.get('href'):image='<a href="'+html.escape(normalize_url(b['href']),quote=True)+'">'+image+'</a>'
                 result.append('<figure class="source-image">'+image+'</figure>')
-            else:
+            elif key != 'kontaktai' and context != 'ESAME LABAI DĖKINGI, KAD MUS PALAIKOTE!':
                 result.append('<p class="source-media-link"><a href="'+html.escape(b['src'],quote=True)+'">'+html.escape(context)+' – atverti šaltinio vaizdą</a></p>')
         else:
             src=b['src']; title=b.get('title')

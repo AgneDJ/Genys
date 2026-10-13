@@ -109,13 +109,10 @@
       <figure class="source-image"><img src="gs-asset:1" alt="parama fundraising – mokyklos archyvo vaizdas" loading="lazy"></figure>
 <section class="source-section" id="partneriai"><h2>Mūsų rėmėjai ir partneriai</h2>
 <h2>ESAME LABAI DĖKINGI, KAD MUS PALAIKOTE!</h2>
-<p class="source-media-link"><a href="https://sites.google.com/sitesv-images-rt/AMxu72szaaMKNDBByFPQwbxXskQ3V4PtkMCdRzx7ihKJrePnhBbZblyGMH-hZ0g_D4tTx4o1jTY2sNIOKRoJiKA_Dqq-lOlyNB_AXiTKS6vwSxVpWRocEV17Mp5NADTAVbwCccsk9Mva6TWZe4diu8Xl7ijt9INMkfYolIeUNy782V7an-djGzpKBzLW0KgV10M=w1280">ESAME LABAI DĖKINGI, KAD MUS PALAIKOTE! – atverti šaltinio vaizdą</a></p>
 <figure class="source-image"><a href="https://svietimotaryba.org"><img src="gs-asset:2" alt="ESAME LABAI DĖKINGI, KAD MUS PALAIKOTE! – mokyklos archyvo vaizdas" loading="lazy"></a></figure>
 <figure class="source-image"><a href="http://www.kff.lt/Apie-Mus-973.html"><img src="gs-asset:3" alt="ESAME LABAI DĖKINGI, KAD MUS PALAIKOTE! – mokyklos archyvo vaizdas" loading="lazy"></a></figure>
 <figure class="source-image"><a href="https://www.lithuanianfoundation.org/LT/"><img src="gs-asset:4" alt="ESAME LABAI DĖKINGI, KAD MUS PALAIKOTE! – mokyklos archyvo vaizdas" loading="lazy"></a></figure>
 <figure class="source-image"><a href="https://sflithuanians.com"><img src="gs-asset:5" alt="ESAME LABAI DĖKINGI, KAD MUS PALAIKOTE! – mokyklos archyvo vaizdas" loading="lazy"></a></figure>
-<p class="source-media-link"><a href="https://sites.google.com/sitesv-images-rt/AMxu72vQVbUhv_3SPtUbL79AmrcSWYmyDzo9Z3WpZd9JV10SrnMPP8DzT9833BXikW27LUGgfJUwAJA7ubwo9_NywbaEZt-di7T4VXHav_6MDiXSPQnotkXhR1jAh_caNZede-rbgfmIC2VVMPHPQpK-P1iVACwtV_WnAzyz5usOuERGthQcekgr9KxlYSqdTIne87l-BosFcXt8LqLo7yP0YOYuETFnfYhgNYQ6jft5oZg=w1280">ESAME LABAI DĖKINGI, KAD MUS PALAIKOTE! – atverti šaltinio vaizdą</a></p>
-<p class="source-media-link"><a href="https://sites.google.com/sitesv-images-rt/AMxu72v6SVYZ9CxsGJQmlvXVDWvf4w0yM6pwUE9UAZ5igtA7Iz0ZsK1T1hva6jItfrtAp5h7jzFCw9uktGQdriPx4f6pKSb-siwgLbLrTf6o1yOovAZ0nrrH3JBav15Ikj2g8Ca_6Z1TyMFiKoNmDREkZO1t_bYPQoj418NfL2vsF0_anRWwR6Nk_0kiqAkiHyYTtn7fUmt1h7ZLqZLZKHUAi0pG8ZnP2b0wsLtTjZiIT7w=w1280">ESAME LABAI DĖKINGI, KAD MUS PALAIKOTE! – atverti šaltinio vaizdą</a></p>
 <figure class="source-image"><a href="https://www.ltkt.lt"><img src="gs-asset:6" alt="ESAME LABAI DĖKINGI, KAD MUS PALAIKOTE! – mokyklos archyvo vaizdas" loading="lazy"></a></figure>
 <figure class="source-image"><a href="https://www.smm.lt"><img src="gs-asset:7" alt="ESAME LABAI DĖKINGI, KAD MUS PALAIKOTE! – mokyklos archyvo vaizdas" loading="lazy"></a></figure>
 <figure class="source-image"><a href="https://la.mfa.lt/losandzelas/lt/"><img src="gs-asset:8" alt="ESAME LABAI DĖKINGI, KAD MUS PALAIKOTE! – mokyklos archyvo vaizdas" loading="lazy"></a></figure></section>
@@ -208,5 +205,82 @@
         languageButtons.forEach(item => item.classList.toggle('active', item === button));
       }));
     </script>
-  </body>
+  <script defer>
+/* Inlined from ../data/content-sections.js */
+(() => {
+  'use strict';
+  const root = new URL('../', document.baseURI).href;
+  const base = new URL(root);
+  let relative = decodeURIComponent(location.pathname).slice(base.pathname.length);
+  if (!relative || relative.endsWith('/')) relative += 'index.google-sites.html';
+  if (!relative.endsWith('.html') || relative.includes('.google-sites.')) return;
+  let catalog, published, language = document.documentElement.lang === 'en' ? 'en' : 'lt';
+  try { if (localStorage.getItem('sf-genys-language') === 'en') language = 'en'; } catch {}
+  const safeURL = (value, kind, original) => {
+    if (typeof value !== 'string' || !value.trim()) return null;
+    try {
+      const url = new URL(value, root);
+      if (kind === 'link' && ['mailto:','tel:'].includes(url.protocol)) return url.href;
+      if (!['https:','http:'].includes(url.protocol)) return null;
+      if (kind === 'embed') {
+        const expected = new URL(original, root);
+        if (url.hostname !== expected.hostname || url.username || url.password) return null;
+      }
+      return url.href;
+    } catch { return null; }
+  };
+  function apply() {
+    if (!catalog || !published) return;
+    for (const field of catalog.fields) {
+      const value = published[field.id];
+      if (!value || typeof value !== 'object') continue;
+      const element = document.querySelector(field.selector);
+      if (!element || !element.closest('main')) continue;
+      if (field.kind === 'text') {
+        const current = element.childNodes[field.textIndex];
+        const text = typeof value[language] === 'string' ? value[language] : value.lt;
+        if (current?.nodeType === 3 && typeof text === 'string') {
+          const leading = /^\s/.test(current.nodeValue) ? ' ' : '';
+          const trailing = /\s$/.test(current.nodeValue) ? ' ' : '';
+          const next = leading + text + trailing;
+          if (current.nodeValue !== next) current.nodeValue = next;
+        }
+      } else {
+        if (typeof value.url === 'string' && !value.url.trim()) {
+          if (field.kind === 'link') element.removeAttribute('href');
+          else element.hidden = true;
+          continue;
+        }
+        const url = safeURL(value.url, field.kind, field.url);
+        if (url) {
+          element.setAttribute(field.kind === 'link' ? 'href' : 'src', url);
+          if (field.kind !== 'link') element.hidden = false;
+        }
+        if (field.kind === 'image') element.alt = String(value['alt_' + language] ?? value.alt_lt ?? field['alt_' + language] ?? '');
+        if (field.kind === 'embed') element.title = String(value[language] ?? value.lt ?? field[language] ?? '');
+      }
+    }
+  }
+  document.addEventListener('sf-genys-language-change', event => {language = event.detail.language === 'en' ? 'en' : 'lt';apply();});
+  document.addEventListener('sf-genys-content-ready', apply);
+  (async () => {
+    try {
+      const [defaultsResponse, configResponse] = await Promise.all([
+        fetch(new URL('data/section-defaults/' + relative.replace(/\//g, '__') + '.json', root)),
+        fetch('/api/content-config', {cache:'no-store',signal:AbortSignal.timeout(5000)})
+      ]);
+      if (!defaultsResponse.ok || !configResponse.ok) return;
+      catalog = await defaultsResponse.json();
+      const config = await configResponse.json();
+      if (!config.configured) return;
+      const response = await fetch(config.url + '/rest/v1/content_sections?select=page,published&published=not.is.null&page=eq.' + encodeURIComponent(relative), {headers:{apikey:config.publishableKey},signal:AbortSignal.timeout(10000)});
+      if (!response.ok) return;
+      const rows = await response.json();
+      published = Array.isArray(rows) ? rows[0]?.published : null;
+      apply();
+    } catch { /* Original page content stays available when the content service is unavailable. */ }
+  })();
+})();
+
+</script></body>
 </html>
