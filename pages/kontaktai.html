@@ -42,39 +42,7 @@
         </section>
       </article>
     </main>
-    <button class="chat-launcher" type="button" aria-expanded="false" aria-controls="contact-chat">Susisiekite <span>💬</span></button>
-    <aside class="chat-box" id="contact-chat" hidden aria-label="Susisiekite">
-      <button class="chat-close" type="button" aria-label="Uždaryti pokalbį">×</button>
-      <p class="eyebrow">SUSISIEKITE</p>
-      <h2>Parašykite mums</h2>
-      <div class="chat-messages" aria-live="polite">
-        <p class="chat-bubble chat-bubble-reply">Sveiki! Kuo galime padėti?</p>
-      </div>
-      <form class="chat-form">
-        <label class="sr-only" for="chat-message">Jūsų žinutė</label>
-        <input id="chat-message" name="message" type="text" placeholder="Rašykite žinutę..." autocomplete="off" required />
-        <button type="submit" aria-label="Siųsti žinutę">↑</button>
-      </form>
-    </aside>
+    <a class="chat-launcher" href="https://m.me/sfgenys" target="_blank" rel="noopener noreferrer" data-en="Contact us on Messenger ↗">Susisiekime per Messenger ↗</a>
     <script src="site-nav.js" defer></script>
-    <script>
-      const chatLauncher = document.querySelector('.chat-launcher');
-      const chatBox = document.querySelector('.chat-box');
-      const closeChat = () => { chatBox.hidden = true; chatLauncher.setAttribute('aria-expanded', 'false'); };
-      chatLauncher.addEventListener('click', () => { const isOpen = chatBox.hidden; chatBox.hidden = !isOpen; chatLauncher.setAttribute('aria-expanded', String(isOpen)); });
-      document.querySelector('.chat-close').addEventListener('click', closeChat);
-      document.querySelector('.chat-form').addEventListener('submit', event => {
-        event.preventDefault();
-        const input = event.currentTarget.elements.message;
-        const message = input.value.trim();
-        if (!message) return;
-        const bubble = document.createElement('p');
-        bubble.className = 'chat-bubble chat-bubble-sent';
-        bubble.textContent = message;
-        document.querySelector('.chat-messages').append(bubble);
-        input.value = '';
-        input.focus();
-      });
-    </script>
   <script src="../data/content-sections.js" defer></script></body>
 </html>

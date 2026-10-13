@@ -107,7 +107,6 @@ document.querySelectorAll('#main-nav a').forEach(link => link.addEventListener('
 document.addEventListener('keydown', event => { if (event.key === 'Escape') closeMenu(); });
 const translations = {
   en: {
-    '.editor-login': 'Log in',
     '.brand span:last-child': 'SF<br><strong>„Genys“</strong>',
     "#main-nav [data-nav=\"home\"]": "Home",
     "#main-nav [data-nav=\"about\"]": "About us",

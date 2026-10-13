@@ -46,6 +46,8 @@ Existing Auth accounts created outside this PIN editor are not overwritten. To m
 
 Run supabase/sections.sql (or open the identical sections.txt copy and paste it into SQL Editor) once for an existing project. New installations using schema.sql already include this table and its permissions. No seed is needed: the Pages editor starts with the original website content.
 
-Owner and editors can open Pages, choose an existing page and edit LT/EN text, schedule table cells, images, links and embedded-document URLs. Embedded links must use the same provider/domain as the original iframe. Save draft leaves the published page unchanged. Publish applies the edited content. Reset restores the original template content. Navigation, page structure and attendance controls remain in the templates.
+Owner and editors can choose a named page directly from the admin navigation (for example Schedule, Contacts, or About Us), click Edit and edit LT/EN text, schedule table cells, images, links and embedded-document URLs. Each page has its own editing section, alongside News, Events and Photos. Embedded links must use the same provider/domain as the original iframe. Save draft leaves the published page unchanged. Publish applies the edited content. Reset restores the original template content. Navigation, page structure and attendance controls remain in the templates.
 
 After changing static templates, run node tools/build-section-catalog.js before publishing to update editable defaults.
+
+The admin remains available directly at https://genys.agne.dev/admin/; public pages do not show a footer sign-in link. The Contacts Messenger button opens the school conversation at https://m.me/sfgenys.
