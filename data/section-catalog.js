@@ -32,6 +32,19 @@ window.SectionCatalog = [
         "alt_en": ""
       },
       {
+        "selector": "main > article:nth-of-type(1) > figure:nth-of-type(1) > img:nth-of-type(1)",
+        "kind": "image",
+        "url": "assets/google-site/c2dc17af8920e2cd.jpg",
+        "alt_lt": "Agnė – mokytojos nuotrauka",
+        "label_lt": "Agnė – mokytojos nuotrauka",
+        "group_lt": "Agnė",
+        "id": "f3473c5943ed8",
+        "en": "",
+        "label_en": "Agnė – mokytojos nuotrauka",
+        "group_en": "Agnė",
+        "alt_en": "Agnė – mokytojos nuotrauka"
+      },
+      {
         "selector": "main > article:nth-of-type(1) > p:nth-of-type(2)",
         "textIndex": 1,
         "kind": "text",
@@ -273,6 +286,19 @@ window.SectionCatalog = [
         "alt_en": ""
       },
       {
+        "selector": "main > article:nth-of-type(1) > figure:nth-of-type(1) > img:nth-of-type(1)",
+        "kind": "image",
+        "url": "assets/google-site/6e71b2dec5235d0b.png",
+        "alt_lt": "Aistė – mokytojos nuotrauka",
+        "label_lt": "Aistė – mokytojos nuotrauka",
+        "group_lt": "Aistė",
+        "id": "f3473c5943ed8",
+        "en": "",
+        "label_en": "Aistė – mokytojos nuotrauka",
+        "group_en": "Aistė",
+        "alt_en": "Aistė – mokytojos nuotrauka"
+      },
+      {
         "selector": "main > article:nth-of-type(1) > p:nth-of-type(2)",
         "textIndex": 1,
         "kind": "text",
@@ -486,6 +512,19 @@ window.SectionCatalog = [
         "label_en": "Aurelija",
         "group_en": "Aurelija",
         "alt_en": ""
+      },
+      {
+        "selector": "main > article:nth-of-type(1) > figure:nth-of-type(1) > img:nth-of-type(1)",
+        "kind": "image",
+        "url": "assets/google-site/9b1db75055d529e0.jpg",
+        "alt_lt": "Aurelija – mokytojos nuotrauka",
+        "label_lt": "Aurelija – mokytojos nuotrauka",
+        "group_lt": "Aurelija",
+        "id": "f3473c5943ed8",
+        "en": "",
+        "label_en": "Aurelija – mokytojos nuotrauka",
+        "group_en": "Aurelija",
+        "alt_en": "Aurelija – mokytojos nuotrauka"
       },
       {
         "selector": "main > article:nth-of-type(1) > p:nth-of-type(2)",
@@ -716,6 +755,19 @@ window.SectionCatalog = [
         "alt_en": ""
       },
       {
+        "selector": "main > article:nth-of-type(1) > figure:nth-of-type(1) > img:nth-of-type(1)",
+        "kind": "image",
+        "url": "assets/google-site/fdb08d299e39b977.jpg",
+        "alt_lt": "Erika – mokytojos nuotrauka",
+        "label_lt": "Erika – mokytojos nuotrauka",
+        "group_lt": "Erika",
+        "id": "f3473c5943ed8",
+        "en": "",
+        "label_en": "Erika – mokytojos nuotrauka",
+        "group_en": "Erika",
+        "alt_en": "Erika – mokytojos nuotrauka"
+      },
+      {
         "selector": "main > article:nth-of-type(1) > p:nth-of-type(2)",
         "textIndex": 1,
         "kind": "text",
@@ -903,6 +955,19 @@ window.SectionCatalog = [
         "label_en": "Indrė",
         "group_en": "Indrė",
         "alt_en": ""
+      },
+      {
+        "selector": "main > article:nth-of-type(1) > figure:nth-of-type(1) > img:nth-of-type(1)",
+        "kind": "image",
+        "url": "assets/google-site/3e0114e8e8c2897b.jpg",
+        "alt_lt": "Indrė – mokytojos nuotrauka",
+        "label_lt": "Indrė – mokytojos nuotrauka",
+        "group_lt": "Indrė",
+        "id": "f3473c5943ed8",
+        "en": "",
+        "label_en": "Indrė – mokytojos nuotrauka",
+        "group_en": "Indrė",
+        "alt_en": "Indrė – mokytojos nuotrauka"
       },
       {
         "selector": "main > article:nth-of-type(1) > p:nth-of-type(2)",
@@ -1105,6 +1170,19 @@ window.SectionCatalog = [
         "label_en": "Justė",
         "group_en": "Justė",
         "alt_en": ""
+      },
+      {
+        "selector": "main > article:nth-of-type(1) > figure:nth-of-type(1) > img:nth-of-type(1)",
+        "kind": "image",
+        "url": "assets/google-site/a63ff9aa8dd68f36.jpg",
+        "alt_lt": "Justė – mokytojos nuotrauka",
+        "label_lt": "Justė – mokytojos nuotrauka",
+        "group_lt": "Justė",
+        "id": "f3473c5943ed8",
+        "en": "",
+        "label_en": "Justė – mokytojos nuotrauka",
+        "group_en": "Justė",
+        "alt_en": "Justė – mokytojos nuotrauka"
       },
       {
         "selector": "main > article:nth-of-type(1) > p:nth-of-type(2)",
@@ -1334,6 +1412,19 @@ window.SectionCatalog = [
         "alt_en": ""
       },
       {
+        "selector": "main > article:nth-of-type(1) > figure:nth-of-type(1) > img:nth-of-type(1)",
+        "kind": "image",
+        "url": "assets/google-site/28b711057adf5501.png",
+        "alt_lt": "Rita Rosicker – mokytojos nuotrauka",
+        "label_lt": "Rita Rosicker – mokytojos nuotrauka",
+        "group_lt": "Rita Rosicker",
+        "id": "f3473c5943ed8",
+        "en": "",
+        "label_en": "Rita Rosicker – mokytojos nuotrauka",
+        "group_en": "Rita Rosicker",
+        "alt_en": "Rita Rosicker – mokytojos nuotrauka"
+      },
+      {
         "selector": "main > article:nth-of-type(1) > p:nth-of-type(2)",
         "textIndex": 1,
         "kind": "text",
@@ -1534,6 +1625,19 @@ window.SectionCatalog = [
         "label_en": "Vanesa",
         "group_en": "Vanesa",
         "alt_en": ""
+      },
+      {
+        "selector": "main > article:nth-of-type(1) > figure:nth-of-type(1) > img:nth-of-type(1)",
+        "kind": "image",
+        "url": "assets/google-site/6ac035efa59c9763.jpg",
+        "alt_lt": "Vanesa – mokytojos nuotrauka",
+        "label_lt": "Vanesa – mokytojos nuotrauka",
+        "group_lt": "Vanesa",
+        "id": "f3473c5943ed8",
+        "en": "",
+        "label_en": "Vanesa – mokytojos nuotrauka",
+        "group_en": "Vanesa",
+        "alt_en": "Vanesa – mokytojos nuotrauka"
       },
       {
         "selector": "main > article:nth-of-type(1) > p:nth-of-type(2)",
@@ -12190,26 +12294,26 @@ window.SectionCatalog = [
         "selector": "main > article:nth-of-type(1) > section:nth-of-type(1) > a:nth-of-type(1)",
         "kind": "link",
         "url": "articles/mokytojai/agne.html",
-        "label_lt": "AAgnėMontessori ir ankstyvasis ugdymas→",
+        "label_lt": "AgnėMontessori ir ankstyvasis ugdymasGimė ir augo Kaišiadoryse, po studijų Vilniuje 2012 m. su vyru atvyko į JAV. Dukrai 2018 m. pradėjus lankyti „Genį“, Agnė baigė Montessori 3–6 metų vaikų lavinimo programą.Skaityti visą biografiją →→",
         "group_lt": "Mūsų mokytojų komanda",
         "id": "f23aa978db53f",
         "en": "",
-        "label_en": "AAgnėMontessori ir ankstyvasis ugdymas→",
+        "label_en": "AgnėMontessori ir ankstyvasis ugdymasBorn and raised in Kaišiadorys, Agnė moved to the US with her husband in 2012 after studying in Vilnius. Her daughter joined Genys in 2018, and Agnė completed Montessori training for children ages 3–6.Read full biography →→",
         "group_en": "Mūsų mokytojų komanda",
         "alt_en": ""
       },
       {
-        "selector": "main > article:nth-of-type(1) > section:nth-of-type(1) > a:nth-of-type(1) > span:nth-of-type(1)",
-        "textIndex": 0,
-        "kind": "text",
-        "lt": "A",
+        "selector": "main > article:nth-of-type(1) > section:nth-of-type(1) > a:nth-of-type(1) > span:nth-of-type(1) > img:nth-of-type(1)",
+        "kind": "image",
+        "url": "assets/google-site/c2dc17af8920e2cd.jpg",
+        "alt_lt": "Agnė – mokytojos nuotrauka",
+        "label_lt": "Agnė – mokytojos nuotrauka",
         "group_lt": "Mūsų mokytojų komanda",
-        "label_lt": "A",
-        "id": "f60c5b9600fc0",
-        "en": "A",
-        "label_en": "A",
+        "id": "ffbc228c6d997",
+        "en": "",
+        "label_en": "Agnė – mokytojos nuotrauka",
         "group_en": "Mūsų mokytojų komanda",
-        "alt_en": ""
+        "alt_en": "Agnė – mokytojos nuotrauka"
       },
       {
         "selector": "main > article:nth-of-type(1) > section:nth-of-type(1) > a:nth-of-type(1) > span:nth-of-type(2) > b:nth-of-type(1)",
@@ -12238,6 +12342,32 @@ window.SectionCatalog = [
         "alt_en": ""
       },
       {
+        "selector": "main > article:nth-of-type(1) > section:nth-of-type(1) > a:nth-of-type(1) > span:nth-of-type(2) > p:nth-of-type(1)",
+        "textIndex": 0,
+        "kind": "text",
+        "lt": "Gimė ir augo Kaišiadoryse, po studijų Vilniuje 2012 m. su vyru atvyko į JAV. Dukrai 2018 m. pradėjus lankyti „Genį“, Agnė baigė Montessori 3–6 metų vaikų lavinimo programą.",
+        "group_lt": "Mūsų mokytojų komanda",
+        "label_lt": "Gimė ir augo Kaišiadoryse, po studijų Vilniuje 2012 m. su vyru atvyko į JAV. Dukrai 2018 m. pradėjus",
+        "id": "feb5a5aa30877",
+        "en": "Born and raised in Kaišiadorys, Agnė moved to the US with her husband in 2012 after studying in Vilnius. Her daughter joined Genys in 2018, and Agnė completed Montessori training for children ages 3–6.",
+        "label_en": "Born and raised in Kaišiadorys, Agnė moved to the US with her husband in 2012 after studying in Viln",
+        "group_en": "Mūsų mokytojų komanda",
+        "alt_en": ""
+      },
+      {
+        "selector": "main > article:nth-of-type(1) > section:nth-of-type(1) > a:nth-of-type(1) > span:nth-of-type(2) > span:nth-of-type(1)",
+        "textIndex": 0,
+        "kind": "text",
+        "lt": "Skaityti visą biografiją →",
+        "group_lt": "Mūsų mokytojų komanda",
+        "label_lt": "Skaityti visą biografiją →",
+        "id": "fb539faf92778",
+        "en": "Read full biography →",
+        "label_en": "Read full biography →",
+        "group_en": "Mūsų mokytojų komanda",
+        "alt_en": ""
+      },
+      {
         "selector": "main > article:nth-of-type(1) > section:nth-of-type(1) > a:nth-of-type(1) > i:nth-of-type(1)",
         "textIndex": 0,
         "kind": "text",
@@ -12254,26 +12384,26 @@ window.SectionCatalog = [
         "selector": "main > article:nth-of-type(1) > section:nth-of-type(1) > a:nth-of-type(2)",
         "kind": "link",
         "url": "articles/mokytojai/erika.html",
-        "label_lt": "EErikaLietuvių kalbos mokytoja→",
+        "label_lt": "ErikaLietuvių kalbos mokytojaUžaugo Vilkijoje netoli Kauno, 2001 m. atvyko į JAV. Prie „Genio“ mokytojų kolektyvo prisijungė 2019 m. ir džiaugiasi galėdama mokyti vaikus lietuvių kalbos bei supažindinti su kultūra ir tradicijomis.Skaityti visą biografiją →→",
         "group_lt": "Mūsų mokytojų komanda",
         "id": "f885bebe8d309",
         "en": "",
-        "label_en": "EErikaLietuvių kalbos mokytoja→",
+        "label_en": "ErikaLietuvių kalbos mokytojaErika grew up in Vilkija near Kaunas and moved to the US in 2001. She joined Genys in 2019 and is glad to teach Lithuanian and introduce children to Lithuanian culture and traditions.Read full biography →→",
         "group_en": "Mūsų mokytojų komanda",
         "alt_en": ""
       },
       {
-        "selector": "main > article:nth-of-type(1) > section:nth-of-type(1) > a:nth-of-type(2) > span:nth-of-type(1)",
-        "textIndex": 0,
-        "kind": "text",
-        "lt": "E",
+        "selector": "main > article:nth-of-type(1) > section:nth-of-type(1) > a:nth-of-type(2) > span:nth-of-type(1) > img:nth-of-type(1)",
+        "kind": "image",
+        "url": "assets/google-site/fdb08d299e39b977.jpg",
+        "alt_lt": "Erika – mokytojos nuotrauka",
+        "label_lt": "Erika – mokytojos nuotrauka",
         "group_lt": "Mūsų mokytojų komanda",
-        "label_lt": "E",
-        "id": "f92ecb0ea4bc4",
-        "en": "E",
-        "label_en": "E",
+        "id": "fb23ac2085126",
+        "en": "",
+        "label_en": "Erika – mokytojos nuotrauka",
         "group_en": "Mūsų mokytojų komanda",
-        "alt_en": ""
+        "alt_en": "Erika – mokytojos nuotrauka"
       },
       {
         "selector": "main > article:nth-of-type(1) > section:nth-of-type(1) > a:nth-of-type(2) > span:nth-of-type(2) > b:nth-of-type(1)",
@@ -12302,6 +12432,32 @@ window.SectionCatalog = [
         "alt_en": ""
       },
       {
+        "selector": "main > article:nth-of-type(1) > section:nth-of-type(1) > a:nth-of-type(2) > span:nth-of-type(2) > p:nth-of-type(1)",
+        "textIndex": 0,
+        "kind": "text",
+        "lt": "Užaugo Vilkijoje netoli Kauno, 2001 m. atvyko į JAV. Prie „Genio“ mokytojų kolektyvo prisijungė 2019 m. ir džiaugiasi galėdama mokyti vaikus lietuvių kalbos bei supažindinti su kultūra ir tradicijomis.",
+        "group_lt": "Mūsų mokytojų komanda",
+        "label_lt": "Užaugo Vilkijoje netoli Kauno, 2001 m. atvyko į JAV. Prie „Genio“ mokytojų kolektyvo prisijungė 2019",
+        "id": "fc33dc371f4b8",
+        "en": "Erika grew up in Vilkija near Kaunas and moved to the US in 2001. She joined Genys in 2019 and is glad to teach Lithuanian and introduce children to Lithuanian culture and traditions.",
+        "label_en": "Erika grew up in Vilkija near Kaunas and moved to the US in 2001. She joined Genys in 2019 and is gl",
+        "group_en": "Mūsų mokytojų komanda",
+        "alt_en": ""
+      },
+      {
+        "selector": "main > article:nth-of-type(1) > section:nth-of-type(1) > a:nth-of-type(2) > span:nth-of-type(2) > span:nth-of-type(1)",
+        "textIndex": 0,
+        "kind": "text",
+        "lt": "Skaityti visą biografiją →",
+        "group_lt": "Mūsų mokytojų komanda",
+        "label_lt": "Skaityti visą biografiją →",
+        "id": "ff45523e65475",
+        "en": "Read full biography →",
+        "label_en": "Read full biography →",
+        "group_en": "Mūsų mokytojų komanda",
+        "alt_en": ""
+      },
+      {
         "selector": "main > article:nth-of-type(1) > section:nth-of-type(1) > a:nth-of-type(2) > i:nth-of-type(1)",
         "textIndex": 0,
         "kind": "text",
@@ -12318,26 +12474,26 @@ window.SectionCatalog = [
         "selector": "main > article:nth-of-type(1) > section:nth-of-type(1) > a:nth-of-type(3)",
         "kind": "link",
         "url": "articles/mokytojai/aurelija.html",
-        "label_lt": "AAurelijaLietuvių kalbos mokytoja→",
+        "label_lt": "AurelijaLietuvių kalbos mokytojaGimė ir užaugo Vilniuje, 2013 m. su šeima atvyko į Ameriką, o tų pačių metų rugsėjį pradėjo dirbti „Genyje“. Jai svarbu būti lietuvių bendruomenės dalimi ir auginti lietuviškai kalbančią šeimą.Skaityti visą biografiją →→",
         "group_lt": "Mūsų mokytojų komanda",
         "id": "f6f11173880d9",
         "en": "",
-        "label_en": "AAurelijaLietuvių kalbos mokytoja→",
+        "label_en": "AurelijaLietuvių kalbos mokytojaBorn and raised in Vilnius, Aurelija moved to the US with her family in 2013 and began teaching at Genys that September. She values being part of the Lithuanian community and raising a Lithuanian-speaking family.Read full biography →→",
         "group_en": "Mūsų mokytojų komanda",
         "alt_en": ""
       },
       {
-        "selector": "main > article:nth-of-type(1) > section:nth-of-type(1) > a:nth-of-type(3) > span:nth-of-type(1)",
-        "textIndex": 0,
-        "kind": "text",
-        "lt": "A",
+        "selector": "main > article:nth-of-type(1) > section:nth-of-type(1) > a:nth-of-type(3) > span:nth-of-type(1) > img:nth-of-type(1)",
+        "kind": "image",
+        "url": "assets/google-site/9b1db75055d529e0.jpg",
+        "alt_lt": "Aurelija – mokytojos nuotrauka",
+        "label_lt": "Aurelija – mokytojos nuotrauka",
         "group_lt": "Mūsų mokytojų komanda",
-        "label_lt": "A",
-        "id": "f0940a6375e1d",
-        "en": "A",
-        "label_en": "A",
+        "id": "f877f0b7ec7a1",
+        "en": "",
+        "label_en": "Aurelija – mokytojos nuotrauka",
         "group_en": "Mūsų mokytojų komanda",
-        "alt_en": ""
+        "alt_en": "Aurelija – mokytojos nuotrauka"
       },
       {
         "selector": "main > article:nth-of-type(1) > section:nth-of-type(1) > a:nth-of-type(3) > span:nth-of-type(2) > b:nth-of-type(1)",
@@ -12366,6 +12522,32 @@ window.SectionCatalog = [
         "alt_en": ""
       },
       {
+        "selector": "main > article:nth-of-type(1) > section:nth-of-type(1) > a:nth-of-type(3) > span:nth-of-type(2) > p:nth-of-type(1)",
+        "textIndex": 0,
+        "kind": "text",
+        "lt": "Gimė ir užaugo Vilniuje, 2013 m. su šeima atvyko į Ameriką, o tų pačių metų rugsėjį pradėjo dirbti „Genyje“. Jai svarbu būti lietuvių bendruomenės dalimi ir auginti lietuviškai kalbančią šeimą.",
+        "group_lt": "Mūsų mokytojų komanda",
+        "label_lt": "Gimė ir užaugo Vilniuje, 2013 m. su šeima atvyko į Ameriką, o tų pačių metų rugsėjį pradėjo dirbti „",
+        "id": "fa8e6f72f9d5c",
+        "en": "Born and raised in Vilnius, Aurelija moved to the US with her family in 2013 and began teaching at Genys that September. She values being part of the Lithuanian community and raising a Lithuanian-speaking family.",
+        "label_en": "Born and raised in Vilnius, Aurelija moved to the US with her family in 2013 and began teaching at G",
+        "group_en": "Mūsų mokytojų komanda",
+        "alt_en": ""
+      },
+      {
+        "selector": "main > article:nth-of-type(1) > section:nth-of-type(1) > a:nth-of-type(3) > span:nth-of-type(2) > span:nth-of-type(1)",
+        "textIndex": 0,
+        "kind": "text",
+        "lt": "Skaityti visą biografiją →",
+        "group_lt": "Mūsų mokytojų komanda",
+        "label_lt": "Skaityti visą biografiją →",
+        "id": "f9340ff838eec",
+        "en": "Read full biography →",
+        "label_en": "Read full biography →",
+        "group_en": "Mūsų mokytojų komanda",
+        "alt_en": ""
+      },
+      {
         "selector": "main > article:nth-of-type(1) > section:nth-of-type(1) > a:nth-of-type(3) > i:nth-of-type(1)",
         "textIndex": 0,
         "kind": "text",
@@ -12382,26 +12564,26 @@ window.SectionCatalog = [
         "selector": "main > article:nth-of-type(1) > section:nth-of-type(1) > a:nth-of-type(4)",
         "kind": "link",
         "url": "articles/mokytojai/juste.html",
-        "label_lt": "JJustėLietuvių kalbos mokytoja→",
+        "label_lt": "JustėLietuvių kalbos mokytojaGimė ir užaugo Elektrėnuose, į Ameriką atvyko 2012 m. 2019 m., ieškodama būdų puoselėti lietuvybę keturmečiui sūnui, Justė atrado „Genį“ ir sau.Skaityti visą biografiją →→",
         "group_lt": "Mūsų mokytojų komanda",
         "id": "fb497dc8bdaa5",
         "en": "",
-        "label_en": "JJustėLietuvių kalbos mokytoja→",
+        "label_en": "JustėLietuvių kalbos mokytojaJustė grew up in Elektrėnai and moved to the US in 2012. In 2019, while seeking ways to nurture Lithuanian heritage for her four-year-old son, she found Genys and joined too.Read full biography →→",
         "group_en": "Mūsų mokytojų komanda",
         "alt_en": ""
       },
       {
-        "selector": "main > article:nth-of-type(1) > section:nth-of-type(1) > a:nth-of-type(4) > span:nth-of-type(1)",
-        "textIndex": 0,
-        "kind": "text",
-        "lt": "J",
+        "selector": "main > article:nth-of-type(1) > section:nth-of-type(1) > a:nth-of-type(4) > span:nth-of-type(1) > img:nth-of-type(1)",
+        "kind": "image",
+        "url": "assets/google-site/a63ff9aa8dd68f36.jpg",
+        "alt_lt": "Justė – mokytojos nuotrauka",
+        "label_lt": "Justė – mokytojos nuotrauka",
         "group_lt": "Mūsų mokytojų komanda",
-        "label_lt": "J",
-        "id": "f8e3bdb83409b",
-        "en": "J",
-        "label_en": "J",
+        "id": "f691e62582c9c",
+        "en": "",
+        "label_en": "Justė – mokytojos nuotrauka",
         "group_en": "Mūsų mokytojų komanda",
-        "alt_en": ""
+        "alt_en": "Justė – mokytojos nuotrauka"
       },
       {
         "selector": "main > article:nth-of-type(1) > section:nth-of-type(1) > a:nth-of-type(4) > span:nth-of-type(2) > b:nth-of-type(1)",
@@ -12430,6 +12612,32 @@ window.SectionCatalog = [
         "alt_en": ""
       },
       {
+        "selector": "main > article:nth-of-type(1) > section:nth-of-type(1) > a:nth-of-type(4) > span:nth-of-type(2) > p:nth-of-type(1)",
+        "textIndex": 0,
+        "kind": "text",
+        "lt": "Gimė ir užaugo Elektrėnuose, į Ameriką atvyko 2012 m. 2019 m., ieškodama būdų puoselėti lietuvybę keturmečiui sūnui, Justė atrado „Genį“ ir sau.",
+        "group_lt": "Mūsų mokytojų komanda",
+        "label_lt": "Gimė ir užaugo Elektrėnuose, į Ameriką atvyko 2012 m. 2019 m., ieškodama būdų puoselėti lietuvybę ke",
+        "id": "f29f9f603a651",
+        "en": "Justė grew up in Elektrėnai and moved to the US in 2012. In 2019, while seeking ways to nurture Lithuanian heritage for her four-year-old son, she found Genys and joined too.",
+        "label_en": "Justė grew up in Elektrėnai and moved to the US in 2012. In 2019, while seeking ways to nurture Lith",
+        "group_en": "Mūsų mokytojų komanda",
+        "alt_en": ""
+      },
+      {
+        "selector": "main > article:nth-of-type(1) > section:nth-of-type(1) > a:nth-of-type(4) > span:nth-of-type(2) > span:nth-of-type(1)",
+        "textIndex": 0,
+        "kind": "text",
+        "lt": "Skaityti visą biografiją →",
+        "group_lt": "Mūsų mokytojų komanda",
+        "label_lt": "Skaityti visą biografiją →",
+        "id": "fdb59dd6a2b0d",
+        "en": "Read full biography →",
+        "label_en": "Read full biography →",
+        "group_en": "Mūsų mokytojų komanda",
+        "alt_en": ""
+      },
+      {
         "selector": "main > article:nth-of-type(1) > section:nth-of-type(1) > a:nth-of-type(4) > i:nth-of-type(1)",
         "textIndex": 0,
         "kind": "text",
@@ -12446,26 +12654,26 @@ window.SectionCatalog = [
         "selector": "main > article:nth-of-type(1) > section:nth-of-type(1) > a:nth-of-type(5)",
         "kind": "link",
         "url": "articles/mokytojai/rita.html",
-        "label_lt": "RRita RosickerLietuvių kalbos mokytoja→",
+        "label_lt": "Rita RosickerLietuvių kalbos mokytoja2005 m. iš meilės atvyko į JAV. Prieš ištekėdama pasižadėjo vaikams duoti lietuviškus vardus ir su jais kalbėti lietuviškai. Augindama keturis vaikus suprato, kad nori dalintis patirtimi su „Genio“ mokytojais.Skaityti visą biografiją →→",
         "group_lt": "Mūsų mokytojų komanda",
         "id": "f6f1fe2e79e9b",
         "en": "",
-        "label_en": "RRita RosickerLietuvių kalbos mokytoja→",
+        "label_en": "Rita RosickerLietuvių kalbos mokytojaRita came to the US in 2005 for love. Before marrying, she promised to give her children Lithuanian names and speak Lithuanian with them. Raising four children inspired her to keep growing and share experiences with Genys teachers.Read full biography →→",
         "group_en": "Mūsų mokytojų komanda",
         "alt_en": ""
       },
       {
-        "selector": "main > article:nth-of-type(1) > section:nth-of-type(1) > a:nth-of-type(5) > span:nth-of-type(1)",
-        "textIndex": 0,
-        "kind": "text",
-        "lt": "R",
+        "selector": "main > article:nth-of-type(1) > section:nth-of-type(1) > a:nth-of-type(5) > span:nth-of-type(1) > img:nth-of-type(1)",
+        "kind": "image",
+        "url": "assets/google-site/28b711057adf5501.png",
+        "alt_lt": "Rita Rosicker – mokytojos nuotrauka",
+        "label_lt": "Rita Rosicker – mokytojos nuotrauka",
         "group_lt": "Mūsų mokytojų komanda",
-        "label_lt": "R",
-        "id": "f890d814ad319",
-        "en": "R",
-        "label_en": "R",
+        "id": "fe36993152e48",
+        "en": "",
+        "label_en": "Rita Rosicker – mokytojos nuotrauka",
         "group_en": "Mūsų mokytojų komanda",
-        "alt_en": ""
+        "alt_en": "Rita Rosicker – mokytojos nuotrauka"
       },
       {
         "selector": "main > article:nth-of-type(1) > section:nth-of-type(1) > a:nth-of-type(5) > span:nth-of-type(2) > b:nth-of-type(1)",
@@ -12494,6 +12702,32 @@ window.SectionCatalog = [
         "alt_en": ""
       },
       {
+        "selector": "main > article:nth-of-type(1) > section:nth-of-type(1) > a:nth-of-type(5) > span:nth-of-type(2) > p:nth-of-type(1)",
+        "textIndex": 0,
+        "kind": "text",
+        "lt": "2005 m. iš meilės atvyko į JAV. Prieš ištekėdama pasižadėjo vaikams duoti lietuviškus vardus ir su jais kalbėti lietuviškai. Augindama keturis vaikus suprato, kad nori dalintis patirtimi su „Genio“ mokytojais.",
+        "group_lt": "Mūsų mokytojų komanda",
+        "label_lt": "2005 m. iš meilės atvyko į JAV. Prieš ištekėdama pasižadėjo vaikams duoti lietuviškus vardus ir su j",
+        "id": "fb405341c234b",
+        "en": "Rita came to the US in 2005 for love. Before marrying, she promised to give her children Lithuanian names and speak Lithuanian with them. Raising four children inspired her to keep growing and share experiences with Genys teachers.",
+        "label_en": "Rita came to the US in 2005 for love. Before marrying, she promised to give her children Lithuanian ",
+        "group_en": "Mūsų mokytojų komanda",
+        "alt_en": ""
+      },
+      {
+        "selector": "main > article:nth-of-type(1) > section:nth-of-type(1) > a:nth-of-type(5) > span:nth-of-type(2) > span:nth-of-type(1)",
+        "textIndex": 0,
+        "kind": "text",
+        "lt": "Skaityti visą biografiją →",
+        "group_lt": "Mūsų mokytojų komanda",
+        "label_lt": "Skaityti visą biografiją →",
+        "id": "f37ccd9988738",
+        "en": "Read full biography →",
+        "label_en": "Read full biography →",
+        "group_en": "Mūsų mokytojų komanda",
+        "alt_en": ""
+      },
+      {
         "selector": "main > article:nth-of-type(1) > section:nth-of-type(1) > a:nth-of-type(5) > i:nth-of-type(1)",
         "textIndex": 0,
         "kind": "text",
@@ -12510,26 +12744,26 @@ window.SectionCatalog = [
         "selector": "main > article:nth-of-type(1) > section:nth-of-type(1) > a:nth-of-type(6)",
         "kind": "link",
         "url": "articles/mokytojai/aiste.html",
-        "label_lt": "AAistėLietuvių kalbos mokytoja→",
+        "label_lt": "AistėLietuvių kalbos mokytojaGimė ir augo Kaune, 2000 m. atvyko į JAV, studijavo UC Berkeley ir įsikūrė Šiaurinėje Kalifornijoje. Prie „Genio“ prisijungė dukrai suėjus ketveriems; mokydama semiasi lietuviškumo, energijos ir idėjų.Skaityti visą biografiją →→",
         "group_lt": "Mūsų mokytojų komanda",
         "id": "ff4ef21801635",
         "en": "",
-        "label_en": "AAistėLietuvių kalbos mokytoja→",
+        "label_en": "AistėLietuvių kalbos mokytojaAistė was born and raised in Kaunas, came to the US in 2000, and settled in Northern California while studying at UC Berkeley. She joined Genys when her daughter turned four.Read full biography →→",
         "group_en": "Mūsų mokytojų komanda",
         "alt_en": ""
       },
       {
-        "selector": "main > article:nth-of-type(1) > section:nth-of-type(1) > a:nth-of-type(6) > span:nth-of-type(1)",
-        "textIndex": 0,
-        "kind": "text",
-        "lt": "A",
+        "selector": "main > article:nth-of-type(1) > section:nth-of-type(1) > a:nth-of-type(6) > span:nth-of-type(1) > img:nth-of-type(1)",
+        "kind": "image",
+        "url": "assets/google-site/6e71b2dec5235d0b.png",
+        "alt_lt": "Aistė – mokytojos nuotrauka",
+        "label_lt": "Aistė – mokytojos nuotrauka",
         "group_lt": "Mūsų mokytojų komanda",
-        "label_lt": "A",
-        "id": "fdffa8aa00f25",
-        "en": "A",
-        "label_en": "A",
+        "id": "f099dd0e3bac5",
+        "en": "",
+        "label_en": "Aistė – mokytojos nuotrauka",
         "group_en": "Mūsų mokytojų komanda",
-        "alt_en": ""
+        "alt_en": "Aistė – mokytojos nuotrauka"
       },
       {
         "selector": "main > article:nth-of-type(1) > section:nth-of-type(1) > a:nth-of-type(6) > span:nth-of-type(2) > b:nth-of-type(1)",
@@ -12558,6 +12792,32 @@ window.SectionCatalog = [
         "alt_en": ""
       },
       {
+        "selector": "main > article:nth-of-type(1) > section:nth-of-type(1) > a:nth-of-type(6) > span:nth-of-type(2) > p:nth-of-type(1)",
+        "textIndex": 0,
+        "kind": "text",
+        "lt": "Gimė ir augo Kaune, 2000 m. atvyko į JAV, studijavo UC Berkeley ir įsikūrė Šiaurinėje Kalifornijoje. Prie „Genio“ prisijungė dukrai suėjus ketveriems; mokydama semiasi lietuviškumo, energijos ir idėjų.",
+        "group_lt": "Mūsų mokytojų komanda",
+        "label_lt": "Gimė ir augo Kaune, 2000 m. atvyko į JAV, studijavo UC Berkeley ir įsikūrė Šiaurinėje Kalifornijoje.",
+        "id": "fa26199dc861e",
+        "en": "Aistė was born and raised in Kaunas, came to the US in 2000, and settled in Northern California while studying at UC Berkeley. She joined Genys when her daughter turned four.",
+        "label_en": "Aistė was born and raised in Kaunas, came to the US in 2000, and settled in Northern California whil",
+        "group_en": "Mūsų mokytojų komanda",
+        "alt_en": ""
+      },
+      {
+        "selector": "main > article:nth-of-type(1) > section:nth-of-type(1) > a:nth-of-type(6) > span:nth-of-type(2) > span:nth-of-type(1)",
+        "textIndex": 0,
+        "kind": "text",
+        "lt": "Skaityti visą biografiją →",
+        "group_lt": "Mūsų mokytojų komanda",
+        "label_lt": "Skaityti visą biografiją →",
+        "id": "f34010f239cba",
+        "en": "Read full biography →",
+        "label_en": "Read full biography →",
+        "group_en": "Mūsų mokytojų komanda",
+        "alt_en": ""
+      },
+      {
         "selector": "main > article:nth-of-type(1) > section:nth-of-type(1) > a:nth-of-type(6) > i:nth-of-type(1)",
         "textIndex": 0,
         "kind": "text",
@@ -12574,26 +12834,26 @@ window.SectionCatalog = [
         "selector": "main > article:nth-of-type(1) > section:nth-of-type(1) > a:nth-of-type(7)",
         "kind": "link",
         "url": "articles/mokytojai/indre.html",
-        "label_lt": "IIndrėNuotolinis mokymas→",
+        "label_lt": "IndrėNuotolinis mokymasGimė ir užaugo Molėtuose, nuo 2012 m. gyvena Vilniuje. 2019 m. po magistro studijų atvyko į San Franciską atlikti praktikos „Genyje“; nuo 2020 m. rudens nuotoliniu būdu bendrauja su 7–8 klasių mokiniais.Skaityti visą biografiją →→",
         "group_lt": "Mūsų mokytojų komanda",
         "id": "f6d71a9d51c43",
         "en": "",
-        "label_en": "IIndrėNuotolinis mokymas→",
+        "label_en": "IndrėNuotolinis mokymasIndrė was born and raised in Molėtai and has lived in Vilnius since 2012. After her master’s studies, she came to San Francisco for a Genys internship in 2019 and has taught grades 7–8 remotely since fall 2020.Read full biography →→",
         "group_en": "Mūsų mokytojų komanda",
         "alt_en": ""
       },
       {
-        "selector": "main > article:nth-of-type(1) > section:nth-of-type(1) > a:nth-of-type(7) > span:nth-of-type(1)",
-        "textIndex": 0,
-        "kind": "text",
-        "lt": "I",
+        "selector": "main > article:nth-of-type(1) > section:nth-of-type(1) > a:nth-of-type(7) > span:nth-of-type(1) > img:nth-of-type(1)",
+        "kind": "image",
+        "url": "assets/google-site/3e0114e8e8c2897b.jpg",
+        "alt_lt": "Indrė – mokytojos nuotrauka",
+        "label_lt": "Indrė – mokytojos nuotrauka",
         "group_lt": "Mūsų mokytojų komanda",
-        "label_lt": "I",
-        "id": "fbbd85fd5c66d",
-        "en": "I",
-        "label_en": "I",
+        "id": "fc65fbdf542a3",
+        "en": "",
+        "label_en": "Indrė – mokytojos nuotrauka",
         "group_en": "Mūsų mokytojų komanda",
-        "alt_en": ""
+        "alt_en": "Indrė – mokytojos nuotrauka"
       },
       {
         "selector": "main > article:nth-of-type(1) > section:nth-of-type(1) > a:nth-of-type(7) > span:nth-of-type(2) > b:nth-of-type(1)",
@@ -12622,6 +12882,32 @@ window.SectionCatalog = [
         "alt_en": ""
       },
       {
+        "selector": "main > article:nth-of-type(1) > section:nth-of-type(1) > a:nth-of-type(7) > span:nth-of-type(2) > p:nth-of-type(1)",
+        "textIndex": 0,
+        "kind": "text",
+        "lt": "Gimė ir užaugo Molėtuose, nuo 2012 m. gyvena Vilniuje. 2019 m. po magistro studijų atvyko į San Franciską atlikti praktikos „Genyje“; nuo 2020 m. rudens nuotoliniu būdu bendrauja su 7–8 klasių mokiniais.",
+        "group_lt": "Mūsų mokytojų komanda",
+        "label_lt": "Gimė ir užaugo Molėtuose, nuo 2012 m. gyvena Vilniuje. 2019 m. po magistro studijų atvyko į San Fran",
+        "id": "f6f81687d0cc6",
+        "en": "Indrė was born and raised in Molėtai and has lived in Vilnius since 2012. After her master’s studies, she came to San Francisco for a Genys internship in 2019 and has taught grades 7–8 remotely since fall 2020.",
+        "label_en": "Indrė was born and raised in Molėtai and has lived in Vilnius since 2012. After her master’s studies",
+        "group_en": "Mūsų mokytojų komanda",
+        "alt_en": ""
+      },
+      {
+        "selector": "main > article:nth-of-type(1) > section:nth-of-type(1) > a:nth-of-type(7) > span:nth-of-type(2) > span:nth-of-type(1)",
+        "textIndex": 0,
+        "kind": "text",
+        "lt": "Skaityti visą biografiją →",
+        "group_lt": "Mūsų mokytojų komanda",
+        "label_lt": "Skaityti visą biografiją →",
+        "id": "f61c3a8557e66",
+        "en": "Read full biography →",
+        "label_en": "Read full biography →",
+        "group_en": "Mūsų mokytojų komanda",
+        "alt_en": ""
+      },
+      {
         "selector": "main > article:nth-of-type(1) > section:nth-of-type(1) > a:nth-of-type(7) > i:nth-of-type(1)",
         "textIndex": 0,
         "kind": "text",
@@ -12638,26 +12924,26 @@ window.SectionCatalog = [
         "selector": "main > article:nth-of-type(1) > section:nth-of-type(1) > a:nth-of-type(8)",
         "kind": "link",
         "url": "articles/mokytojai/vanesa.html",
-        "label_lt": "VVanesaLietuviški šokiai ir dainavimas→",
+        "label_lt": "VanesaLietuviški šokiai ir dainavimasGimė Los Andžele aplinkoje, kur tėvai ją vedė į lituanistinę mokyklą, skautus ir lietuviškus renginius. 2009 m. grįžusi į Kaliforniją, Vanesa prisijungė prie „Genio“, kuriame pradžioje mokėsi septyni mokiniai.Skaityti visą biografiją →→",
         "group_lt": "Mūsų mokytojų komanda",
         "id": "f9f3a56ecce3c",
         "en": "",
-        "label_en": "VVanesaLietuviški šokiai ir dainavimas→",
+        "label_en": "VanesaLietuviški šokiai ir dainavimasVanesa was born in Los Angeles, where her parents took her to Lithuanian school, scouts, and community events. After returning to California in 2009, she joined Genys, which then had seven students.Read full biography →→",
         "group_en": "Mūsų mokytojų komanda",
         "alt_en": ""
       },
       {
-        "selector": "main > article:nth-of-type(1) > section:nth-of-type(1) > a:nth-of-type(8) > span:nth-of-type(1)",
-        "textIndex": 0,
-        "kind": "text",
-        "lt": "V",
+        "selector": "main > article:nth-of-type(1) > section:nth-of-type(1) > a:nth-of-type(8) > span:nth-of-type(1) > img:nth-of-type(1)",
+        "kind": "image",
+        "url": "assets/google-site/6ac035efa59c9763.jpg",
+        "alt_lt": "Vanesa – mokytojos nuotrauka",
+        "label_lt": "Vanesa – mokytojos nuotrauka",
         "group_lt": "Mūsų mokytojų komanda",
-        "label_lt": "V",
-        "id": "faee7a63357ff",
-        "en": "V",
-        "label_en": "V",
+        "id": "f31402704d17f",
+        "en": "",
+        "label_en": "Vanesa – mokytojos nuotrauka",
         "group_en": "Mūsų mokytojų komanda",
-        "alt_en": ""
+        "alt_en": "Vanesa – mokytojos nuotrauka"
       },
       {
         "selector": "main > article:nth-of-type(1) > section:nth-of-type(1) > a:nth-of-type(8) > span:nth-of-type(2) > b:nth-of-type(1)",
@@ -12682,6 +12968,32 @@ window.SectionCatalog = [
         "id": "ffbf4803490d6",
         "en": "Lietuviški šokiai ir dainavimas",
         "label_en": "Lietuviški šokiai ir dainavimas",
+        "group_en": "Mūsų mokytojų komanda",
+        "alt_en": ""
+      },
+      {
+        "selector": "main > article:nth-of-type(1) > section:nth-of-type(1) > a:nth-of-type(8) > span:nth-of-type(2) > p:nth-of-type(1)",
+        "textIndex": 0,
+        "kind": "text",
+        "lt": "Gimė Los Andžele aplinkoje, kur tėvai ją vedė į lituanistinę mokyklą, skautus ir lietuviškus renginius. 2009 m. grįžusi į Kaliforniją, Vanesa prisijungė prie „Genio“, kuriame pradžioje mokėsi septyni mokiniai.",
+        "group_lt": "Mūsų mokytojų komanda",
+        "label_lt": "Gimė Los Andžele aplinkoje, kur tėvai ją vedė į lituanistinę mokyklą, skautus ir lietuviškus rengini",
+        "id": "f6e9e0ca2ac4b",
+        "en": "Vanesa was born in Los Angeles, where her parents took her to Lithuanian school, scouts, and community events. After returning to California in 2009, she joined Genys, which then had seven students.",
+        "label_en": "Vanesa was born in Los Angeles, where her parents took her to Lithuanian school, scouts, and communi",
+        "group_en": "Mūsų mokytojų komanda",
+        "alt_en": ""
+      },
+      {
+        "selector": "main > article:nth-of-type(1) > section:nth-of-type(1) > a:nth-of-type(8) > span:nth-of-type(2) > span:nth-of-type(1)",
+        "textIndex": 0,
+        "kind": "text",
+        "lt": "Skaityti visą biografiją →",
+        "group_lt": "Mūsų mokytojų komanda",
+        "label_lt": "Skaityti visą biografiją →",
+        "id": "fd15697b913a6",
+        "en": "Read full biography →",
+        "label_en": "Read full biography →",
         "group_en": "Mūsų mokytojų komanda",
         "alt_en": ""
       },
@@ -12712,32 +13024,6 @@ window.SectionCatalog = [
         "alt_en": ""
       },
       {
-        "selector": "main > article:nth-of-type(1) > section:nth-of-type(2) > figure:nth-of-type(1) > img:nth-of-type(1)",
-        "kind": "image",
-        "url": "assets/google-site/c2dc17af8920e2cd.jpg",
-        "alt_lt": "mokytojos – mokyklos archyvo vaizdas",
-        "label_lt": "mokytojos – mokyklos archyvo vaizdas",
-        "group_lt": "Mokytojų ir mokinių akimirkos",
-        "id": "ffbc228c6d997",
-        "en": "",
-        "label_en": "mokytojos – mokyklos archyvo vaizdas",
-        "group_en": "Mokytojų ir mokinių akimirkos",
-        "alt_en": "mokytojos – mokyklos archyvo vaizdas"
-      },
-      {
-        "selector": "main > article:nth-of-type(1) > section:nth-of-type(2) > figure:nth-of-type(2) > img:nth-of-type(1)",
-        "kind": "image",
-        "url": "assets/google-site/fdb08d299e39b977.jpg",
-        "alt_lt": "mokytojos – mokyklos archyvo vaizdas",
-        "label_lt": "mokytojos – mokyklos archyvo vaizdas",
-        "group_lt": "Mokytojų ir mokinių akimirkos",
-        "id": "fb23ac2085126",
-        "en": "",
-        "label_en": "mokytojos – mokyklos archyvo vaizdas",
-        "group_en": "Mokytojų ir mokinių akimirkos",
-        "alt_en": "mokytojos – mokyklos archyvo vaizdas"
-      },
-      {
         "selector": "main > article:nth-of-type(1) > section:nth-of-type(2) > figure:nth-of-type(3) > img:nth-of-type(1)",
         "kind": "image",
         "url": "assets/google-site/2f999f4e33ab0f80.jpg",
@@ -12751,71 +13037,6 @@ window.SectionCatalog = [
         "alt_en": "mokytojos – mokyklos archyvo vaizdas"
       },
       {
-        "selector": "main > article:nth-of-type(1) > section:nth-of-type(2) > figure:nth-of-type(4) > img:nth-of-type(1)",
-        "kind": "image",
-        "url": "assets/google-site/9b1db75055d529e0.jpg",
-        "alt_lt": "mokytojos – mokyklos archyvo vaizdas",
-        "label_lt": "mokytojos – mokyklos archyvo vaizdas",
-        "group_lt": "Mokytojų ir mokinių akimirkos",
-        "id": "f877f0b7ec7a1",
-        "en": "",
-        "label_en": "mokytojos – mokyklos archyvo vaizdas",
-        "group_en": "Mokytojų ir mokinių akimirkos",
-        "alt_en": "mokytojos – mokyklos archyvo vaizdas"
-      },
-      {
-        "selector": "main > article:nth-of-type(1) > section:nth-of-type(2) > figure:nth-of-type(5) > img:nth-of-type(1)",
-        "kind": "image",
-        "url": "assets/google-site/a63ff9aa8dd68f36.jpg",
-        "alt_lt": "mokytojos – mokyklos archyvo vaizdas",
-        "label_lt": "mokytojos – mokyklos archyvo vaizdas",
-        "group_lt": "Mokytojų ir mokinių akimirkos",
-        "id": "f691e62582c9c",
-        "en": "",
-        "label_en": "mokytojos – mokyklos archyvo vaizdas",
-        "group_en": "Mokytojų ir mokinių akimirkos",
-        "alt_en": "mokytojos – mokyklos archyvo vaizdas"
-      },
-      {
-        "selector": "main > article:nth-of-type(1) > section:nth-of-type(2) > figure:nth-of-type(6) > img:nth-of-type(1)",
-        "kind": "image",
-        "url": "assets/google-site/28b711057adf5501.png",
-        "alt_lt": "mokytojos – mokyklos archyvo vaizdas",
-        "label_lt": "mokytojos – mokyklos archyvo vaizdas",
-        "group_lt": "Mokytojų ir mokinių akimirkos",
-        "id": "fe36993152e48",
-        "en": "",
-        "label_en": "mokytojos – mokyklos archyvo vaizdas",
-        "group_en": "Mokytojų ir mokinių akimirkos",
-        "alt_en": "mokytojos – mokyklos archyvo vaizdas"
-      },
-      {
-        "selector": "main > article:nth-of-type(1) > section:nth-of-type(2) > figure:nth-of-type(7) > img:nth-of-type(1)",
-        "kind": "image",
-        "url": "assets/google-site/6e71b2dec5235d0b.png",
-        "alt_lt": "mokytojos – mokyklos archyvo vaizdas",
-        "label_lt": "mokytojos – mokyklos archyvo vaizdas",
-        "group_lt": "Mokytojų ir mokinių akimirkos",
-        "id": "f099dd0e3bac5",
-        "en": "",
-        "label_en": "mokytojos – mokyklos archyvo vaizdas",
-        "group_en": "Mokytojų ir mokinių akimirkos",
-        "alt_en": "mokytojos – mokyklos archyvo vaizdas"
-      },
-      {
-        "selector": "main > article:nth-of-type(1) > section:nth-of-type(2) > figure:nth-of-type(8) > img:nth-of-type(1)",
-        "kind": "image",
-        "url": "assets/google-site/3e0114e8e8c2897b.jpg",
-        "alt_lt": "mokytojos – mokyklos archyvo vaizdas",
-        "label_lt": "mokytojos – mokyklos archyvo vaizdas",
-        "group_lt": "Mokytojų ir mokinių akimirkos",
-        "id": "fc65fbdf542a3",
-        "en": "",
-        "label_en": "mokytojos – mokyklos archyvo vaizdas",
-        "group_en": "Mokytojų ir mokinių akimirkos",
-        "alt_en": "mokytojos – mokyklos archyvo vaizdas"
-      },
-      {
         "selector": "main > article:nth-of-type(1) > section:nth-of-type(2) > figure:nth-of-type(9) > img:nth-of-type(1)",
         "kind": "image",
         "url": "assets/google-site/9bec61c75dfc632e.jpg",
@@ -12823,19 +13044,6 @@ window.SectionCatalog = [
         "label_lt": "mokytojos – mokyklos archyvo vaizdas",
         "group_lt": "Mokytojų ir mokinių akimirkos",
         "id": "f7135e8a9d644",
-        "en": "",
-        "label_en": "mokytojos – mokyklos archyvo vaizdas",
-        "group_en": "Mokytojų ir mokinių akimirkos",
-        "alt_en": "mokytojos – mokyklos archyvo vaizdas"
-      },
-      {
-        "selector": "main > article:nth-of-type(1) > section:nth-of-type(2) > figure:nth-of-type(10) > img:nth-of-type(1)",
-        "kind": "image",
-        "url": "assets/google-site/6ac035efa59c9763.jpg",
-        "alt_lt": "mokytojos – mokyklos archyvo vaizdas",
-        "label_lt": "mokytojos – mokyklos archyvo vaizdas",
-        "group_lt": "Mokytojų ir mokinių akimirkos",
-        "id": "f31402704d17f",
         "en": "",
         "label_en": "mokytojos – mokyklos archyvo vaizdas",
         "group_en": "Mokytojų ir mokinių akimirkos",
@@ -23388,108 +23596,77 @@ window.SectionCatalog = [
         "alt_en": ""
       },
       {
-        "selector": "main > article:nth-of-type(1) > section:nth-of-type(1) > table:nth-of-type(1) > thead:nth-of-type(1) > tr:nth-of-type(1) > th:nth-of-type(1)",
-        "textIndex": 0,
-        "kind": "text",
-        "lt": "Laikas",
-        "group_lt": "Mokyklos dienos planas",
-        "label_lt": "Laikas",
-        "id": "f06fcc6d16f25",
-        "en": "Laikas",
-        "label_en": "Laikas",
-        "group_en": "Mokyklos dienos planas",
-        "alt_en": ""
-      },
-      {
-        "selector": "main > article:nth-of-type(1) > section:nth-of-type(1) > table:nth-of-type(1) > thead:nth-of-type(1) > tr:nth-of-type(1) > th:nth-of-type(2)",
-        "textIndex": 0,
-        "kind": "text",
-        "lt": "Veikla",
-        "group_lt": "Mokyklos dienos planas",
-        "label_lt": "Veikla",
-        "id": "f830e7e0c70f2",
-        "en": "Veikla",
-        "label_en": "Veikla",
-        "group_en": "Mokyklos dienos planas",
-        "alt_en": ""
-      },
-      {
-        "selector": "main > article:nth-of-type(1) > section:nth-of-type(1) > table:nth-of-type(1) > tbody:nth-of-type(1) > tr:nth-of-type(1) > td:nth-of-type(1)",
-        "textIndex": 0,
-        "kind": "text",
+        "selector": "main > article:nth-of-type(1) > section:nth-of-type(1) > table:nth-of-type(1)",
+        "kind": "table",
         "lt": "Rugsėjo 6 d. · 9:30",
-        "group_lt": "Mokyklos dienos planas",
         "label_lt": "Rugsėjo 6 d. · 9:30",
-        "id": "f8c9995bbd5b5",
+        "group_lt": "Rugsėjo 6 d. · 9:30",
+        "headers": [
+          {
+            "lt": "Laikas",
+            "en": "Laikas"
+          },
+          {
+            "lt": "Veikla",
+            "en": "Veikla"
+          }
+        ],
+        "rows": [
+          [
+            {
+              "lt": "Rugsėjo 6 d. · 9:30",
+              "en": "Rugsėjo 6 d. · 9:30"
+            },
+            {
+              "lt": "Mokslo metų pradžios šventė",
+              "en": "Mokslo metų pradžios šventė"
+            }
+          ],
+          [
+            {
+              "lt": "10:00–13:30",
+              "en": "10:00–13:30"
+            },
+            {
+              "lt": "Pamokos",
+              "en": "Pamokos"
+            }
+          ],
+          [
+            {
+              "lt": "10:00–11:30",
+              "en": "10:00–11:30"
+            },
+            {
+              "lt": "Privalomas tėvų susirinkimas pirmąją mokslo metų dieną",
+              "en": "Privalomas tėvų susirinkimas pirmąją mokslo metų dieną"
+            }
+          ]
+        ],
+        "id": "f7fd042d33a77",
         "en": "Rugsėjo 6 d. · 9:30",
         "label_en": "Rugsėjo 6 d. · 9:30",
-        "group_en": "Mokyklos dienos planas",
-        "alt_en": ""
-      },
-      {
-        "selector": "main > article:nth-of-type(1) > section:nth-of-type(1) > table:nth-of-type(1) > tbody:nth-of-type(1) > tr:nth-of-type(1) > td:nth-of-type(2)",
-        "textIndex": 0,
-        "kind": "text",
-        "lt": "Mokslo metų pradžios šventė",
-        "group_lt": "Mokyklos dienos planas",
-        "label_lt": "Mokslo metų pradžios šventė",
-        "id": "f114034052ce7",
-        "en": "Mokslo metų pradžios šventė",
-        "label_en": "Mokslo metų pradžios šventė",
-        "group_en": "Mokyklos dienos planas",
-        "alt_en": ""
-      },
-      {
-        "selector": "main > article:nth-of-type(1) > section:nth-of-type(1) > table:nth-of-type(1) > tbody:nth-of-type(1) > tr:nth-of-type(2) > td:nth-of-type(1)",
-        "textIndex": 0,
-        "kind": "text",
-        "lt": "10:00–13:30",
-        "group_lt": "Mokyklos dienos planas",
-        "label_lt": "10:00–13:30",
-        "id": "fe2e0eea300b4",
-        "en": "10:00–13:30",
-        "label_en": "10:00–13:30",
-        "group_en": "Mokyklos dienos planas",
-        "alt_en": ""
-      },
-      {
-        "selector": "main > article:nth-of-type(1) > section:nth-of-type(1) > table:nth-of-type(1) > tbody:nth-of-type(1) > tr:nth-of-type(2) > td:nth-of-type(2)",
-        "textIndex": 0,
-        "kind": "text",
-        "lt": "Pamokos",
-        "group_lt": "Mokyklos dienos planas",
-        "label_lt": "Pamokos",
-        "id": "fd17be0f81df9",
-        "en": "Pamokos",
-        "label_en": "Pamokos",
-        "group_en": "Mokyklos dienos planas",
-        "alt_en": ""
-      },
-      {
-        "selector": "main > article:nth-of-type(1) > section:nth-of-type(1) > table:nth-of-type(1) > tbody:nth-of-type(1) > tr:nth-of-type(3) > td:nth-of-type(1)",
-        "textIndex": 0,
-        "kind": "text",
-        "lt": "10:00–11:30",
-        "group_lt": "Mokyklos dienos planas",
-        "label_lt": "10:00–11:30",
-        "id": "f07af4cd328fe",
-        "en": "10:00–11:30",
-        "label_en": "10:00–11:30",
-        "group_en": "Mokyklos dienos planas",
-        "alt_en": ""
-      },
-      {
-        "selector": "main > article:nth-of-type(1) > section:nth-of-type(1) > table:nth-of-type(1) > tbody:nth-of-type(1) > tr:nth-of-type(3) > td:nth-of-type(2)",
-        "textIndex": 0,
-        "kind": "text",
-        "lt": "Privalomas tėvų susirinkimas pirmąją mokslo metų dieną",
-        "group_lt": "Mokyklos dienos planas",
-        "label_lt": "Privalomas tėvų susirinkimas pirmąją mokslo metų dieną",
-        "id": "fb8603941513c",
-        "en": "Privalomas tėvų susirinkimas pirmąją mokslo metų dieną",
-        "label_en": "Privalomas tėvų susirinkimas pirmąją mokslo metų dieną",
-        "group_en": "Mokyklos dienos planas",
-        "alt_en": ""
+        "group_en": "Rugsėjo 6 d. · 9:30",
+        "alt_en": "",
+        "legacy_headers": [
+          "f06fcc6d16f25",
+          "f830e7e0c70f2"
+        ],
+        "legacy_rows": [
+          [
+            "f8c9995bbd5b5",
+            "f114034052ce7"
+          ],
+          [
+            "fe2e0eea300b4",
+            "fd17be0f81df9"
+          ],
+          [
+            "f07af4cd328fe",
+            "fb8603941513c"
+          ]
+        ],
+        "legacy_title": "f8c9995bbd5b5"
       },
       {
         "selector": "main > article:nth-of-type(1) > section:nth-of-type(1) > p:nth-of-type(2)",
@@ -23544,134 +23721,91 @@ window.SectionCatalog = [
         "alt_en": ""
       },
       {
-        "selector": "main > article:nth-of-type(1) > section:nth-of-type(2) > table:nth-of-type(1) > thead:nth-of-type(1) > tr:nth-of-type(1) > th:nth-of-type(1)",
-        "textIndex": 0,
-        "kind": "text",
-        "lt": "Laikas / data",
-        "group_lt": "Mažųjų tvarkaraštis",
-        "label_lt": "Laikas / data",
-        "id": "fdeb3560d5ad3",
-        "en": "Laikas / data",
-        "label_en": "Laikas / data",
-        "group_en": "Mažųjų tvarkaraštis",
-        "alt_en": ""
-      },
-      {
-        "selector": "main > article:nth-of-type(1) > section:nth-of-type(2) > table:nth-of-type(1) > thead:nth-of-type(1) > tr:nth-of-type(1) > th:nth-of-type(2)",
-        "textIndex": 0,
-        "kind": "text",
-        "lt": "Veikla",
-        "group_lt": "Mažųjų tvarkaraštis",
-        "label_lt": "Veikla",
-        "id": "f63501ac94126",
-        "en": "Veikla",
-        "label_en": "Veikla",
-        "group_en": "Mažųjų tvarkaraštis",
-        "alt_en": ""
-      },
-      {
-        "selector": "main > article:nth-of-type(1) > section:nth-of-type(2) > table:nth-of-type(1) > tbody:nth-of-type(1) > tr:nth-of-type(1) > td:nth-of-type(1)",
-        "textIndex": 0,
-        "kind": "text",
+        "selector": "main > article:nth-of-type(1) > section:nth-of-type(2) > table:nth-of-type(1)",
+        "kind": "table",
         "lt": "Rugsėjo 13 d.",
-        "group_lt": "Mažųjų tvarkaraštis",
         "label_lt": "Rugsėjo 13 d.",
-        "id": "fef82f98b7b21",
+        "group_lt": "Rugsėjo 13 d.",
+        "headers": [
+          {
+            "lt": "Laikas / data",
+            "en": "Laikas / data"
+          },
+          {
+            "lt": "Veikla",
+            "en": "Veikla"
+          }
+        ],
+        "rows": [
+          [
+            {
+              "lt": "Rugsėjo 13 d.",
+              "en": "Rugsėjo 13 d."
+            },
+            {
+              "lt": "Pirmasis „Zuikių“ klubo susitikimas",
+              "en": "Pirmasis „Zuikių“ klubo susitikimas"
+            }
+          ],
+          [
+            {
+              "lt": "2 kartus per mėnesį",
+              "en": "2 kartus per mėnesį"
+            },
+            {
+              "lt": "Susitikimai vyksta visus mokslo metus",
+              "en": "Susitikimai vyksta visus mokslo metus"
+            }
+          ],
+          [
+            {
+              "lt": "9:30–12:00",
+              "en": "9:30–12:00"
+            },
+            {
+              "lt": "Žaidybinės lietuviškos veiklos mažiesiems ir jų šeimoms",
+              "en": "Žaidybinės lietuviškos veiklos mažiesiems ir jų šeimoms"
+            }
+          ],
+          [
+            {
+              "lt": "Po 12:00",
+              "en": "Po 12:00"
+            },
+            {
+              "lt": "Laisvas žaidimas mokyklos žaidimų aikštelėje su tėvelių priežiūra",
+              "en": "Laisvas žaidimas mokyklos žaidimų aikštelėje su tėvelių priežiūra"
+            }
+          ]
+        ],
+        "id": "f89680018cb6a",
         "en": "Rugsėjo 13 d.",
         "label_en": "Rugsėjo 13 d.",
-        "group_en": "Mažųjų tvarkaraštis",
-        "alt_en": ""
-      },
-      {
-        "selector": "main > article:nth-of-type(1) > section:nth-of-type(2) > table:nth-of-type(1) > tbody:nth-of-type(1) > tr:nth-of-type(1) > td:nth-of-type(2)",
-        "textIndex": 0,
-        "kind": "text",
-        "lt": "Pirmasis „Zuikių“ klubo susitikimas",
-        "group_lt": "Mažųjų tvarkaraštis",
-        "label_lt": "Pirmasis „Zuikių“ klubo susitikimas",
-        "id": "f0c83f7d02404",
-        "en": "Pirmasis „Zuikių“ klubo susitikimas",
-        "label_en": "Pirmasis „Zuikių“ klubo susitikimas",
-        "group_en": "Mažųjų tvarkaraštis",
-        "alt_en": ""
-      },
-      {
-        "selector": "main > article:nth-of-type(1) > section:nth-of-type(2) > table:nth-of-type(1) > tbody:nth-of-type(1) > tr:nth-of-type(2) > td:nth-of-type(1)",
-        "textIndex": 0,
-        "kind": "text",
-        "lt": "2 kartus per mėnesį",
-        "group_lt": "Mažųjų tvarkaraštis",
-        "label_lt": "2 kartus per mėnesį",
-        "id": "f1d740efb5749",
-        "en": "2 kartus per mėnesį",
-        "label_en": "2 kartus per mėnesį",
-        "group_en": "Mažųjų tvarkaraštis",
-        "alt_en": ""
-      },
-      {
-        "selector": "main > article:nth-of-type(1) > section:nth-of-type(2) > table:nth-of-type(1) > tbody:nth-of-type(1) > tr:nth-of-type(2) > td:nth-of-type(2)",
-        "textIndex": 0,
-        "kind": "text",
-        "lt": "Susitikimai vyksta visus mokslo metus",
-        "group_lt": "Mažųjų tvarkaraštis",
-        "label_lt": "Susitikimai vyksta visus mokslo metus",
-        "id": "fb222878e5711",
-        "en": "Susitikimai vyksta visus mokslo metus",
-        "label_en": "Susitikimai vyksta visus mokslo metus",
-        "group_en": "Mažųjų tvarkaraštis",
-        "alt_en": ""
-      },
-      {
-        "selector": "main > article:nth-of-type(1) > section:nth-of-type(2) > table:nth-of-type(1) > tbody:nth-of-type(1) > tr:nth-of-type(3) > td:nth-of-type(1)",
-        "textIndex": 0,
-        "kind": "text",
-        "lt": "9:30–12:00",
-        "group_lt": "Mažųjų tvarkaraštis",
-        "label_lt": "9:30–12:00",
-        "id": "f4398440792cc",
-        "en": "9:30–12:00",
-        "label_en": "9:30–12:00",
-        "group_en": "Mažųjų tvarkaraštis",
-        "alt_en": ""
-      },
-      {
-        "selector": "main > article:nth-of-type(1) > section:nth-of-type(2) > table:nth-of-type(1) > tbody:nth-of-type(1) > tr:nth-of-type(3) > td:nth-of-type(2)",
-        "textIndex": 0,
-        "kind": "text",
-        "lt": "Žaidybinės lietuviškos veiklos mažiesiems ir jų šeimoms",
-        "group_lt": "Mažųjų tvarkaraštis",
-        "label_lt": "Žaidybinės lietuviškos veiklos mažiesiems ir jų šeimoms",
-        "id": "f7f1a5213fc94",
-        "en": "Žaidybinės lietuviškos veiklos mažiesiems ir jų šeimoms",
-        "label_en": "Žaidybinės lietuviškos veiklos mažiesiems ir jų šeimoms",
-        "group_en": "Mažųjų tvarkaraštis",
-        "alt_en": ""
-      },
-      {
-        "selector": "main > article:nth-of-type(1) > section:nth-of-type(2) > table:nth-of-type(1) > tbody:nth-of-type(1) > tr:nth-of-type(4) > td:nth-of-type(1)",
-        "textIndex": 0,
-        "kind": "text",
-        "lt": "Po 12:00",
-        "group_lt": "Mažųjų tvarkaraštis",
-        "label_lt": "Po 12:00",
-        "id": "f4b09700d1e90",
-        "en": "Po 12:00",
-        "label_en": "Po 12:00",
-        "group_en": "Mažųjų tvarkaraštis",
-        "alt_en": ""
-      },
-      {
-        "selector": "main > article:nth-of-type(1) > section:nth-of-type(2) > table:nth-of-type(1) > tbody:nth-of-type(1) > tr:nth-of-type(4) > td:nth-of-type(2)",
-        "textIndex": 0,
-        "kind": "text",
-        "lt": "Laisvas žaidimas mokyklos žaidimų aikštelėje su tėvelių priežiūra",
-        "group_lt": "Mažųjų tvarkaraštis",
-        "label_lt": "Laisvas žaidimas mokyklos žaidimų aikštelėje su tėvelių priežiūra",
-        "id": "f8680d8496da7",
-        "en": "Laisvas žaidimas mokyklos žaidimų aikštelėje su tėvelių priežiūra",
-        "label_en": "Laisvas žaidimas mokyklos žaidimų aikštelėje su tėvelių priežiūra",
-        "group_en": "Mažųjų tvarkaraštis",
-        "alt_en": ""
+        "group_en": "Rugsėjo 13 d.",
+        "alt_en": "",
+        "legacy_headers": [
+          "fdeb3560d5ad3",
+          "f63501ac94126"
+        ],
+        "legacy_rows": [
+          [
+            "fef82f98b7b21",
+            "f0c83f7d02404"
+          ],
+          [
+            "f1d740efb5749",
+            "fb222878e5711"
+          ],
+          [
+            "f4398440792cc",
+            "f7f1a5213fc94"
+          ],
+          [
+            "f4b09700d1e90",
+            "f8680d8496da7"
+          ]
+        ],
+        "legacy_title": "fef82f98b7b21"
       },
       {
         "selector": "main > article:nth-of-type(1) > section:nth-of-type(2) > p:nth-of-type(2)",

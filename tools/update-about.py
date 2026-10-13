@@ -85,10 +85,13 @@ reset_generated(mission_path, ['.source-section'])
 insert_once(mission_path, source.section('apie-mus/misija-ir-tikslai', mission_path,
                                          'Misija, veikla ir bendruomenė'))
 
-# Add all archived teacher-page imagery as community photos, without assigning a person to a photo.
+# Portraits already appear beside the matching biographies; retain only additional activity photos here.
 teachers_path = 'pages/apie-mus/mokytojai.html'
 reset_generated(teachers_path, ['.source-section'])
-teacher_images = [b for b in source.clean_blocks('apie-mus/mokytojos') if b['type'] == 'image']
+teacher_catalog = source.json.loads((source.ROOT / 'data/teachers.json').read_text(encoding='utf8'))
+profile_photos = {teacher.get('photo') for teacher in teacher_catalog['teachers']}
+teacher_images = [b for b in source.clean_blocks('apie-mus/mokytojos')
+                  if b['type'] == 'image' and source.MANIFEST['assets'].get(b['src']) not in profile_photos]
 teacher_photos = render_blocks('apie-mus/mokytojos', teachers_path, teacher_images)
 insert_once(teachers_path, '<section class="source-section"><h2>Mokytojų ir mokinių akimirkos</h2>'
             + teacher_photos + '</section>')

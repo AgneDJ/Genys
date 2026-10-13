@@ -51,3 +51,7 @@ Owner and editors can choose a named page directly from the admin navigation (fo
 After changing static templates, run node tools/build-section-catalog.js before publishing to update editable defaults.
 
 The admin remains available directly at https://genys.agne.dev/admin/; public pages do not show a footer sign-in link. The Contacts Messenger button opens the school conversation at https://m.me/sfgenys.
+
+## Schedule tables
+
+In the Schedule editing section, each table has an editable LT/EN name, column headings and cells. Use Add row/Add column or the corresponding Remove buttons. At least one row and one column remain; limits are 200 rows and 12 columns. Save draft leaves the published schedule unchanged; Publish applies the complete table. Existing cell edits are carried into this structured editor. This uses the existing content_sections table, so no additional SQL migration is required.

@@ -24,6 +24,13 @@
     if (!catalog || !published) return;
     for (const field of catalog.fields) {
       const value = published[field.id];
+      if(field.kind==='table'){
+        const legacy=[field.legacy_title,...(field.legacy_headers||[]),...(field.legacy_rows||[]).flat()];
+        if(!window.SectionTables||(!value&&!legacy.some(id=>id&&published[id])))continue;
+        const table=document.querySelector(field.selector);
+        if(table?.tagName==='TABLE'&&table.closest('main'))SectionTables.render(table,SectionTables.normalize(field,published),language);
+        continue;
+      }
       if (!value || typeof value !== 'object') continue;
       const element = document.querySelector(field.selector);
       if (!element || !element.closest('main')) continue;

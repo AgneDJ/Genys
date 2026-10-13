@@ -69,3 +69,11 @@ The leader may use a built-in worker for a one-off task, but should request `gpt
 - For JavaScript changes, check syntax and the affected interaction.
 - Never claim completion until the leader has inspected the resulting diff or files and completed relevant validation.
 
+
+## Persistent project context
+
+- At the start of every session and before continuing work after a restart, read `CONTEXT.md` in the project root. Use it together with the current user request and inspect the current Git state.
+- After every completed task, update `CONTEXT.md` so it reflects the current outcome, decisions, validation, pending work, and any new user preferences. Do this before the final response and include the update in the task commit when committing.
+- Keep it a concise current-state summary, not a transcript. Remove stale pending items and distinguish verified facts from assumptions.
+- Never put passwords, secret API keys, shared editor PINs, attendance PIN rosters, or other credentials in the context document.
+- Git hashes, deployment status and external configuration can change; verify them with the relevant tools rather than treating the document as proof.

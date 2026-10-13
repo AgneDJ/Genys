@@ -5,6 +5,8 @@ const root=path.resolve(__dirname,'..');
 async function run() {
   let playwright;
   try { playwright=require('playwright'); } catch { playwright=require(path.join(process.env.USERPROFILE,'.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright')); }
+  let previousCatalog=[];
+  try { const existing=await fs.readFile(path.join(root,'data/section-catalog.js'),'utf8'); const marker='window.SectionCatalog = '; previousCatalog=JSON.parse(existing.slice(existing.indexOf(marker)+marker.length).trim().replace(/;$/, '')); } catch {}
   const files=[];
   async function walk(dir) {for(const entry of await fs.readdir(path.join(root,dir),{withFileTypes:true})){const rel=path.posix.join(dir,entry.name);if(entry.isDirectory())await walk(rel);else if(entry.name.endsWith('.html')&&!entry.name.startsWith('_')&&!rel.endsWith('/straipsnis.html'))files.push(rel);}}
   files.push('index.html');await walk('pages');await walk('articles');
@@ -29,6 +31,14 @@ async function run() {
         for(const el of document.querySelectorAll('main,main *')){
           if(el.closest(ignored))continue;
           const sel=selector(el),g=group(el);
+          if(location.pathname.endsWith('/pages/tvarkarastis.html')&&el.closest('table.schedule-table')){
+            if(el.tagName==='TABLE'){
+              const title=el.caption?.textContent.trim()||el.tBodies[0]?.rows[0]?.cells[0]?.textContent.trim()||g;
+              const headers=[...el.tHead.rows[0].cells];const rows=[...el.tBodies[0].rows].map(row=>[...row.cells]);
+              fields.push({key:sel+'|table',selector:sel,kind:'table',lt:title,label_lt:title,group_lt:title,headers:headers.map(cell=>cell.textContent.trim()),rows:rows.map(row=>row.map(cell=>cell.textContent.trim())),headerSelectors:headers.map(selector),rowSelectors:rows.map(row=>row.map(selector))});
+            }
+            continue;
+          }
           [...el.childNodes].forEach((child,index)=>{if(child.nodeType===3&&child.nodeValue.trim()){const value=child.nodeValue.trim();fields.push({key:sel+'|text|'+index,selector:sel,textIndex:index,kind:'text',lt:value,group_lt:g,label_lt:value.slice(0,100)});}});
           if(el.tagName==='IMG'&&!el.closest('.brand'))fields.push({key:sel+'|image',selector:sel,kind:'image',url:normalize(el.getAttribute('src')||''),alt_lt:el.alt||'',label_lt:el.alt||'Nuotrauka',group_lt:g});
           if(el.tagName==='A'&&!el.classList.contains('back')&&!el.getAttribute('href')?.includes('checkin/'))fields.push({key:sel+'|link',selector:sel,kind:'link',url:normalize(el.getAttribute('href')||''),label_lt:el.textContent.trim()||'Nuoroda',group_lt:g});
@@ -38,7 +48,35 @@ async function run() {
       };
       const lt=await page.evaluate(capture);
       const enButton=page.locator('[data-lang=en]').first();if(await enButton.count())await enButton.click();await page.waitForTimeout(30);const en=await page.evaluate(capture);const enMap=new Map(en.fields.map(field=>[field.key,field]));
-      const fields=lt.fields.map(field=>{const translation=enMap.get(field.key);const result={...field,id:'f'+crypto.createHash('sha256').update(field.key).digest('hex').slice(0,12),en:translation?.lt||field.lt||'',label_en:translation?.label_lt||field.label_lt,group_en:translation?.group_lt||field.group_lt,alt_en:translation?.alt_lt||field.alt_lt||''};delete result.key;return result;});
+      const previousPage=previousCatalog.find(entry=>entry.page===file);
+      const preservedImages=new Map();
+      for (const field of lt.fields.filter(item=>item.kind==='image')) {
+        const matches=(previousPage?.fields||[]).filter(item=>item.kind==='image'&&item.url===field.url);
+        if(matches.length===1&&lt.fields.filter(item=>item.kind==='image'&&item.url===field.url).length===1)preservedImages.set(field.key,matches[0].id);
+      }
+      const reservedIds=new Set(preservedImages.values()),assignedIds=new Set();
+      const idFor=field=>{
+        const preserved=preservedImages.get(field.key);
+        let id=preserved||'f'+crypto.createHash('sha256').update(field.key).digest('hex').slice(0,12);
+        for(let salt=0;!preserved&&(reservedIds.has(id)||assignedIds.has(id));salt++)id='f'+crypto.createHash('sha256').update(field.key+'|new|'+salt).digest('hex').slice(0,12);
+        if(assignedIds.has(id))throw new Error('Duplicate field ID on '+file+': '+id);
+        assignedIds.add(id);return id;
+      };
+      const legacyId=selector=>previousPage?.fields.find(item=>item.kind==='text'&&item.selector===selector&&item.textIndex===0)?.id||null;
+      const fields=lt.fields.map(field=>{
+        const translation=enMap.get(field.key);
+        const result={...field,id:idFor(field),en:translation?.lt||field.lt||'',label_en:translation?.label_lt||field.label_lt,group_en:translation?.group_lt||field.group_lt,alt_en:translation?.alt_lt||field.alt_lt||''};
+        if(field.kind==='table'){
+          const prior=previousPage?.fields.find(item=>item.kind==='table'&&item.selector===field.selector);
+          result.headers=field.headers.map((value,index)=>({lt:value,en:translation?.headers?.[index]||value}));
+          result.rows=field.rows.map((row,index)=>row.map((value,column)=>({lt:value,en:translation?.rows?.[index]?.[column]||value})));
+          result.legacy_headers=prior?.legacy_headers||field.headerSelectors.map(legacyId);
+          result.legacy_rows=prior?.legacy_rows||field.rowSelectors.map(row=>row.map(legacyId));
+          result.legacy_title=prior?.legacy_title||result.legacy_rows[0]?.[0]||null;
+          delete result.headerSelectors;delete result.rowSelectors;
+        }
+        delete result.key;return result;
+      });
       if(fields.length)catalog.push({page:file,title_lt:lt.title,title_en:en.title,fields});
     }
     await fs.writeFile(path.join(root,'data/section-catalog.js'),'/* Generated by tools/build-section-catalog.js. Static page defaults; no credentials. */\nwindow.SectionCatalog = '+JSON.stringify(catalog,null,2)+';\n');

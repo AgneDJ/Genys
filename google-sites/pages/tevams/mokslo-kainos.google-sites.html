@@ -25,6 +25,11 @@
 
 .content-editor-entry{padding:28px 24px;text-align:center;background:transparent}.content-editor-entry a{color:#62718b;font-size:.8rem;text-decoration:none}.news-photo-gallery figure{margin:0}.content-events .article{padding:30px 0}.news-photo-gallery{margin:28px 0}
 
+/* Teacher portraits stay beside the biography, outside the archive. */
+.teacher-portrait{float:left;width:min(32%,240px);margin:0 28px 20px 0}.teacher-portrait img{display:block;width:100%;height:auto;border-radius:16px}.article:has(>.teacher-portrait){display:flow-root}.teacher-portrait~.source-biography-archive{clear:both}@media(max-width:600px){.teacher-portrait{width:min(42%,180px);margin-right:18px;margin-bottom:14px}}
+
+.schedule-section{overflow-x:auto}.schedule-table caption{text-align:left;caption-side:top;padding:0 0 14px;font:700 1.15rem Georgia,serif;color:#10213d}.schedule-table th,.schedule-table td{min-width:110px;overflow-wrap:anywhere}
+
 </style>
   <style>
     .fee-note{margin:28px 0;padding:24px;border-radius:18px;background:linear-gradient(135deg,#fff0d8,#e8f4ff);line-height:1.65}.fee-note h2{margin:0 0 12px}.payment-list{display:grid;gap:16px;margin-top:25px}.payment-option{padding:22px;border:1px solid #dce6f5;border-radius:16px;background:#fff;box-shadow:0 8px 20px #3151810d}.payment-option h3{margin:0 0 10px;font:600 1.3rem 'Playfair Display',serif}.payment-option p{margin:7px 0;font-size:.96rem}.doc-frame{overflow:hidden;margin-top:32px;border:1px solid #dce6f5;border-radius:18px;background:#fff;box-shadow:0 12px 28px #31518112}.doc-frame header{display:flex;justify-content:space-between;gap:16px;padding:14px 17px;background:#edf4ff;color:#234a9b;font-size:.76rem;font-weight:700}.doc-frame a{color:#245fc8}.doc-frame iframe{display:block;width:100%;height:580px;border:0}@media(max-width:600px){.doc-frame iframe{height:440px}.doc-frame header{align-items:center;font-size:.68rem}}
@@ -139,6 +144,13 @@
     if (!catalog || !published) return;
     for (const field of catalog.fields) {
       const value = published[field.id];
+      if(field.kind==='table'){
+        const legacy=[field.legacy_title,...(field.legacy_headers||[]),...(field.legacy_rows||[]).flat()];
+        if(!window.SectionTables||(!value&&!legacy.some(id=>id&&published[id])))continue;
+        const table=document.querySelector(field.selector);
+        if(table?.tagName==='TABLE'&&table.closest('main'))SectionTables.render(table,SectionTables.normalize(field,published),language);
+        continue;
+      }
       if (!value || typeof value !== 'object') continue;
       const element = document.querySelector(field.selector);
       if (!element || !element.closest('main')) continue;
