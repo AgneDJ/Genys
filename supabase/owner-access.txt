@@ -1,0 +1,6 @@
+insert into public.content_editors (user_id, email, role)
+select id, lower(email), 'owner'
+from auth.users
+where lower(email) = lower('JUSU_EMAIL')
+on conflict (user_id) do update
+set email = excluded.email, role = 'owner';
