@@ -35,12 +35,19 @@
     } catch { return null; }
   })();
   const text = (item, key, lang) => String(item[key + '_' + lang] || item[key + '_lt'] || '');
+  const excerpt = (post, lang, limit = 220) => {
+    const value = (text(post, 'summary', lang).trim() || text(post, 'body', lang)).replace(/\s+/g, ' ').trim();
+    if (value.length <= limit) return value;
+    const shortened = value.slice(0, limit - 1);
+    const boundary = shortened.lastIndexOf(' ');
+    return (boundary > limit * 0.6 ? shortened.slice(0, boundary) : shortened).trimEnd() + '…';
+  };
   const postLink = post => new URL('pages/straipsnis.html?slug=' + encodeURIComponent(post.slug), root).href;
   const news = post => ({
     date: post.date_label_lt || post.date || '', category: 'BENDRUOMENĖ',
-    title: text(post, 'title', 'lt'), text: text(post, 'summary', 'lt'), link: postLink(post),
+    title: text(post, 'title', 'lt'), text: excerpt(post, 'lt'), link: postLink(post),
     image: imageURL(post.photos?.[0]?.url),
-    en: { date: post.date_label_en || post.date || '', category: 'COMMUNITY', title: text(post, 'title', 'en'), text: text(post, 'summary', 'en') }
+    en: { date: post.date_label_en || post.date || '', category: 'COMMUNITY', title: text(post, 'title', 'en'), text: excerpt(post, 'en') }
   });
-  window.SiteContent = { load, imageURL, text, postLink, news, root };
+  window.SiteContent = { load, imageURL, text, excerpt, postLink, news, root };
 })();

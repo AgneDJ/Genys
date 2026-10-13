@@ -10,15 +10,16 @@
     if (className) item.className = className;
     return item;
   };
-  const article = post => {
+  const article = (post, preview = false) => {
     const result = node('article', undefined, 'article');
     result.lang = lang;
     const date = SiteContent.text(post, 'date_label', lang) || post.date || '';
     result.append(node('p', (post.kind === 'event' ? (lang === 'en' ? 'EVENTS' : 'RENGINIAI') : (lang === 'en' ? 'NEWS' : 'NAUJIENOS')) + (date ? ' · ' + date : ''), 'eyebrow'));
     result.append(node(target ? 'h1' : 'h2', SiteContent.text(post, 'title', lang)));
-    const body = SiteContent.text(post, 'body', lang) || SiteContent.text(post, 'summary', lang);
+    const body = preview ? SiteContent.excerpt(post, lang) : SiteContent.text(post, 'body', lang) || SiteContent.text(post, 'summary', lang);
     body.split(/\n\s*\n|\n/).filter(part => part.trim()).forEach(part => result.append(node('p', part)));
-    const photos = Array.isArray(post.photos) ? post.photos : [];
+    const allPhotos = Array.isArray(post.photos) ? post.photos : [];
+    const photos = preview ? allPhotos.slice(0, 1) : allPhotos;
     if (photos.length) {
       const grid = node('div', undefined, 'news-photo-gallery');
       photos.forEach(photo => {
@@ -29,6 +30,12 @@
         figure.append(image); grid.append(figure);
       });
       result.append(grid);
+    }
+    if (preview) {
+      const link = node('a', lang === 'en' ? 'Read more →' : 'Skaityti daugiau →', 'back');
+      link.href = SiteContent.postLink(post);
+      const paragraph = node('p'); paragraph.append(link); result.append(paragraph);
+      return result;
     }
     const source = SiteContent.imageURL(post.source_url);
     if (source) {
@@ -48,7 +55,7 @@
     }
     if (eventList) {
       const posts = content.posts.filter(post => post.kind === 'event');
-      eventList.replaceChildren(...posts.map(article));
+      eventList.replaceChildren(...posts.map(post => article(post, true)));
       if (!posts.length) eventList.append(node('p', lang === 'en' ? 'No events have been announced yet.' : 'Renginiai dar nepaskelbti.'));
     }
   };
